@@ -1,0 +1,639 @@
+
+//ServicePage
+.ServicePageMain {
+    .card{
+        color: white;
+        background-color: #1F3C53;
+        border-radius: 10px;
+    }
+    .card:hover{
+        border-color: $blue;
+    }
+    a{
+        text-decoration: none;
+        color: #fff;
+    }
+}
+.card-serv-main{
+    .mediaMain{
+        .media-left{
+            .media-object{
+                border-radius: 14px;
+                padding: 10px;
+                width: 80px;
+                height: 80px;
+            }
+        }
+        .media-body{
+                font-size: 13px;
+                font-family: 'Neo_Sans_Pro';
+                margin-top: 10px;
+            .media-heading{
+                font-size: 14px;
+                font-family: 'Neo_Sans';
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
+            }
+            .sub-title{
+                color: #A2B0BA;
+                font-size: 13px;
+                font-family: 'Open_Sans';
+            }
+        }
+        .media-right{
+            // position: absolute;
+            background: rgb(42, 67, 87);
+            margin-top: 15px;
+            margin-right: 10px;
+            // top: 1.5rem;
+            // left: 17rem;
+            border-radius: 20px;
+            padding: 4px;
+        }
+        .media-right:hover{
+            background: $blue;
+        }
+    }
+}
+
+// SubCategory Page Add pages
+
+.SubcategoryMain {
+        .media-left{
+            .media-object{
+                border-radius: 14px;
+                padding: 10px;
+                width: 80px;
+                height: 80px;
+            }
+        }
+        .media-body{
+                font-size: 13px;
+                margin-top: 10px;
+            .media-heading{
+                font-size: 14px;
+                font-family: 'Neo_Sans';
+                font-weight: 500;
+                margin-bottom: 0.2rem;
+                // margin-top: 0.2rem;
+                .media-object{
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+            .items-list{
+                display: block;
+                color: #A2B0BA;
+                font-size: 12px;
+                font-family: 'Open_Sans';
+            }
+            b{
+                display: block;
+                font-size: 14px;
+                font-family: 'Neo_Sans_Pro';
+            }
+        }
+        .addbtn{
+            // position: absolute;
+            // top: 1.5rem;
+            // left: 15rem;
+            margin-top: 24px;
+            margin-right: 15px;
+            background: none;
+            border-color: #fff;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-family: 'Neo_Sans_Pro';
+        }
+        .qtybtn{
+            // position: absolute;
+            // top: 1.5rem;
+            // left: 14rem;
+            margin-top: 24px;
+            margin-right: 15px;
+            background: none;
+            border: #fff 1px solid;
+            border-radius: 20px;
+            // padding: 4px 8px;
+            padding: 0px 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            .minus{
+                padding: 5px 8px;
+                font-weight: 300;
+                font-size:22px;
+            }
+            .plus{
+                padding: 5px 8px;
+                font-weight: 300;
+                font-size: 19px;
+            }
+            .count{
+                padding: 5px 8px;
+                font-size: 13px;
+            }
+        }
+}
+//Add Btn with continue
+.addItem-div{
+    .ContinueBtn{
+       background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
+       float: right;
+    //    margin-top: -24px;
+       color: #fff;
+    }
+    span{
+        float: left;
+    }
+    padding-top: 10px;
+    background: #142A3B;
+    border-top: 1px solid #132431aa;
+    font-family: 'Open_Sans';
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.col-main:hover{
+    border-color: $blue;
+}
+
+@media screen and (max-width:480px){
+    //Checkout table
+    .TableMainList{
+        .t-body td{
+            .qtybtn{
+                width: 70% !important;
+            }
+        }
+     }
+}
+
+@media screen and (max-width:768px){
+    .SubcategoryMain {
+        .card{
+            border: 0px !important;
+            border-radius: 0px !important
+        }
+        //  .addbtn{
+        //     left: 16rem;
+        //  }
+    }
+    // .mediaMain{
+    //     .media-right{
+    //         left: 16rem;
+    //     }
+    // }
+    //Checkout table
+    .TableMainList{
+        .t-body td{
+            .qtybtn{
+                width: 30%;
+            }
+        }
+     }
+     .confirmBtn-div{
+        width: 100%;
+        flex-direction: row;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        border: 0px;
+        .confirmBtn{
+            border-radius: 0 !important;
+        }
+        
+     }
+     //Wake up Request
+     .WakeupRequestBtn-div{
+         width: 100%;
+         flex-direction: row;
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+        .btnCancel{
+            width: 40%;
+            // margin-right: 0px;
+            margin: 0 !important;
+            border-radius: 0px;
+        }
+        .btnReqt{
+            width: 60%;
+            border-radius: 0px;
+        }
+        //Add Item Continue btn
+        .addItem-div{
+            padding-top: 5px;
+            width: 100%;
+            flex-direction: row;
+            // position: absolute;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            :hover{
+                border-top: 1px solid #5FBAFE !important;
+            }
+        }
+    }
+
+    // //Front Office 
+    // .front-office-main .media-right {
+    //     left: 15rem;
+    // }
+}
+
+// MainSubcategoryPage Tabs main Page
+.sometext{
+    p{
+        font-size: 12px;
+        font-family: 'Open_Sans';
+        color: #fff;
+        background: #000;
+        padding: 10px;
+        margin-bottom: 0px;
+    }
+}
+.tabMain{
+    .nav-tabs{
+        border-bottom: none;
+        .nav-item .nav-link{
+            font-size: 12px;
+            border: none;
+            border-color: none;
+            color: #A2B0BA;
+            padding-left: 0px;
+            text-transform: uppercase;
+        }
+        .nav-item .nav-link.active{
+            color:#fff;
+            background: transparent !important;
+            border-bottom: #16B210 2px solid;
+        }
+        .nav-tabs .nav-link:hover{
+            border-color: none;
+        }
+    }
+}
+
+//Checkout page
+// table one
+.checkout-div{ 
+    .note-text-checkout{
+        font-family: "Open_Sans";
+        font-size: 12px;
+        color: #A2B0BA;
+        padding: 10px;
+        background: #1F3C53;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    .table{
+        margin-bottom: 0.5rem !important;
+        td{
+            border-top: 0px !important;
+        }
+    }
+//Total bill in checkout page
+    .bill-amt{
+        .totalamt{
+            color: #fff;
+            font-size: "Open_Sans";
+            font-weight: 400;
+            font-size: 13px;
+            text-align: center;
+        }
+        .totalamt1{
+            color: #fff;
+            font-size: "Open_Sans";
+            font-weight: 400;
+            font-size: 13px;
+            text-align: center;
+        }
+        .totaltext{
+            color: #fff;
+          font-size: 'Neo_Sans';
+          font-weight: 400;
+          font-size: 14px;
+        }
+        background: #1F3C53;
+    }
+
+.TableMainList{
+    td{
+    font-family: 'Neo_Sans_Pro';
+    font-size: 14px;
+    font-weight: 300px;
+
+        .media-object{
+            width: 15px;
+            height: 15px;
+        }
+        color: #fff;
+        border-top: none;
+        .qtybtn{
+            // width: 22%;
+            width:max-content;
+            display: flex;
+            background: none;
+            border: #fff 1px solid;
+            border-radius: 20px;
+            padding: 0px 8px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            .minus{
+                padding: 5px;
+                font-weight: 600
+            }
+            .plus{
+                padding: 5px;
+                font-weight: 600
+            }
+            .count{
+                padding: 5px;
+                input{
+                    width: 10px;
+                    height: 15px;
+                    background: transparent;
+                    color: white;
+                    border: 0px;
+                    font-size: 13px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+  }
+}
+//Table two
+  //Wakeup and checkout 
+  .wakeup-div{
+    .note-text{
+        font-family: "Open_Sans";
+        font-size: 12px;
+        color: #A2B0BA;
+        padding: 10px;
+        background: #1F3C53;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .table{
+        margin-bottom: 0.5rem !important;
+    }
+  }
+
+.tableRadio{
+    background: #1F3C53;
+    td{
+        border-top: 0px !important;
+    }
+    .table-div{
+        display: flex;
+        padding: 10px;
+        padding-left: 30px;
+        color: #fff;
+        .label{
+            font-size: 14px;
+            font-weight: bold;
+            font-family: "Neo_Sans_Pro";
+            padding-right: 10px;
+            padding-top: 3px;
+        }
+        .custom-control-label {
+        font-family: "Open_Sans";
+        font-size: 12px;
+        padding-top: 3px;
+        }
+    .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+        background-color: #16B210; 
+        border-radius: 10px;
+    }
+  }
+  .radio-div{
+    .form-group{
+        margin-bottom: 5px !important;
+    }
+  }
+}
+
+// Table third text div
+.confirmBtn-div{
+    margin: 0 auto;
+    .confirmBtn{
+        font-family: 'Open_Sans';
+        font-size: 14px;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
+    }
+}
+//Modal 
+.modal-div{
+    top:100px;
+    .modal-header{
+        .modal-title{
+        font-family: "Neo_Sans";
+        font-size: 16px;
+        text-align: center;
+        color: #000;
+        margin: 0 auto;
+        }
+        .close {
+            margin: -1rem -1rem -1rem -1rem;
+        }
+    }
+    .modal-body{
+        font-family: "Open_Sans";
+        font-size: 12px;
+        text-align: center;
+        color:#A2B0BA;
+    }
+    .modal-footer{
+        margin: 0 auto;
+    }
+    .okBtn{
+        background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
+        border-radius: 15px;
+        padding: 5px 15px;
+    }
+}
+
+//WakeupRequestBtn-div
+.WakeupRequestBtn-div{
+    display: flex;
+    margin: 0 auto;
+    .btnCancel{
+        margin-right: 10px;
+        background: #fff;
+        color: #000;
+        font-size: 13px;
+        font-family: 'Neo_Sans_Pro';
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .btnReqt{
+        background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
+        color: #fff;
+        font-size: 13px;
+        font-family: 'Neo_Sans_Pro';
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+}
+
+//Front office main
+.front-office-main{
+    padding:7px 12px 10px 30px;
+    .media-body{
+        font-size: 13px;
+        font-family: 'Open_Sans';
+        font-style: regular;
+    .media-heading{
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .sub-title{
+        color: #A2B0BA;
+        font-size: 13px;
+        font-family: 'Open_Sans';
+    }
+    }
+    .media-right{
+        // position: absolute;
+        margin-top: 10px;
+        background: #264862;
+        // top: 1.3rem;
+        // left: 17rem;
+        border-radius: 20px;
+        padding: 4px;
+        font-size: 20px;
+    }
+    .media-right:hover{
+        background: $blue;
+    }
+}
+
+// Request Tab Main 
+.tabRequestMain{
+    .nav-tabs{
+        border-bottom: none;
+        justify-content: center;
+        .nav-item .nav-link{
+            font-family: 'Neo_Sans_Pro';
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            border-color: none;
+            color: #A2B0BA;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .nav-item .nav-link.active{
+            color:#fff;
+            background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
+        }
+        .nav-tabs .nav-link:hover{
+            border-color: none;
+        }
+    }
+}
+// active 
+.requestTab-main{
+    .mediaMain{
+        position: relative;
+        padding:10px 10px 10px 20px;
+    .media-body{
+        font-size: 13px;
+        font-family: 'Neo_Sans_Pro';
+        font-style: regular;
+    .media-heading{
+        font-size: 14px;
+        font-family: 'Neo_Sans_Pro';
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .sub-title{
+        display: block;
+        color: #A2B0BA;
+        font-size: 13px;
+        font-family: 'Open_Sans';
+        padding-bottom: 10px;
+    }
+    .sub-title2{
+        display: block;
+        color: #16B210;
+        font-size: 13px;
+        font-family: 'Open_Sans';
+    }
+    .sub-title3{
+        display: block;
+        color: #D60505;
+        font-size: 13px;
+        font-family: 'Open_Sans';
+    }
+    }
+    .media-right{
+        // position: absolute;
+        margin-top: 10px;
+        background: #264862;
+        // top: 1.5rem;
+        // left: 17rem;
+        border-radius: 20px;
+        padding: 4px;
+        font-size: 20px;
+    }
+    .media-right:hover{
+        background: $blue;
+    }
+  }
+}
+
+// Collpase 
+#basicCollapse{
+    .TableMainList .t-body td .qtybtn{
+        width: 70% !important;
+    }
+    .TableMainList .t-body tr td{
+        border-top: none;
+        color: #fff;
+        font-family: 'Open_Sans';
+        font-size: 13px;
+
+    .media-object{
+        width: 15px;
+        height: 15px;
+    }
+     .order-total 
+     {  color: #fff;
+        font-family: 'Open_Sans';
+        font-size: 13px;
+        border-top: none;
+      .totalamt1{
+        color: #fff;
+        font-size: "Open_Sans";
+        font-weight: 400;
+        font-size: 13px;
+        text-align: center;
+      }
+        .totaltext{
+            color: #fff;
+        font-size: 'Neo_Sans';
+        font-weight: 400;
+        font-size: 14px;
+        
+        }
+     }
+
+    }
+}

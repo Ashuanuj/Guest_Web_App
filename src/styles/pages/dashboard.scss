@@ -1,0 +1,54 @@
+
+body{
+    background-color: #142A3B !important;
+}
+
+.ServicePageMain {
+      /*card animation from slide left*/
+    //    animation-duration: 0.2s;
+    //    animation-name: slidein;
+    //    @keyframes slidein {
+    //     from {
+    //         margin-left: 100%;
+    //         width: 100%;
+    //     }
+
+    //     to {
+    //         margin-left: 0%;
+    //         width: 100%;
+    //     }
+    // }
+    .card{
+        color: white;
+        background-color: #1F3C53;
+        border-radius: 10px;
+    }
+    .card:hover{
+        border-color: $blue;
+    }
+}
+
+.card-serv-main{
+    .card-img-left {
+        background: linear-gradient(to top, #5FBAFE, #567CF8);
+        margin: 10px;
+        border-radius: 14px;
+        padding: 10px;
+    }
+    .card-body{
+        
+        .card-title{
+            font-family: 'Neo_Sans_Pro';
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .card-text{
+            font-family: 'Open_Sans';
+            font-size: 13px;
+            color: #A2B0BA;
+
+        }
+    }
+}

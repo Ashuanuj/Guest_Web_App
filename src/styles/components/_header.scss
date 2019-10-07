@@ -1,0 +1,40 @@
+.cr-header {
+   border-bottom: $border-width solid white;
+  
+  &__nav-right {
+    flex-direction: row; 
+    justify-content: flex-end;
+    // margin-left: auto;
+  }
+}
+.bgNav{
+  background: #1F3C53;
+  position: fixed;
+  width:100%;
+  z-index: 6;
+  box-shadow: 0px #0000000F;
+  
+  .Nav-Name{
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    font-family: 'Neo_Sans';
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .MuiSvgIcon-root{
+    fill: #fff;
+  }
+  .MuiIconButton-colorInherit{
+    color: none;
+  }
+}
+.button:focus{
+  outline: 0px;
+}
+
+.ToggleBtn{
+  color: #fff;
+  border-color: #fff;
+  background: #1F3C53 linear-gradient(180deg, #1F3C53, #1F3C53) repeat-x;
+}
