@@ -23,7 +23,7 @@ export default function callApi(endpoint, body, method, queryData, isFile = fals
           headers.append('passwordUpdatedAt', passwordUpdatedAt);
      }
 
-     let URL = 'https://heliusbe.tech-active.com';
+     let URL = 'https://206.189.143.249:70';
 
      URL = `${URL}/${endpoint}${queryParams}`;
 

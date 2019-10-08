@@ -69,3 +69,6 @@ export const TOAST = {
     CLOSE: 'TOAST_CLOSE',
 };
 export const toast = createActionsFromTypes(TOAST);
+
+export const CONTINUE = 'CONTINUE';
+export const continueButton = createAction(CONTINUE);

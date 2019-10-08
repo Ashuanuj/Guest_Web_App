@@ -35,7 +35,8 @@ class CheckoutPage extends React.Component{
 
       
     render(){
-        // const {props} = this;
+        const {props} = this;
+        console.log(props, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
 
         return(
 
@@ -137,6 +138,7 @@ function mapStateToProps(state)
 {
     return {
           checkout: state.checkoutReducers.checkout,
+          cartItems: state.subCategory.cartItems
          };
 }
 

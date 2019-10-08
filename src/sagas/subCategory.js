@@ -20,7 +20,7 @@ export function* SubCategoryData() {
                 SubTitle: "2 Idly + 1 Vada ", 
                 icon: vegImg , 
                 image: SubImage1,
-                rate: "$4.00",
+                rate: "4.00",
                 link: `mainsubcategorypage` 
             },
             {   id: 2, 
@@ -28,7 +28,7 @@ export function* SubCategoryData() {
                 SubTitle: "2 Bread slices with butter  ", 
                 icon: vegImg , 
                 image: SubImage2,
-                rate: "$4.00",
+                rate: "4.00",
                 link: `mainsubcategorypage` 
             },
             {   id: 3, 
@@ -36,7 +36,7 @@ export function* SubCategoryData() {
                 SubTitle: "2 Bread slices with butter  ", 
                 icon: NonvegImg , 
                 image: SubImage3,
-                rate: "$3.00",
+                rate: "3.00",
                 link: `mainsubcategorypage` 
             },
             {   id: 4, 
@@ -44,7 +44,7 @@ export function* SubCategoryData() {
                 SubTitle: "2 Idly + 1 Vada ", 
                 icon: vegImg , 
                 image: SubImage1,
-                rate: "$4.00",
+                rate: "4.00",
                 link: `mainsubcategorypage` 
             },
             {   id: 5, 
@@ -52,7 +52,7 @@ export function* SubCategoryData() {
                 SubTitle: "2 Bread slices with butter  ", 
                 icon: NonvegImg , 
                 image: SubImage3,
-                rate: "$3.00",
+                rate: "3.00",
                 link: `mainsubcategorypage` 
             },
           

@@ -1,9 +1,10 @@
-import { SUB_CATEGORY,SUB_CATEGORY_DATA,LOAD_SUBCATEGORY_LOADING} from '../actions';
+import { SUB_CATEGORY,SUB_CATEGORY_DATA,LOAD_SUBCATEGORY_LOADING, CONTINUE} from '../actions';
 
 const initialState = {
     error: undefined,
     subCategory:[],
-    loading:false
+    loading:false,
+    cartItems: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +30,13 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     error: action.payload,
                 };
+            }
+            case CONTINUE: {
+                console.log(action.payload, 'ttttttttttttttttttttttttrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+                return {
+                    ...state,
+                    cartItems: action.payload
+                }
             }
         default:
             return state;

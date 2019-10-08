@@ -5,13 +5,14 @@ import { Row, Col, Card, Media, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { subCategory } from '../../actions'
+import { subCategory, continueButton } from '../../actions'
 
 class SubCategory1 extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      add: false,
+      totalItems: 0,
+      totalRate: 0
     }
     this.handleAddItem = this.handleAddItem.bind(this);
     this.onIncrement = this.onIncrement.bind(this);
@@ -36,19 +37,35 @@ class SubCategory1 extends Component {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     console.log(index);
     this.props.subcategory[index].selectedItems += 1
+    this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
     console.log(this.props.subcategory)
+
+    this.setState({
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
+      totalItems: this.state.totalItems + 1,
+      totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
+    })
   }
 
   onDecrement(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     console.log(index);
-    this.props.subcategory[index].selectedItems = this.props.subcategory[index].selectedItems !== 0 ? this.props.subcategory[index].selectedItems - 1 : ''
+    this.setState({
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
+      totalItems: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
+      totalRate: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalRate - parseFloat(this.props.subcategory[index].rate) : this.state.totalRate
+    })
+    this.props.subcategory[index].selectedItems = this.props.subcategory[index].selectedItems > 0 ? this.props.subcategory[index].selectedItems - 1 : 0
+    this.props.subcategory[index].itemsRate = this.props.subcategory[index].selectedItems > 0 && this.props.subcategory[index].itemsRate > 0 ? this.props.subcategory[index].itemsRate - parseFloat(this.props.subcategory[index].rate) : this.props.subcategory[index].itemsRate
+    this.props.subcategory[index].accept =  this.props.subcategory[index].selectedItems == 0 ? false : true
     console.log(this.props.subcategory)
+
+    console.log(this.state)
   }
 
   handleContinue() {
-
-    console.log("continue");
+    console.log(this.props.subcategory);
+    this.props.actions.continueButton(this.props.subcategory)
   }
 
   render() {
@@ -72,9 +89,9 @@ class SubCategory1 extends Component {
             <Media right>
               <Button className="addbtn " style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={() => this.handleAddItem(data.id)}>Add</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
-                <span className="minus" onClick={() => this.onDecrement(data.id)}>-</span>
+                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}>-</span>
                 <span className="count"><b>{data.selectedItems}</b></span>
-                <span className="plus" onClick={() => this.onIncrement(data.id)}>+</span>
+                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}>+</span>
               </div>
             </Media>
 
@@ -88,7 +105,7 @@ class SubCategory1 extends Component {
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {this.state.selectedItems} Items | $22.00</span>
+          <span> {`${this.state.totalItems} Items || $ ${this.state.totalRate}`}</span>
           <Button
             size="lg"
             className="ContinueBtn btn-outline-info"
@@ -116,6 +133,7 @@ function mapStateToProps(state) {
         id: item.id,
         accept: false,
         selectedItems: 0,
+        itemsRate: 0,
         Title: item.Title,
         SubTitle: item.SubTitle,
         icon: item.icon,
@@ -130,7 +148,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      subCategory
+      subCategory,
+      continueButton
     }, dispatch),
   };
 }
