@@ -2,7 +2,7 @@
 import { put, call, take } from 'redux-saga/effects';
 import { api } from '../services';
 import * as actions from '../actions';
-import axios from 'axios';
+// import axios from 'axios';
 import history from '../helper/history';
 
 export function* LogIn(data) {
