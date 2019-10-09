@@ -13,13 +13,13 @@ const validate = values => {
   } else if (!values.name.match(/^[a-zA-Z]*$/)) {
     errors.name = 'Please enter alphabet characters only.'
   } else if (values.name.length < 3) {
-    errors.name = 'Minimum be 3 characters or more'
+    errors.name = 'minimum be 3 characters or more'
   }
   if (!values.roomno) {
-    errors.roomno = 'Please enter your Room No'
+    errors.roomno = 'please enter room no.'
   }
   if (!values.dob) {
-    errors.dob = 'Please select your date of birth'
+    errors.dob = 'please select your date of birth'
   }
   return errors
 }
@@ -32,7 +32,7 @@ let RequestForm = props => {
 
         <Field component={TextInput} name="name" label="Name" onChange={props.onChange} />
 
-        <Field component={TextInput} name="roomno" label="Room No" onChange={props.onChange} />
+        <Field component={TextInput} name="roomno" label="Room No." onChange={props.onChange} />
     
         <Field component={TextInput} name="dob" label="Date of Birth" type="date" value="2019-10-04"/>
         {/* <Field
