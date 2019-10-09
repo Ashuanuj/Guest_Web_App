@@ -16,7 +16,7 @@ const validate = values => {
     errors.name = 'minimum be 3 characters or more'
   }
   if (!values.roomno) {
-    errors.roomno = 'please enter room no.'
+    errors.roomno = 'please enter Room No.'
   }
   if (!values.dob) {
     errors.dob = 'please select your date of birth'
