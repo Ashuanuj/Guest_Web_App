@@ -8,43 +8,47 @@ import NonvegImg from '../components/assets/img/icons/non-veg.png'
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import history from '../helper/history';
+import { Link } from 'react-router-dom';
 
-import { orderRequest } from '../actions'
+import { createRequest } from '../actions'
 
 class CheckoutPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            modal: false
+            modal: false,
+            totalBill: 0
         };
 
         this.toggle = this.toggle.bind(this);
-        this.anotherToggle = this.toggle.bind(this);
+        this.anotherToggle = this.anotherToggle.bind(this);
     }
 
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
+        console.log('llllllllllllllllllllllllllllllllll')
+        // let _data = this.props.cartItems;
+        // this.props.actions.createRequest(_data);
     }
 
     anotherToggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
-        let _data = this.props.cartItems
-        this.props.actions.orderRequest(_data);
+        let _data = this.props.cartItems;
+        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+        this.props.actions.createRequest(_data);
+        history.push('/requestmain')
     }
-
-    //   componentWillMount() {
-    //     this.props.actions.checkoutPage();
-    //   }
 
 
     render() {
         const { props } = this;
-        console.log(props, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+        console.log(props, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
 
         return (
 
@@ -122,13 +126,13 @@ class CheckoutPage extends React.Component {
                 </Page>
 
                 {/* confirmation modal */}
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-div">
-                    <ModalHeader toggle={this.toggle}>Confirmation Message</ModalHeader>
+                <Modal isOpen={this.state.modal} toggle={this.anotherToggle} className="modal-div">
+                    <ModalHeader toggle={this.anotherToggle}>Confirmation Message</ModalHeader>
                     <ModalBody>
                         Body Copy Message
                 </ModalBody>
                     <ModalFooter>
-                        <Button className="okBtn bg-gradient-Requestbtn border-0" onClick={this.anotherToggle}>OK</Button>{' '}
+                        <Button className="okBtn bg-gradient-Requestbtn border-0" onClick={this.anotherToggle}>OK</Button>
                     </ModalFooter>
                 </Modal>
             </div>
@@ -152,7 +156,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
-            orderRequest
+            createRequest
         }, dispatch),
     };
 }

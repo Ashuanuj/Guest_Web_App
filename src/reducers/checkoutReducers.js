@@ -1,8 +1,9 @@
-import { CHECKOUT_PAGE } from '../actions';
+import { CHECKOUT_PAGE, CHECKOUT } from '../actions';
 
 const initialState = {
     error: undefined,
-    checkout:false
+    checkout: false,
+    requests: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -23,6 +24,16 @@ export default function reducer(state = initialState, action) {
                     error: action.payload,
                 };
             }
+        case CHECKOUT.SUCCESS: {
+console.log(action.payload, 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+            return {
+                ...state,
+                // requests: [
+                //     action.payload.issueReport,
+                //     ...state.requests,
+                // ],
+            };
+        }
         default:
             return state;
     }

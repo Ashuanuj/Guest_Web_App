@@ -7,6 +7,7 @@ import frontOffice  from './frontOfficeSagas';
 import subCategory from './subCategory';
 import subCategoryQty from './subCategoryQtySagas';
 import checkoutSagas from './checkoutSagas';
+import checkoutpage1 from './checkoutPage1'
  
 export default function* rootSaga()
 {
@@ -18,6 +19,7 @@ export default function* rootSaga()
         fork(subCategory),
         fork(subCategoryQty),
         fork(checkoutSagas),
+        fork(checkoutpage1)
     ]);
 }
   

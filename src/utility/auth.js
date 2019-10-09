@@ -3,6 +3,7 @@ import { Base64 } from 'js-base64';
 import jwt_decode from 'jwt-decode';
 
 export const setAuthData = (data) => new Promise((resolve, reject) => {
+    console.log(data, 'tttttttttttttttttttttttttyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
     if (!data.guest || !data.authorization || !data.authorization.token || !data.guest.id)
     {
         reject('Inavlid user object sent!');
@@ -12,6 +13,8 @@ export const setAuthData = (data) => new Promise((resolve, reject) => {
         localStorage.setItem('accessToken', data.authorization.token);
         localStorage.setItem('guestId', data.guest.id);
         localStorage.setItem('guestName', data.guest.lastName);
+        localStorage.setItem('roomNo', data.roomNo);
+        localStorage.setItem('areaId', data.guest.areaId);
         resolve();
     }
     catch (e)

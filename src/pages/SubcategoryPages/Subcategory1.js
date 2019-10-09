@@ -111,7 +111,7 @@ class SubCategory1 extends Component {
         </Row>
         <div className="addItem-div">
           <span> {`${this.state.totalItems} Items || $ ${this.state.totalRate}`}</span>
-          <Link to="/checkout">
+          {/* <Link to="/checkout"> */}
           <Button
             size="lg"
             className="ContinueBtn btn-outline-info"
@@ -119,7 +119,6 @@ class SubCategory1 extends Component {
           >
             Continue
             </Button>
-            </Link>
         </div>
       </div>
     );

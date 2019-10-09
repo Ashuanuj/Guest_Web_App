@@ -8,11 +8,8 @@ import history from '../helper/history';
 
 export function* LogIn(data) {
     console.log("submit------form");
-    yield put(actions.LogIn.request(data));
+    yield put(actions.login.request());
     try {
-        // const response = yield call('http://localhost:3000/', data);
-        // console.log("response---------->",response);
-        // const response = axios
         let authData = {
             email: data.name,
             password: data.roomno,
@@ -21,18 +18,18 @@ export function* LogIn(data) {
         const response = yield call(api.login, authData);
         console.log("response---------->",response);
         if (response) {
-            // yield put(actions.LogIn.success(response));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            )
+            // yield put(actions.login.success(response));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            )
             yield call(setAuthData, response);
             yield call(history.push, '/dashboard');
         }
         else {
             var data1 = { customMessage: 'Access Denied.' }
-            yield put(actions.LogIn.failure(data1));
+            yield put(actions.login.failure(data1));
         }
     }
     catch ({ error }) {
         console.log(error)
-        yield put(actions.LogIn.failure(error));
+        yield put(actions.login.failure(error));
     }
 }
 

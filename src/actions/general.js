@@ -1,11 +1,11 @@
 import { createAction,createRequestTypes, createActionsFromTypes, createCrudTypes,createCrudActions } from './actionHelper';
 
 //Request Form Login page
+export const LOG_IN = createRequestTypes('LOG_IN');
+export const login = createActionsFromTypes(LOG_IN);
+
 export const GUEST_LOG_IN = 'GUEST_LOG_IN';
 export const guestLogIn = createAction(GUEST_LOG_IN);
-
-export const LOG_IN = createRequestTypes('LOG_IN');
-export const LogIn = createActionsFromTypes(LOG_IN);
 
 //Initialize
 export const INITIALIZE = 'INITIALIZE';
@@ -57,12 +57,14 @@ export const loadFrontOfficeData = createActionsFromTypes(LOAD_FRONTOFFICE_DATA)
 
 
 //Checkout page
-
-export const CREATE_REQUEST = createCrudTypes('CREATE_REQUEST');
-export const orderRequest = createCrudActions(CREATE_REQUEST);
-
 export const CHECKOUT_PAGE= 'CHECKOUT_PAGE';
-export const createRequest = createAction(CHECKOUT_PAGE);
+export const checkoutPage = createAction(CHECKOUT_PAGE);
+
+export const CHECKOUT = createCrudTypes('CHECKOUT');
+export const checkout = createCrudActions(CHECKOUT);
+
+export const CREATE_REQUEST= 'CREATE_REQUEST';
+export const createRequest = createAction(CREATE_REQUEST);
 
 export const CHECKOUT_PAGE_DATA = createRequestTypes('CHECKOUT_PAGE_DATA');
 export const checkoutPageData = createActionsFromTypes(CHECKOUT_PAGE_DATA);
