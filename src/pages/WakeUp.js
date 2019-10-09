@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row,Button,Table,FormGroup,Label,CustomInput } from 'reactstrap';
 import Page from '../components/Page'
+import {Link} from 'react-router-dom';
 
 export default class CheckoutPage extends React.Component{
 
@@ -34,12 +35,14 @@ export default class CheckoutPage extends React.Component{
                             >
                                Cancel
                         </Button>
+                        <Link to="/requestmain">
                         <Button
                             size="lg"
                             className="btnReqt bg-gradient-Requestbtn btn-outline-info border-0"
                             >
                                Request
                         </Button>
+                        </Link>
                  </div>
                 </Row>
 

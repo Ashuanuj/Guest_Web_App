@@ -63,8 +63,9 @@ class SubCategory1 extends Component {
     console.log(this.state)
   }
 
-  handleContinue() {
+  handleContinue(e) {
     console.log(this.props.subcategory);
+    e.preventDefault();
     this.props.actions.continueButton(this.props.subcategory)
   }
 
@@ -109,7 +110,7 @@ class SubCategory1 extends Component {
           <Button
             size="lg"
             className="ContinueBtn btn-outline-info"
-            onClick={this.handleContinue}
+            onClick={(e) => this.handleContinue(e)}
           >
             Continue
             </Button>
