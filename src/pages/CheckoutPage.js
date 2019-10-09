@@ -30,9 +30,9 @@ class CheckoutPage extends React.Component{
         this.props.actions.orderRequest(_data);
       }
 
-      componentWillMount() {
-        this.props.actions.checkoutPage();
-      }
+    //   componentWillMount() {
+    //     this.props.actions.checkoutPage();
+    //   }
 
       
     render(){

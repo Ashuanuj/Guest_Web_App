@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { subCategory, continueButton } from '../../actions'
+import {Link} from 'react-router-dom';
+import history from '../../helper/history';
 
 class SubCategory1 extends Component {
   constructor(props) {
@@ -67,6 +69,8 @@ class SubCategory1 extends Component {
     console.log(this.props.subcategory);
     e.preventDefault();
     this.props.actions.continueButton(this.props.subcategory)
+    console.log(history)
+    history.push('/checkout')
   }
 
   render() {
@@ -107,6 +111,7 @@ class SubCategory1 extends Component {
         </Row>
         <div className="addItem-div">
           <span> {`${this.state.totalItems} Items || $ ${this.state.totalRate}`}</span>
+          <Link to="/checkout">
           <Button
             size="lg"
             className="ContinueBtn btn-outline-info"
@@ -114,6 +119,7 @@ class SubCategory1 extends Component {
           >
             Continue
             </Button>
+            </Link>
         </div>
       </div>
     );
