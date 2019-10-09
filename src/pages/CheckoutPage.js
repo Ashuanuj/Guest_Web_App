@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { checkoutPage } from '../actions'
+import { orderRequest } from '../actions'
 
 class CheckoutPage extends React.Component{
 
@@ -26,7 +26,8 @@ class CheckoutPage extends React.Component{
         this.setState(prevState => ({
           modal: !prevState.modal
         }));
-        //  this.props.actions.checkoutPage();
+        let _data=this.props.cartItems
+        this.props.actions.orderRequest(_data);
       }
 
       componentWillMount() {
@@ -146,7 +147,7 @@ function mapDispatchToProps(dispatch)
 {
     return {
         actions: bindActionCreators({      
-            checkoutPage  
+            orderRequest  
         }, dispatch),
     };
 }

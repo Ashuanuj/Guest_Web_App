@@ -27,7 +27,7 @@ export default class CheckoutPage extends React.Component{
                 </Table>
                 <div  className="note-text"> E.g. Wake me up at 7am sharp tomorrow </div>
 
-                <div className="WakeupRequestBtn-div">
+                <div className="WakeupRequestBtn-div" style={{position: "fixed", bottom: 0}}>
                         <Button
                             size="lg"
                             className="btnCancel btn-outline-info"

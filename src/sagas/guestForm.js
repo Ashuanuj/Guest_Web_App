@@ -21,6 +21,7 @@ export function* LogIn(data) {
         const response = yield call(api.login, authData);
         console.log("response---------->",response);
         if (response) {
+            // yield put(actions.LogIn.success(response));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            )
             yield call(setAuthData, response);
             yield call(history.push, '/dashboard');
         }
