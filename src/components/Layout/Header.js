@@ -45,7 +45,7 @@ export default function Header() {
         alt="cmp"
       />
       <span className="headername text-white">
-        
+        {`Welcome Mr ${ localStorage.getItem('guestName') }`}
       </span>
       <span className="crossbtn" onClick={toggleDrawer('left', false)}> <MdClose/></span>
     </div>
@@ -103,7 +103,7 @@ export default function Header() {
          </Nav>
 
         <Nav className="Nav-Name">
-          
+          {`Welcome Mr. ${localStorage.getItem('guestName')}`}
         </Nav>
 
      
@@ -119,11 +119,5 @@ export default function Header() {
       </Drawer>
     </div>
   );
-}
-
-const mapStateToProps = state => {
-  return {
-    guest: state
-  }
 }
 
