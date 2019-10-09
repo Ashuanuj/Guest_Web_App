@@ -1,0 +1,21 @@
+import { isArray } from 'lodash';
+import { Base64 } from 'js-base64';
+import jwt_decode from 'jwt-decode';
+
+export const setAuthData = (data) => new Promise((resolve, reject) => {
+    if (!data.guest || !data.authorization || !data.authorization.token || !data.guest.id)
+    {
+        reject('Inavlid user object sent!');
+    }
+    try
+    {
+        localStorage.setItem('accessToken', data.authorization.token);
+        localStorage.setItem('guestId', data.guest.id);
+        localStorage.setItem('guestName', data.guest.lastName);
+        resolve();
+    }
+    catch (e)
+    {
+        reject({error: {customMessage: 'Could not save data to local storrage!'}});
+    }
+});
