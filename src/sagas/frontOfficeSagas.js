@@ -4,10 +4,8 @@ import * as actions from '../actions';
 
 
 export function* FrontOfficeData() {
-    console.log("----------submitting to sagas--------");
     yield put(actions.loadFrontOfficeData.request());
     try {
-        console.log("SUCCESS-SAGA_FRONTOFFICE PAGE")
         let objArray = [
             {   id: 1, 
                 Title: " Wake up Call", 

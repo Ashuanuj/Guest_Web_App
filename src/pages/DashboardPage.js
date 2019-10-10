@@ -18,7 +18,6 @@ class DashboardPage extends React.Component {
 
   render(){
     const {props} = this;
-    console.log(props, 'dashboard props data');
     
     const services = props.requests && props.requests.map(request =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id}>

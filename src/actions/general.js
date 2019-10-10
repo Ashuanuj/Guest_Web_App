@@ -55,6 +55,11 @@ export const loadFrontOffice = createAction(LOAD_FRONT_OFFICE);
 export const LOAD_FRONTOFFICE_DATA = createRequestTypes('LOAD_FRONTOFFICE_DATA');
 export const loadFrontOfficeData = createActionsFromTypes(LOAD_FRONTOFFICE_DATA);
 
+export const GUEST_REQUESTS = createRequestTypes('GUEST_REQUESTS');
+export const guestRequests = createActionsFromTypes(GUEST_REQUESTS);
+
+export const LOAD_GUEST_REQUESTS = 'LOAD_GUEST_REQUESTS';
+export const loadGuestRequests = createAction(LOAD_GUEST_REQUESTS);
 
 //Checkout page
 export const CHECKOUT_PAGE= 'CHECKOUT_PAGE';

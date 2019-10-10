@@ -18,7 +18,6 @@ export default function reducer(state = initialState, action) {
         }
         case SUB_CATEGORY_DATA.SUCCESS:
             {
-                console.log(action.payload, 'Service sub category page data')
                 return {
                     ...state,
                     subCategory: action.payload,
@@ -32,7 +31,6 @@ export default function reducer(state = initialState, action) {
                 };
             }
             case CONTINUE: {
-                console.log(action.payload, 'ttttttttttttttttttttttttrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
                 return {
                     ...state,
                     cartItems: action.payload

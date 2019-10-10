@@ -10,27 +10,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class RequestFormPage extends React.Component {
-
-  // Submit = values => {
-  //   // print the form values to the console
-  //   console.log("submitting Form values -------->", values);
-  //   console.log("path--->",this.props.histroy);
-  //   // return(
-  //   //   <Link to="/dashboard"></Link>
-  //   // );
-  // }
-
   constructor(props) {
     super(props);
     this._handleSubmit = this._handleSubmit.bind(this);
   }
   _handleSubmit = (data, dispatch) => {
-
-    // let x = this.props.actions.guestLogIn(data);
-    // console.log(x, '??????????????????????????????????');
     this.props.actions.guestLogIn(data);
-
-    console.log("DATA======>", data);
   };
 
   render() {

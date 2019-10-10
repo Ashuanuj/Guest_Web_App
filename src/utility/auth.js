@@ -3,7 +3,6 @@ import { Base64 } from 'js-base64';
 import jwt_decode from 'jwt-decode';
 
 export const setAuthData = (data) => new Promise((resolve, reject) => {
-    console.log(data, 'tttttttttttttttttttttttttyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
     if (!data.guest || !data.authorization || !data.authorization.token || !data.guest.id)
     {
         reject('Inavlid user object sent!');

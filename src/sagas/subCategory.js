@@ -10,10 +10,8 @@ import vegImg from '../components/assets/img/icons/veg.png'
 import NonvegImg from '../components/assets/img/icons/non-veg.png'
 
 export function* SubCategoryData() {
-    console.log("----------submitting to sagas--------");
     yield put(actions.subCategoryData.request());
     try {
-        console.log("SUCCESS-SAGA_SERVICEPAGE")
         let objArray = [
             {   id: 1, 
                 Title: "Idly Vada", 

@@ -9,10 +9,8 @@ import Image5 from '../components/assets/img/icons/category/Image5.png';
 
 
 export function* CategoryData() {
-    console.log("----------submitting to sagas--------");
     yield put(actions.CategoryData.request());
     try {
-        console.log("SUCCESS-SAGA_SERVICEPAGE")
         let objArray = [
             {   id: 1, 
                 categoryTitle: "Breakfast", 

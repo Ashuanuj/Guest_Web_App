@@ -34,7 +34,6 @@ export default function callApi(endpoint, body, method, queryData, isFile = fals
           body: bodyData,
      }).then(response => response.json().then(json => ({ json, response })))
           .then(({ json, response }) => {
-               console.log(json, response, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
                const camelizedJson = camelizeKeys(json);
 
                if (!response.ok) {

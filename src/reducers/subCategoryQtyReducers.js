@@ -17,7 +17,6 @@ export default function reducer(state = initialState, action) {
         }
         case SUB_CATEGORY_QTY_DATA.SUCCESS:
             {
-                console.log(action.payload, 'Service sub category quantity page data')
                 return {
                     ...state,
                     sub_Category: action.payload,

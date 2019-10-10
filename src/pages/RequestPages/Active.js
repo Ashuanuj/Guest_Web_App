@@ -16,12 +16,18 @@ import NonvegImg from '../../components/assets/img/icons/non-veg.png'
 
 
 export default class Active extends React.Component{
-  
-    state = { collapseID: "", } 
+  constructor(props) {
+      super(props)
+      this.state = { collapseID: "", } 
+  }
     
-    toggleCollapse = collapseID => () => { this.setState(prevState => ({ collapseID: prevState.collapseID !== collapseID ? collapseID : "" })); }
+    
+    toggleCollapse = collapseID => () => { this.setState(prevState => ({ collapseID: prevState.collapseID !== collapseID ? collapseID : "" })); }    
+
     render(){
+        console.log(this.props)
         return(
+
             <div>
                
                <Row className="ServicePageMain">

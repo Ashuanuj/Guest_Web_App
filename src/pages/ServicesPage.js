@@ -19,7 +19,6 @@ class ServicesPage extends React.Component {
 
   render(){
     const {props} = this;
-    console.log(props, 'Service props data');
     
     const servicesCategory = props.category && props.category.map(requestCategory =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={requestCategory.id}>

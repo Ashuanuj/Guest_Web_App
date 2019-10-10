@@ -19,7 +19,6 @@ import RequestMain from './pages/RequestPages/RequestMain';
 
 
 import history from './helper/history';
-console.log("history------>",history);
 
 class App extends React.Component {
   render() {

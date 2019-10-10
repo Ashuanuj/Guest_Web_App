@@ -10,7 +10,6 @@ const DELETE = 'DELETE';
 
 // helpers
 export function action(type, payload) {
-  console.log(type, payload, '55555555555555555')
   return typeof payload === 'undefined' ? { type } : { type, payload };
 }
 
@@ -37,7 +36,6 @@ export function createActionsFromTypes(actionTypes) {
 
 // generators CRUD action types
 export function createCrudTypes(base) {
-  console.log(base, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
   const res = {};
   [CREATE, READ, UPDATE, DELETE].forEach(type => {
     res[type] = createRequestTypes(`${base}_${type}`);
@@ -47,7 +45,6 @@ export function createCrudTypes(base) {
 
 // generates CRUD action creators:
 export function createCrudActions(actionTypes) {
-  console.log(actionTypes, 'tttttttttttttttttttttttttttttttttttttttttttttttttt')
   const res = {};
   Reflect.ownKeys(actionTypes).forEach(type => {
     res[type.toLowerCase()] = {};

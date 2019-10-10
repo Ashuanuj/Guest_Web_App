@@ -14,7 +14,6 @@ class SubCategory2 extends Component {
 
   render() {
     const {props} = this;
-    console.log(props, 'Service sub category 2 props data');
     const subCategoryitems = props.subcategory && props.subcategory.map(data =>(
       <Col lg={4} md={6} sm={6} xs={12} className="" key={data.id}>
       <Card className="">

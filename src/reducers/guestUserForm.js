@@ -11,7 +11,6 @@ export default function reducer(state = initialState, action) {
        
         case LOG_IN.SUCCESS:
             {
-                console.log(action.payload)
                 return {
                     ...state,
                     //   ...action.payload,

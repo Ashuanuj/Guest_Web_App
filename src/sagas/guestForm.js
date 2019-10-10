@@ -7,7 +7,6 @@ import * as actions from '../actions';
 import history from '../helper/history';
 
 export function* LogIn(data) {
-    console.log("submit------form");
     yield put(actions.login.request());
     try {
         let authData = {
@@ -16,7 +15,6 @@ export function* LogIn(data) {
             dob: data.dob
         }
         const response = yield call(api.login, authData);
-        console.log("response---------->",response);
         if (response) {
             // yield put(actions.login.success(response));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            )
             yield call(setAuthData, response);
@@ -28,7 +26,6 @@ export function* LogIn(data) {
         }
     }
     catch ({ error }) {
-        console.log(error)
         yield put(actions.login.failure(error));
     }
 }

@@ -10,6 +10,7 @@ import frontOffice from './frontOfficeReducers';
 import subCategory from './subCategoryReducers';
 import subCategoryQty from './subCategoryQtyReducers';
 import checkoutReducers from './checkoutReducers';
+import guestRequests from './guestRequests'
 
 
 const appReducer = combineReducers({
@@ -21,7 +22,8 @@ const appReducer = combineReducers({
   frontOffice,
   subCategory,
   subCategoryQty,
-  checkoutReducers
+  checkoutReducers,
+  guestRequests
 });
 
 const initialState = appReducer({}, {});

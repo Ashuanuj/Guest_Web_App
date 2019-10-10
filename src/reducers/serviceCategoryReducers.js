@@ -17,7 +17,6 @@ export default function reducer(state = initialState, action) {
         }
         case LOAD_CATEGORY_DATA.SUCCESS:
             {
-                console.log(action.payload, 'Service page data')
                 return {
                     ...state,
                     Category: action.payload,

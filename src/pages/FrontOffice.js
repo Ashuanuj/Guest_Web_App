@@ -16,7 +16,6 @@ class FrontOffice extends React.Component {
     
       render(){
         const {props} = this;
-        console.log(props, 'FrontOffice props data');
         const front_office = props.request && props.request.map(data =>(
             <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={data.id}>
               <Link to={`/${data.link}`} >

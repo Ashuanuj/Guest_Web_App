@@ -10,7 +10,6 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CHECKOUT_PAGE.SUCCESS:
             {
-                console.log(action.payload, 'checkout page data')
                 return {
                     ...state,
                     //   ...action.payload,
@@ -25,7 +24,6 @@ export default function reducer(state = initialState, action) {
                 };
             }
         case CHECKOUT.SUCCESS: {
-console.log(action.payload, 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
             return {
                 ...state,
                 // requests: [

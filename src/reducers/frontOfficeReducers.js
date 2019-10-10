@@ -17,7 +17,6 @@ export default function reducer(state = initialState, action) {
         }
         case LOAD_FRONTOFFICE_DATA.SUCCESS:
             {
-                console.log(action.payload, 'Front-Office page data')
                 return {
                     ...state,
                     frontOffice: action.payload,

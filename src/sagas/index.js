@@ -8,6 +8,7 @@ import subCategory from './subCategory';
 import subCategoryQty from './subCategoryQtySagas';
 import checkoutSagas from './checkoutSagas';
 import checkoutpage1 from './checkoutPage1'
+import guestRequests from './guestRequests'
  
 export default function* rootSaga()
 {
@@ -19,7 +20,8 @@ export default function* rootSaga()
         fork(subCategory),
         fork(subCategoryQty),
         fork(checkoutSagas),
-        fork(checkoutpage1)
+        fork(checkoutpage1),
+        fork(guestRequests)
     ]);
 }
   

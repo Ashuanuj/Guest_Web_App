@@ -8,10 +8,8 @@ import ForkImage from '../components/assets/img/icons/plate-fork-and-knife.svg';
 import FileImage from '../components/assets/img/icons/file.svg';
 
 export function* ServiceData() {
-    console.log("submit------services");
     yield put(actions.ServiceData.request());
     try {
-        console.log("SUCCESS-SAGA_DASHBOARD")
         let objArray = [
             { icon: SwipeImage, link: `frontoffice` },
             { icon: BellImage, link: `dashboard` },

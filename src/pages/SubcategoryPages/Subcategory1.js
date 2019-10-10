@@ -27,7 +27,6 @@ class SubCategory1 extends Component {
 
   handleAddItem(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
-    console.log(index);
     this.props.subcategory[index].accept = true
     
     this.setState({
@@ -37,10 +36,8 @@ class SubCategory1 extends Component {
 
   onIncrement(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
-    console.log(index);
     this.props.subcategory[index].selectedItems += 1
     this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
-    console.log(this.props.subcategory)
 
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
@@ -51,7 +48,6 @@ class SubCategory1 extends Component {
 
   onDecrement(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
-    console.log(index);
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
       totalItems: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
@@ -60,22 +56,16 @@ class SubCategory1 extends Component {
     this.props.subcategory[index].selectedItems = this.props.subcategory[index].selectedItems > 0 ? this.props.subcategory[index].selectedItems - 1 : 0
     this.props.subcategory[index].itemsRate = this.props.subcategory[index].selectedItems > 0 && this.props.subcategory[index].itemsRate > 0 ? this.props.subcategory[index].itemsRate - parseFloat(this.props.subcategory[index].rate) : this.props.subcategory[index].itemsRate
     this.props.subcategory[index].accept =  this.props.subcategory[index].selectedItems == 0 ? false : true
-    console.log(this.props.subcategory)
-
-    console.log(this.state)
   }
 
   handleContinue(e) {
-    console.log(this.props.subcategory);
     e.preventDefault();
     this.props.actions.continueButton(this.props.subcategory)
-    console.log(history)
     history.push('/checkout')
   }
 
   render() {
     const { props } = this;
-    console.log(props, 'Service props data');
     const subCategoryitems = props.subcategory && props.subcategory.map(data => (
       <Col lg={4} md={6} sm={6} xs={12} className="" key={data.id} >
         <Card className="">
