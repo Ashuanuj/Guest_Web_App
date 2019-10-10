@@ -31,15 +31,19 @@ export const loadCategory = createAction(LOAD_CATEGORY);
 export const LOAD_CATEGORY_DATA = createRequestTypes('LOAD_CATEGORY_DATA');
 export const CategoryData = createActionsFromTypes(LOAD_CATEGORY_DATA);
 
-//SERVICE CATEGORY AND SUB CATEGORY PAGES
-export const LOAD_SUBCATEGORY_LOADING = 'LOAD_SUBCATEGORY_LOADING';
-export const SubcateryLoding = createAction(LOAD_SUBCATEGORY_LOADING);
+//SERVICE CATEGORY 
+export const SERVICE_CATEGORY = createRequestTypes('SERVICE_CATEGORY');
+export const loadServiceCategory = createActionsFromTypes(SERVICE_CATEGORY);
 
-export const SUB_CATEGORY= 'SUB_CATEGORY';
-export const subCategory = createAction(SUB_CATEGORY);
+export const LOAD_SERVICE_CATEGORY= 'LOAD_SERVICE_CATEGORY';
+export const getServiceCategory = createAction(LOAD_SERVICE_CATEGORY);
 
-export const SUB_CATEGORY_DATA = createRequestTypes('SUB_CATEGORY_DATA');
-export const subCategoryData = createActionsFromTypes(SUB_CATEGORY_DATA);
+// SERVICE SUB CATEGORY PAGES
+export const SERVICE_SUB_CATEGORY = createRequestTypes('SERVICE_SUB_CATEGORY');
+export const loadServiceSUBCategory = createActionsFromTypes(SERVICE_SUB_CATEGORY);
+
+export const LOAD_SERVICE_SUBCATEGORY = 'LOAD_SERVICE_SUBCATEGORY';
+export const getServiceSubCategory = createAction(LOAD_SERVICE_SUBCATEGORY);
 
 //subcategory2
 export const SUB_CATEGORY_QTY= 'SUB_CATEGORY_QTY';
@@ -71,6 +75,12 @@ export const checkout = createCrudActions(CHECKOUT);
 export const CREATE_REQUEST= 'CREATE_REQUEST';
 export const createRequest = createAction(CREATE_REQUEST);
 
+export const LOAD_CART_ITEMS = createRequestTypes('LOAD_CART_ITEMS');
+export const loadCartItems = createActionsFromTypes(LOAD_CART_ITEMS)
+
+export const CART_ITEMS= 'CART_ITEMS';
+export const getCartItems = createAction(CART_ITEMS);
+
 export const CHECKOUT_PAGE_DATA = createRequestTypes('CHECKOUT_PAGE_DATA');
 export const checkoutPageData = createActionsFromTypes(CHECKOUT_PAGE_DATA);
 
@@ -81,5 +91,9 @@ export const TOAST = {
 };
 export const toast = createActionsFromTypes(TOAST);
 
-export const CONTINUE = 'CONTINUE';
-export const continueButton = createAction(CONTINUE);
+//cart details
+export const PLACE_ORDER = createCrudTypes('PLACE_ORDER');
+export const placeOrder = createCrudActions(PLACE_ORDER);
+
+export const STORE_ORDER = 'STORE_ORDER';
+export const storeOrder = createAction(STORE_ORDER)

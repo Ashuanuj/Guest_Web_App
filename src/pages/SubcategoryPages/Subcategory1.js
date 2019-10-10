@@ -5,7 +5,7 @@ import { Row, Col, Card, Media, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { subCategory, continueButton } from '../../actions'
+import { getServiceSubCategory, storeOrder } from '../../actions'
 import {Link} from 'react-router-dom';
 import history from '../../helper/history';
 
@@ -22,7 +22,7 @@ class SubCategory1 extends Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
   componentWillMount() {
-    this.props.actions.subCategory();    
+    this.props.actions.getServiceSubCategory(localStorage.getItem('serviceSubCategoryId'));    
   }
 
   handleAddItem(id) {
@@ -60,7 +60,7 @@ class SubCategory1 extends Component {
 
   handleContinue(e) {
     e.preventDefault();
-    this.props.actions.continueButton(this.props.subcategory)
+    this.props.actions.storeOrder(this.props.subcategory)
     history.push('/checkout')
   }
 
@@ -78,7 +78,7 @@ class SubCategory1 extends Component {
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b> {data.rate}</b>
+              <b>{`$${data.rate}`}</b>
             </Media>
 
             <Media right>
@@ -130,8 +130,8 @@ function mapStateToProps(state) {
         accept: false,
         selectedItems: 0,
         itemsRate: 0,
-        Title: item.Title,
-        SubTitle: item.SubTitle,
+        Title: item.title,
+        SubTitle: item.subTitle,
         icon: item.icon,
         image: item.image,
         rate: item.rate,
@@ -144,8 +144,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      subCategory,
-      continueButton
+      getServiceSubCategory,
+      storeOrder
     }, dispatch),
   };
 }

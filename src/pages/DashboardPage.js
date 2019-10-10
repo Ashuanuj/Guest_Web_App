@@ -9,19 +9,23 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {loadService} from '../actions'
+import history from '../helper/history';
 
 class DashboardPage extends React.Component {
 
   componentWillMount() {
     this.props.actions.loadService();
   }
-
+handleClick = (id, link) => {
+  history.push(`/${link}`)
+  localStorage.setItem('serviceCategoryId', id)
+}
   render(){
     const {props} = this;
     
     const services = props.requests && props.requests.map(request =>(
-      <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id}>
-        <Link to={`/${request.link}`} >
+      <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id, request.link)}>
+        {/* <Link to={`/${request.link}`} > */}
           <Card className="flex-row card-serv-main">
             <CardImg
               className="card-img-left"
@@ -35,7 +39,7 @@ class DashboardPage extends React.Component {
               </CardText>
             </CardBody>
           </Card>
-         </Link>
+         {/* </Link> */}
         </Col>
     ));
 

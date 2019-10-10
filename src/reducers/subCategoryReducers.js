@@ -1,4 +1,4 @@
-import { SUB_CATEGORY,SUB_CATEGORY_DATA,LOAD_SUBCATEGORY_LOADING, CONTINUE} from '../actions';
+import { SERVICE_SUB_CATEGORY, PLACE_ORDER} from '../actions';
 
 const initialState = {
     error: undefined,
@@ -9,28 +9,28 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case LOAD_SUBCATEGORY_LOADING: {
-            return {
-                ...state,
-                loading: true,
-                error:''
-            };
-        }
-        case SUB_CATEGORY_DATA.SUCCESS:
+        // case LOAD_SUBCATEGORY_LOADING: {
+        //     return {
+        //         ...state,
+        //         loading: true,
+        //         error:''
+        //     };
+        // }
+        case SERVICE_SUB_CATEGORY.SUCCESS:
             {
                 return {
                     ...state,
-                    subCategory: action.payload,
+                    subCategory: action.payload.serviceSubCategory,
                 };
             }
-        case SUB_CATEGORY.FAILURE:
-            {
-                return {
-                    ...state,
-                    error: action.payload,
-                };
-            }
-            case CONTINUE: {
+        // case SUB_CATEGORY.FAILURE:
+        //     {
+        //         return {
+        //             ...state,
+        //             error: action.payload,
+        //         };
+        //     }
+            case PLACE_ORDER: {
                 return {
                     ...state,
                     cartItems: action.payload

@@ -9,30 +9,37 @@ import {  MdKeyboardArrowRight } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {loadCategory} from '../actions'
+import {getServiceCategory} from '../actions'
+import history from "../helper/history";
 
 class ServicesPage extends React.Component {
-
-  componentWillMount() {
-    this.props.actions.loadCategory();
+  constructor(props) {
+    super(props)
   }
+  componentWillMount() {
+    this.props.actions.getServiceCategory(localStorage.getItem('serviceCategoryId'));
+  }
+handleClick = (link, id) => {
+  history.push(`/${link}`)
+  localStorage.setItem('serviceSubCategoryId', id)
+}
 
   render(){
     const {props} = this;
     
     const servicesCategory = props.category && props.category.map(requestCategory =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={requestCategory.id}>
-        <Link to={`/${requestCategory.link}`} >
-          <Card className="card-serv-main">
+        {/* <Link to={`/${requestCategory.link}`} > */}
+          <Card className="card-serv-main" onClick={()=>this.handleClick(requestCategory.link, requestCategory.id)}>
            <Media className="mediaMain">
               <Media left>
                 <Media object src={requestCategory.icon} alt="image"/>
               </Media>
               <Media body>
                   <Media heading>
-                        {requestCategory.categoryTitle}
+                        {requestCategory.title}
                   </Media>
-                   <span className="sub-title"> {requestCategory.categorySubTitle} </span>
+                   <span className="sub-title"> {requestCategory.subTitle} </span>
               </Media> 
               <Media right>
                 <Link to={`/${requestCategory.link}`} > 
@@ -41,7 +48,7 @@ class ServicesPage extends React.Component {
               </Media>
            </Media>
           </Card> 
-          </Link>
+          {/* </Link> */}
         </Col>
        ));
     return(
@@ -74,7 +81,7 @@ function mapDispatchToProps(dispatch)
 {
      return {
           actions: bindActionCreators({
-            loadCategory
+            getServiceCategory
           }, dispatch),
      };
 }

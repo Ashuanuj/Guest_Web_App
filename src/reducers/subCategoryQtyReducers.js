@@ -1,4 +1,4 @@
-import { SUB_CATEGORY_QTY,SUB_CATEGORY_QTY_DATA,LOAD_SUBCATEGORY_LOADING} from '../actions';
+import { SUB_CATEGORY_QTY,SUB_CATEGORY_QTY_DATA} from '../actions';
 
 const initialState = {
     error: undefined,
@@ -8,13 +8,13 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case LOAD_SUBCATEGORY_LOADING: {
-            return {
-                ...state,
-                loading: true,
-                error:''
-            };
-        }
+        // case LOAD_SUBCATEGORY_LOADING: {
+        //     return {
+        //         ...state,
+        //         loading: true,
+        //         error:''
+        //     };
+        // }
         case SUB_CATEGORY_QTY_DATA.SUCCESS:
             {
                 return {

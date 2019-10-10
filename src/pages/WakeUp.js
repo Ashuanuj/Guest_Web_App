@@ -2,8 +2,17 @@ import React from 'react';
 import {Row,Button,Table,FormGroup,Label,CustomInput } from 'reactstrap';
 import Page from '../components/Page'
 import {Link} from 'react-router-dom';
+import history from '../helper/history';
 
 export default class CheckoutPage extends React.Component{
+    constructor(props){
+        super(props)
+        // this.handleClick = this.handleClick.bind(handleClick)
+    }
+
+    handleClick = (link) => {
+        history.push(link)
+    }
 
     render(){
         return(
@@ -32,17 +41,17 @@ export default class CheckoutPage extends React.Component{
                         <Button
                             size="lg"
                             className="btnCancel btn-outline-info"
+                            onClick={() => this.handleClick('/frontoffice')}
                             >
                                Cancel
                         </Button>
-                        <Link to="/requestmain">
                         <Button
                             size="lg"
                             className="btnReqt bg-gradient-Requestbtn btn-outline-info border-0"
+                            onClick={() => this.handleClick('/requestmain')}
                             >
                                Request
                         </Button>
-                        </Link>
                  </div>
                 </Row>
 

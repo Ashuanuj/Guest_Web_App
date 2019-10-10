@@ -1,4 +1,4 @@
-import { LOAD_CATEGORY,LOAD_CATEGORY_DATA, LOAD_SERVICE_LOADING } from '../actions';
+import { LOAD_CATEGORY,SERVICE_CATEGORY } from '../actions';
 
 const initialState = {
     error: undefined,
@@ -8,18 +8,20 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case LOAD_SERVICE_LOADING: {
-            return {
-                ...state,
-                loading: true,
-                error:''
-            };
-        }
-        case LOAD_CATEGORY_DATA.SUCCESS:
+        // case LOAD_SERVICE_LOADING: {
+        //     return {
+        //         ...state,
+        //         loading: true,
+        //         error:''
+        //     };
+        // }
+        case SERVICE_CATEGORY.SUCCESS:
             {
+                console.log(action.payload.serviceCategory, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioppppppppppppppppppppppppppppppppp');
+                
                 return {
                     ...state,
-                    Category: action.payload,
+                    Category: action.payload.serviceCategory,
                 };
             }
         case LOAD_CATEGORY.FAILURE:

@@ -1,7 +1,7 @@
 
-import { put, takeEvery } from 'redux-saga/effects';
-import * as actions from '../actions';
-
+import { put, call, take  } from "redux-saga/effects";
+import * as actions from "../actions";
+import { api } from '../services';
 import SubImage1 from '../components/assets/img/icons/subcategory/SubImage1.png';
 import SubImage2 from '../components/assets/img/icons/subcategory/SubImage2.png';
 import SubImage3 from '../components/assets/img/icons/subcategory/SubImage3.png';
@@ -9,61 +9,38 @@ import SubImage3 from '../components/assets/img/icons/subcategory/SubImage3.png'
 import vegImg from '../components/assets/img/icons/veg.png'
 import NonvegImg from '../components/assets/img/icons/non-veg.png'
 
-export function* SubCategoryDataQty() {
-    yield put(actions.subCategoryQtyData.request());
+export function* loadServiceSUBCategory(id) {
+    yield put(actions.loadServiceSUBCategory.request());
     try {
         let objArray = [
-            {   id: 1, 
-                Title: "Idly Vada", 
-                SubTitle: "2 Idly + 1 Vada ", 
-                icon: vegImg , 
-                image: SubImage1,
-                rate: "$4.00",
-                link: `mainsubcategorypage` 
-            },
-            {   id: 2, 
-                Title: "Bread Toast", 
-                SubTitle: "2 Bread slices with butter  ", 
-                icon: vegImg , 
-                image: SubImage2,
-                rate: "$4.00",
-                link: `mainsubcategorypage` 
-            },
-            {   id: 3, 
-                Title: "Omelette ", 
-                SubTitle: "2 Bread slices with butter  ", 
-                icon: NonvegImg , 
-                image: SubImage3,
-                rate: "$3.00",
-                link: `mainsubcategorypage` 
-            },
-            {   id: 4, 
-                Title: "Idly Vada", 
-                SubTitle: "2 Idly + 1 Vada ", 
-                icon: vegImg , 
-                image: SubImage1,
-                rate: "$4.00",
-                link: `mainsubcategorypage` 
-            },
-            {   id: 5, 
-                Title: "Omelette ", 
-                SubTitle: "2 Bread slices with butter  ", 
-                icon: NonvegImg , 
-                image: SubImage3,
-                rate: "$3.00",
-                link: `mainsubcategorypage` 
-            },
+            { icon: vegImg, image: SubImage1, rate: "4.00", link: `mainsubcategorypage` },
+            { icon: vegImg, image: SubImage2, rate: "4.00", link: `mainsubcategorypage` },
+            { icon: NonvegImg, image: SubImage3, rate: "3.00", link: `mainsubcategorypage` },
+            { icon: vegImg, image: SubImage1, link: `mainsubcategorypage` },
+            { icon: NonvegImg, image: SubImage3, link: `mainsubcategorypage` },
           
         ]
-        yield put(actions.subCategoryQtyData.success(objArray));
+        let response = yield call(api.getServiceSubCategory, id);
+        response && response.serviceSubCategory.forEach((service, index) => {
+            objArray.forEach((elem, i) => {
+                if(index == i) {
+                    service.icon = elem.icon
+                    service.image = elem.image
+                    service.link = elem.link
+                }
+            })
+        })
+        yield put(actions.loadServiceSUBCategory.success(response));
     } catch ({ error }) {
-        yield put(actions.subCategoryQtyData.read.failure(error));
+        yield put(actions.loadServiceSUBCategory.failure(error));
     }
 }
 
-export function* watchsubCategoryDataQty() {
-    // fuction name and action
-    yield takeEvery(actions.SUB_CATEGORY_QTY, SubCategoryDataQty);
+export function* watchloadServiceSUBCategory() {
+    while (true) {
+        const { payload } = yield take(actions.LOAD_SERVICE_SUBCATEGORY);
+        yield call(loadServiceSUBCategory, payload);
+      }
 }
 
-export default watchsubCategoryDataQty
+export default watchloadServiceSUBCategory

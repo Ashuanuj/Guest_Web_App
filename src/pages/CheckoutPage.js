@@ -23,7 +23,7 @@ import { connect } from "react-redux";
 import history from "../helper/history";
 import { Link } from "react-router-dom";
 
-import { createRequest } from "../actions";
+import { createRequest, getCartItems } from "../actions";
 
 let totalBill = 0;
 class CheckoutPage extends React.Component {
@@ -38,6 +38,9 @@ class CheckoutPage extends React.Component {
     this.anotherToggle = this.anotherToggle.bind(this);
   }
 
+  componentWillMount() {
+    this.props.actions.getCartItems(localStorage.getItem('areaId'))
+  }
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
@@ -55,25 +58,25 @@ class CheckoutPage extends React.Component {
 
   render() {
     const { props } = this;
+    console.log(this.props.cartItems, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+    totalBill=0
     let item = props.cartItems && props.cartItems.map((item, index) => {
-        let item1;
-        if (item.accept){
-            totalBill += item.itemsRate
-          item1 = 
+        
+            totalBill += item.amount
+          let item1 = 
                 <tr>
                   <td>
-                    <Media object src={vegImg} alt="image" /> {item.Title}
+                    <Media object src={vegImg} alt="image" /> {item.itemName}
                   </td>
                   <td>
                     <div className="qtybtn">
                       <span className="minus"> - </span>
-                      <span className="count"> {item.selectedItems} </span>
+                      <span className="count"> {item.quantity} </span>
                       <span className="plus"> + </span>
                     </div>
                   </td>
-                  <td> {`$ ${item.itemsRate}`} </td>
+                  <td> {`$ ${item.amount}`} </td>
                 </tr>
-          }
           return item1
       });
 
@@ -196,7 +199,7 @@ CheckoutPage.propTypes = {
 function mapStateToProps(state) {
   return {
     checkout: state.checkoutReducers.checkout,
-    cartItems: state.subCategory.cartItems
+    cartItems: state.checkoutReducers.requests
   };
 }
 
@@ -204,7 +207,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       {
-        createRequest
+        createRequest,
+        getCartItems
       },
       dispatch
     )

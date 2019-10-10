@@ -1,4 +1,4 @@
-import { CHECKOUT_PAGE, CHECKOUT } from '../actions';
+import { CHECKOUT_PAGE, CHECKOUT, LOAD_CART_ITEMS } from '../actions';
 
 const initialState = {
     error: undefined,
@@ -12,7 +12,6 @@ export default function reducer(state = initialState, action) {
             {
                 return {
                     ...state,
-                    //   ...action.payload,
                     checkout: true,
                 };
             }
@@ -23,13 +22,10 @@ export default function reducer(state = initialState, action) {
                     error: action.payload,
                 };
             }
-        case CHECKOUT.SUCCESS: {
+        case LOAD_CART_ITEMS.SUCCESS: {
             return {
                 ...state,
-                // requests: [
-                //     action.payload.issueReport,
-                //     ...state.requests,
-                // ],
+                requests: action.payload.cartItems
             };
         }
         default:
