@@ -39,9 +39,9 @@ class CheckoutPage extends React.Component {
     this.anotherToggle = this.anotherToggle.bind(this);
   }
 
-  componentWillMount() {
-    this.props.actions.getCartItems(localStorage.getItem('areaId'))
-  }
+  // componentWillMount() {
+  //   this.props.actions.getCartItems(localStorage.getItem('areaId'))
+  // }
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal

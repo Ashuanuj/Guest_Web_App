@@ -12,7 +12,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import ServicesPage from "./pages/ServicesPage";
 import MainSubcategoryPage from "./pages/SubcategoryPages/MainSubcategoryPage";
-import CheckoutPage from "./pages/CheckoutPage";
+import CheckoutPage from "./pages/cart";
 import WakeUp from "./pages/WakeUp";
 import FrontOffice from "./pages/FrontOffice";
 import RequestMain from "./pages/RequestPages/RequestMain";
@@ -25,7 +25,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      isFull: true
+      isFull: false
     };
   }
   render() {
