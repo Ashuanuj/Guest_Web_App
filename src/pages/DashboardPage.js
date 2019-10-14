@@ -3,7 +3,7 @@ import React from 'react';
 import {Row,Col,Card,CardBody,CardTitle,CardText,CardImg} from 'reactstrap';
 
 import Page from '../components/Page';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -26,13 +26,13 @@ handleClick = (id, link) => {
     const services = props.requests && props.requests.map(request =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id, request.link)}>
         {/* <Link to={`/${request.link}`} > */}
-          <Card className="flex-row card-serv-main">
+          <Card className="flex-row card-serv-main-dash">
             <CardImg
               className="card-img-left"
               src={request.icon}
-              style={{width:60 , height:60}}
+              style={{width:50 , height:50}}
             />
-            <CardBody className="pd-10 ">
+            <CardBody className="pz">
               <CardTitle>{request.serviceName}</CardTitle>
               <CardText>
                 {request.subText}

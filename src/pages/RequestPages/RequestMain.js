@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../../components/Page";
+// import Page from "../../components/Page";
 import {
   TabContent,
   TabPane,
@@ -57,8 +57,8 @@ generateCompletedData = () => {
   render() {
 
     return (
-      <div>
-        <Page>
+      <div className="RequestMainDiv">
+        {/* <Page> */}
           <div className="tabRequestMain">
             <Nav tabs>
               <NavItem>
@@ -104,7 +104,7 @@ generateCompletedData = () => {
               </Row>
             </TabPane>
           </TabContent>
-        </Page>
+        {/* </Page> */}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import qs from 'qs';
 
 export default function callApi(endpoint, body, method, queryData, isFile = false, outside = false) {
      const headers = new Headers();
-     const accessToken = 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTcwNDc4NDM1LCJleHAiOjE1NzkxMTg0MzV9.PIUtVu9RS7jbqlUyMFhiAAtwInoMaZcTBxGyDp5QvDI'//localStorage.getItem('accessToken');
+     const accessToken = localStorage.getItem('accessToken');
      const passwordUpdatedAt = 1556194811//localStorage.getItem('passwordUpdatedAt');
      let bodyData = body;
      let queryParams = '';

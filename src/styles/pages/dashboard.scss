@@ -5,34 +5,24 @@ body{
 
 .ServicePageMain {
       /*card animation from slide left*/
-    //    animation-duration: 0.2s;
-    //    animation-name: slidein;
-    //    @keyframes slidein {
-    //     from {
-    //         margin-left: 100%;
-    //         width: 100%;
-    //     }
-
-    //     to {
-    //         margin-left: 0%;
-    //         width: 100%;
-    //     }
-    // }
+  
     .card{
         color: white;
         background-color: #1F3C53;
-        border-radius: 10px;
+        border-radius: 12px;
+        padding: 20px 10px;
+        cursor: pointer;
     }
-    .card:hover{
-        border-color: $blue;
+    // .card:hover{
+    //     border-color: $blue;
+    // }
     }
-}
-
-.card-serv-main{
+.card-serv-main-dash{
+    padding: 20px 10px;
     .card-img-left {
         background: linear-gradient(to top, #5FBAFE, #567CF8);
-        margin: 10px;
-        border-radius: 14px;
+        margin: 0px 10px;
+        border-radius: 10px;
         padding: 10px;
     }
     .card-body{
@@ -41,8 +31,8 @@ body{
             font-family: 'Neo_Sans_Pro';
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+            margin-top: 0.2rem;
         }
         .card-text{
             font-family: 'Open_Sans';

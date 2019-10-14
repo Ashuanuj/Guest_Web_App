@@ -16,16 +16,28 @@ import CheckoutPage from './pages/CheckoutPage';
 import WakeUp from './pages/WakeUp';
 import FrontOffice from './pages/FrontOffice';
 import RequestMain from './pages/RequestPages/RequestMain';
+import Fullscreen from "react-full-screen";
 
 
 import history from './helper/history';
 
 class App extends React.Component {
+  constructor(props) {
+    super();
+ 
+    this.state = {
+      isFull: false,
+    };
+  }
   render() {
     return (
         <Router history={history} > 
             {/* routes={createRoutes}  */}
             <Switch>
+            <Fullscreen
+          enabled={this.state.isFull}
+          onChange={isFull => this.setState({isFull})}
+        >
             <Route exact path="/" component={RequestFormPage} />
              <MainLayout>
                 <Route exact path="/dashboard" component={DashboardPage} />
@@ -37,6 +49,7 @@ class App extends React.Component {
                 <Route exact path="/requestmain" component={RequestMain} />
 
             </MainLayout>
+            </Fullscreen>
            </Switch>
           </Router>
       );

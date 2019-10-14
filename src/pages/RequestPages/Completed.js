@@ -11,8 +11,8 @@ export default class Completed extends React.Component{
         return(
             <div>
                
-               <Row className="ServicePageMain">
-                <Col lg={4} md={6} sm={6} xs={12} className="mb-3">
+               <Row className="ServicePageMainActive">
+                <Col lg={4} md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>
@@ -28,7 +28,7 @@ export default class Completed extends React.Component{
                     </Media>
                     </Card> 
                 </Col>
-                <Col lg={4} md={6} sm={6} xs={12} className="mb-3">
+                <Col lg={4} md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>
@@ -44,7 +44,7 @@ export default class Completed extends React.Component{
                     </Media>
                     </Card> 
                 </Col>
-                <Col lg={4} md={6} sm={6} xs={12} className="mb-3">
+                <Col lg={4} md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>

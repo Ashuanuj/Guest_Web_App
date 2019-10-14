@@ -13,6 +13,9 @@
   width:100%;
   z-index: 6;
   box-shadow: 0px #0000000F;
+  height: 48px;
+  // padding: 16px;
+  padding: 12px 14px;
   
   .Nav-Name{
     text-align: center;
@@ -37,4 +40,21 @@
   color: #fff;
   border-color: #fff;
   background: #1F3C53 linear-gradient(180deg, #1F3C53, #1F3C53) repeat-x;
+}
+
+.MuiIconButton-root{
+  padding: 12px 0px !important;
+}
+
+.sidebar-footer{
+  position: absolute;
+  bottom: 0px;
+  margin: 0 auto;
+  left: 70px;
+  font-family: 'Neo_Sans_Pro';
+  font-size:11px;
+}
+
+button:focus {
+  outline: 0px;
 }

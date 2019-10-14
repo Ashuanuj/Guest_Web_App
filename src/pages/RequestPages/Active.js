@@ -30,8 +30,8 @@ export default class Active extends React.Component{
 
             <div>
                
-               <Row className="ServicePageMain">
-                <Col md={6} sm={6} xs={12} className="mb-3">
+               <Row className="ServicePageMainActive">
+                <Col md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>
@@ -88,7 +88,7 @@ export default class Active extends React.Component{
                     </Card> 
                 </Col>
 
-                <Col md={6} sm={6} xs={12} className="mb-3">
+                <Col md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>
@@ -104,7 +104,7 @@ export default class Active extends React.Component{
                     </Media>
                     </Card> 
                 </Col>
-                <Col md={6} sm={6} xs={12} className="mb-3">
+                <Col md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>

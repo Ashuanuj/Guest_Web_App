@@ -68,7 +68,7 @@ class SubCategory1 extends Component {
     const { props } = this;
     const subCategoryitems = props.subcategory && props.subcategory.map(data => (
       <Col lg={4} md={6} sm={6} xs={12} className="" key={data.id} >
-        <Card className="">
+        <Card style={{borderRadius:'0px'}}>
           <Media className="SubcategoryMain">
             <Media left>
               <Media object src={data.image} alt="image" />
@@ -78,11 +78,11 @@ class SubCategory1 extends Component {
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`$${data.rate}`}</b>
+              <b>{`${data.rate}`}</b>
             </Media>
 
             <Media right>
-              <Button className="addbtn " style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={() => this.handleAddItem(data.id)}>Add</Button>
+              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={() => this.handleAddItem(data.id)}>Add</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
                 <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}>-</span>
                 <span className="count"><b>{data.selectedItems}</b></span>
@@ -100,11 +100,11 @@ class SubCategory1 extends Component {
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`${this.state.totalItems} Items || $ ${this.state.totalRate}`}</span>
+          <span> {`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"
-            className="ContinueBtn btn-outline-info"
+            className="ContinueBtn"
             onClick={(e) => this.handleContinue(e)}
           >
             Continue
@@ -128,7 +128,7 @@ function mapStateToProps(state) {
       return {
         id: item.id,
         accept: false,
-        selectedItems: 0,
+        selectedItems: 1,
         itemsRate: 0,
         Title: item.title,
         SubTitle: item.subTitle,

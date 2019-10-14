@@ -1,13 +1,12 @@
 import React from 'react';
 import {Row,Button,Table,FormGroup,Label,CustomInput } from 'reactstrap';
 import Page from '../components/Page'
-import {Link} from 'react-router-dom';
 import history from '../helper/history';
 
 export default class CheckoutPage extends React.Component{
     constructor(props){
         super(props)
-        // this.handleClick = this.handleClick.bind(handleClick)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     handleClick = (link) => {
@@ -40,14 +39,14 @@ export default class CheckoutPage extends React.Component{
                 <div className="WakeupRequestBtn-div" >
                         <Button
                             size="lg"
-                            className="btnCancel btn-outline-info"
+                            className="btnCancel"
                             onClick={() => this.handleClick('/frontoffice')}
                             >
                                Cancel
                         </Button>
                         <Button
                             size="lg"
-                            className="btnReqt bg-gradient-Requestbtn btn-outline-info border-0"
+                            className="btnReqt bg-gradient-Requestbtn border-0"
                             onClick={() => this.handleClick('/requestmain')}
                             >
                                Request

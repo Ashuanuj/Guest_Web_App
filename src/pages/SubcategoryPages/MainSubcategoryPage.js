@@ -1,9 +1,8 @@
 import React from 'react';
-import Page from '../../components/Page';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import SubCategory1 from './Subcategory1'
-import SubCategory2 from './Subcategory2'
+// import SubCategory2 from './Subcategory2'
 
 export default class MainSubcategoryPage extends React.Component {
   constructor(props) {
@@ -25,7 +24,7 @@ export default class MainSubcategoryPage extends React.Component {
   render() {
     return (
       <div>
-      <Page>
+     
        <div className="tabMain">
         <Nav tabs>
           <NavItem>
@@ -68,12 +67,12 @@ export default class MainSubcategoryPage extends React.Component {
           <TabPane tabId="2">
             <Row>
               <Col sm="12">
-               <SubCategory2/>
+               {/* <SubCategory2/> */}
               </Col>
             </Row>
           </TabPane>
         </TabContent>
-        </Page>
+      
       </div>
     );
   }

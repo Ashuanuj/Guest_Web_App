@@ -11,8 +11,10 @@ import componentImg from '../assets/img/bg/component.png'
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
-import { FaShoppingCart} from 'react-icons/fa';
+// import { FaShoppingCart} from 'react-icons/fa';
+import cartIcon from '../assets/img/icons/cart.svg';
 import { Link } from 'react-router-dom';
+import Footer from '../Layout/Footer';
 
 const useStyles = makeStyles({
   list: {
@@ -57,8 +59,8 @@ export default function Header() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        <Link to="/services">
-        {['Service'].map((text) => (
+        <Link to="/dashboard">
+        {['Services'].map((text) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>
@@ -85,6 +87,9 @@ export default function Header() {
         </Link>
       </List>
     </div>
+    <div className="sidebar-footer">
+       <Footer/>
+    </div>
   </>
   );
 
@@ -109,7 +114,15 @@ export default function Header() {
      
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
-          <Link to="/checkout"><span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span></Link>         </NavItem>
+            <Link to="/checkout">
+              {/* <span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span> */}
+              <img
+                  src={cartIcon}
+                  className="cartImg"
+                  alt="cartimg"   
+              />
+            </Link>         
+          </NavItem>
         </Nav>
     
       </Navbar> 
