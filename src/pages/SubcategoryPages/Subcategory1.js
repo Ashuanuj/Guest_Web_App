@@ -28,9 +28,14 @@ class SubCategory1 extends Component {
   handleAddItem(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
+    this.props.subcategory[index].selectedItems += 1
+    this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
     
     this.setState({
-      [`add${id}`]: this.state[`add${id}`] == undefined ? this.state[`add${id}`] = true : this.state[`add${id}`] == true ? this.state[`add${id}`] = false : this.state[`add${id}`] == true
+      [`add${id}`]: this.state[`add${id}`] == undefined ? this.state[`add${id}`] = true : this.state[`add${id}`] == true ? this.state[`add${id}`] = false : this.state[`add${id}`] == true,
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
+      totalItems: this.state.totalItems + 1,
+      totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
   }
 
@@ -78,7 +83,7 @@ class SubCategory1 extends Component {
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`${data.rate}`}</b>
+              <b>{`$ ${data.rate}`}</b>
             </Media>
 
             <Media right>
@@ -100,7 +105,7 @@ class SubCategory1 extends Component {
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
+          <span> {`${this.state.totalItems} Items | $ ${this.state.totalRate}`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"
@@ -128,7 +133,7 @@ function mapStateToProps(state) {
       return {
         id: item.id,
         accept: false,
-        selectedItems: 1,
+        selectedItems: 0,
         itemsRate: 0,
         Title: item.title,
         SubTitle: item.subTitle,

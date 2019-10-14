@@ -26,6 +26,7 @@ export function* LogIn(data) {
         }
     }
     catch ({ error }) {
+        console.log(error, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
         yield put(actions.login.failure(error));
     }
 }

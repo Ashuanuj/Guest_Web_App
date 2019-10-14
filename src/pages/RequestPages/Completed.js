@@ -12,7 +12,7 @@ export default class Completed extends React.Component{
             <div>
                
                <Row className="ServicePageMainActive">
-                <Col lg={4} md={6} sm={6} xs={12} className="pz">
+                {/* <Col lg={4} md={6} sm={6} xs={12} className="pz">
                     <Card className="requestTab-main">
                     <Media className="mediaMain">
                             <Media body>
@@ -59,7 +59,7 @@ export default class Completed extends React.Component{
                         </Media>
                     </Media>
                     </Card> 
-                </Col>
+                </Col> */}
                 </Row>
              
             </div>

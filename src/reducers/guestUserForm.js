@@ -20,9 +20,10 @@ export default function reducer(state = initialState, action) {
             }
         case LOG_IN.FAILURE:
             {
+                console.log(action.payload, 'oooooooooooooooooooooooooooooooooooooooooooooo')
                 return {
                     ...state,
-                    error: action.payload,
+                    error: action.payload.customMessage,
                 };
             }
         default:

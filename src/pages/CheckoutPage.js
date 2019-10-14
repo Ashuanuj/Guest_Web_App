@@ -30,7 +30,9 @@ class CheckoutPage extends React.Component {
     super(props);
     this.state = {
       modal: false,
-      totalBill: 0
+      totalBill: 0,
+      Nonveg: NonvegImg,
+      veg: vegImg,
     };
 
     this.toggle = this.toggle.bind(this);
@@ -66,16 +68,16 @@ class CheckoutPage extends React.Component {
 
         <tr className="items-gap">
           <td className="checkout-item-name">
-            <Media object src={vegImg} alt="image" /> {item.Title}
+            <Media object src={this.state[item.type]} alt="image" /> {item.itemName}
           </td>
           <td>
             <div className="qtybtn">
               <span className="minus"> - </span>
-              <span className="count"> {item.selectedItems} </span>
+              <span className="count"> {item.quantity} </span>
               <span className="plus"> + </span>
             </div>
           </td>
-          <td className="checkout-item-name"> {` ${item.itemsRate}`} </td>
+          <td className="checkout-item-name"> {` ${item.amount}`} </td>
         </tr>
           return item1
       });

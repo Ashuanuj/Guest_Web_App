@@ -6,6 +6,9 @@ import TextInput from "../components/forms/TextInput";
 import DatePicker from "./forms/DatePicker";
 import DatePickerInput from "./forms/DatePickerInput";
 import moment from "moment";
+import { bindActionCreators } from "redux"
+import flow from 'lodash/flow';
+import { connect } from "react-redux";
 
 const validate = values => {
   const errors = {};
@@ -76,6 +79,7 @@ class RequestForm extends React.Component {
   };
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
+    console.log(this.props, '6666666666666666666666666666666666666666666666')
     return (
       <Col className="form-main">
         <Form onSubmit={handleSubmit} autoComplete="off">
@@ -145,6 +149,16 @@ RequestForm.propTypes = {
 //   validate,
 // })(RequestForm);
 
-export default reduxForm({
+const mapStateToProps = state => {
+  return {
+    error: state.gformReducers.error
+  }
+}
+
+export default flow([
+  connect(mapStateToProps, null),
+  reduxForm({
   form: "guestForm"
-})(RequestForm);
+}),
+])
+(RequestForm);

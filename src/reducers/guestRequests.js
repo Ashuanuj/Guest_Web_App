@@ -7,9 +7,10 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GUEST_REQUESTS.SUCCESS: {
+            console.log(action.payload, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
             return {
                 ...state,
-                requests: action.payload
+                requests: action.payload.orders
             };
         }
         default:
