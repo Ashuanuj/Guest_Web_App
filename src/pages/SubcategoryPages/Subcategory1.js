@@ -74,7 +74,7 @@ this.props.actions.handle_header(['Cart',true])
   render() {
     const { props } = this;
     const subCategoryitems = props.subcategory && props.subcategory.map(data => (
-      <Col lg={4} md={6} sm={6} xs={12} className="" key={data.id} >
+      <Col lg={4} md={6} sm={6} xs={12} className="col-spacing" key={data.id} >
         <Card style={{borderRadius:'0px'}}>
           <Media className="SubcategoryMain">
             <Media left>
@@ -85,7 +85,7 @@ this.props.actions.handle_header(['Cart',true])
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`$ ${data.rate}`}</b>
+              <b>{`${data.rate}`}</b>
             </Media>
 
             <Media right>
@@ -107,7 +107,7 @@ this.props.actions.handle_header(['Cart',true])
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`${this.state.totalItems} Items | $ ${this.state.totalRate}`}</span>
+          <span> {`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"

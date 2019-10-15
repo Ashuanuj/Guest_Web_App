@@ -139,8 +139,8 @@
 .sidebarImg-main{
   span{
     position: absolute;
-    top:106px;
-    left: 45px;
+    top:140px;
+    left: 83px;
     font-size: 18px;
     font-weight: 700;
     font-family: 'Neo_Sans';
@@ -149,7 +149,7 @@
     cursor: pointer;
     position: absolute;
     top:10px;
-    left: 220px;
+    left: 255px;
     z-index: 7;
     color: #fff;
   }
@@ -158,9 +158,9 @@
 .sidebarImg{
   background-position: center center;
   background-size: cover;
-  width: 250px;
-  height: 150px;
-  background: linear-gradient(45deg, #10b7d2, #212529);
+  width: 300px;
+  height: 190px;
+  // background: linear-gradient(45deg, #10b7d2, #212529);
 
 }
 // Sidebar ListItem
@@ -188,6 +188,7 @@
     ul:hover{
       border: #107bd2 1px solid;
     }
+    width: 300px;
   }
 }
 

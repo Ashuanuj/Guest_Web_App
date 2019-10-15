@@ -4,7 +4,7 @@ import { Col, Row, Card, CardImg } from 'reactstrap';
 import RequestForm from '../components/RequestForm'
 import componentImg from '../components/assets/img/bg/component.png'
 import Footer from '../components/Layout/Footer';
-// import {Link} from 'react-router-dom';
+
 import { guestLogIn } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -21,11 +21,8 @@ class RequestFormPage extends React.Component {
   render() {
     return (
       <div className="main-requestform">
-        {/* <Container> */}
         <Row className="HomeMain">
-
-          <Col className="pz" sm={{ size: 'auto', offset: 0 }} md={{ size: 'auto', offset: 3 }} lg={{ size: 4, offset: 4 }} >
-
+          <Col className="pz"  md={6} lg={4} >
             <Card body className="cardbody-main">
               <CardImg
                 src={componentImg}
@@ -38,7 +35,6 @@ class RequestFormPage extends React.Component {
 
               <RequestForm
                 onSubmit={this._handleSubmit}
-
               />
 
             </Card>
@@ -46,9 +42,6 @@ class RequestFormPage extends React.Component {
             <Footer />
           </Col>
         </Row>
-        {/* </Container> */}
-
-
       </div>
 
     );
