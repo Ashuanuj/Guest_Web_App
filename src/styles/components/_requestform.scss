@@ -1,9 +1,9 @@
 .main-requestform{
   overflow-x: hidden;
-  height: 100vh;
-  // .HomeMain{
-  //   margin-bottom: 35em;
-  // }
+  
+  .HomeMain{
+    height: 100vh;
+  }
 }
 .card{
   background-color: none;
@@ -49,6 +49,13 @@
   border-color: none !important;
   color: #fff !important;
 }
+
+// .form-control:focus{
+//   outline:none;
+//   box-shadow: none;
+//   color: #fff !important;
+// }
+
 //Error text
 .text-danger{
   color: #ff0000 !important;
@@ -70,6 +77,7 @@
 input[type="date"]::before {
   content: attr(placeholder) !important;
   // color: #A2B0BA;
+  margin-right: 5px;
   color: #a2b0baa8;
 }
 .form-group input[type=date]:focus {
@@ -80,21 +88,24 @@ input[type="date"]::before {
   // color: #6c757c !important  ;
   color: #e9ecef00;
 }
-
 input[type="date"]:focus:before,
-input[type="date"]:not([value=""]):before
-{
-  display: none;
+input[type="date"]:valid:before {
+  content: "";
 }
+// input[type="date"]:focus:before,
+// input[type="date"]:not([value=""]):before
+// {
+//   display: none;
+// }
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button{
     display: none;
 }
 
-#dateInput:not([value])::-webkit-datetime-edit-fields-wrapper,
-#dateInput[value=""]::-webkit-datetime-edit-fields-wrapper { 
-    visibility: hidden;
-}
+// #dateInput:not([value])::-webkit-datetime-edit-fields-wrapper,
+// #dateInput[value=""]::-webkit-datetime-edit-fields-wrapper { 
+//     visibility: hidden;
+// }
 
   .Requestbtn{
   font-family: 'Neo_Sans' ;
@@ -146,7 +157,7 @@ input[type="date"]::-webkit-inner-spin-button{
  
 .cardbody-main{
     background-color: none;
-    border:0px !important;
+    // border:0px !important;
     padding: 0px;
     position: relative;
 }
@@ -180,7 +191,7 @@ input[type="date"]::-webkit-inner-spin-button{
   @media screen and (max-width:765px) {
     body{
        background-color: #142A3B !important;
-  }
+    }
   }
 
   @media screen and (min-width:360px) and (max-width:640px){
@@ -190,6 +201,7 @@ input[type="date"]::-webkit-inner-spin-button{
     }
     .cardbody-main{
       position: relative;
+      border: 0px !important;
     }
     .cardImgtext{
         // margin-top:9em;
@@ -220,7 +232,6 @@ input[type="date"]::-webkit-inner-spin-button{
         position: relative;
       }
     .cardImgtext{
-        // margin-top: -50px;
         position: absolute;
         color: white;
         .para{
@@ -236,3 +247,18 @@ input[type="date"]::-webkit-inner-spin-button{
         }
     }
   }
+
+  // card position center for bigger screen
+@media screen and (min-width:768px){
+  .HomeMain{
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width:320px){
+  .cardbody-main{
+    position: relative;
+    border: 0px !important;
+  }
+}
