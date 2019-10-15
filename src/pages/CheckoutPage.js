@@ -33,10 +33,14 @@ class CheckoutPage extends React.Component {
       totalBill: 0,
       Nonveg: NonvegImg,
       veg: vegImg,
+      totalItems: 0,
+      totalRate: 0
     };
 
     this.toggle = this.toggle.bind(this);
     this.anotherToggle = this.anotherToggle.bind(this);
+    this.onIncrement = this.onIncrement.bind(this);
+    this.onDecrement = this.onDecrement.bind(this);
   }
 
   // componentWillMount() {
@@ -57,6 +61,44 @@ class CheckoutPage extends React.Component {
     history.push("/requestmain");
   }
 
+  handleAddItem(id) {
+    let index = this.props.subcategory.findIndex(item => item.id === id)
+    this.props.subcategory[index].accept = true
+    this.props.subcategory[index].selectedItems += 1
+    this.props.subcategory[index].itemsRate += parseFloat(this.props.cartItems[index].rate)
+    
+    this.setState({
+      [`add${id}`]: this.state[`add${id}`] == undefined ? this.state[`add${id}`] = true : this.state[`add${id}`] == true ? this.state[`add${id}`] = false : this.state[`add${id}`] == true,
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].selectedItems,
+      totalItems: this.state.totalItems + 1,
+      totalRate: this.state.totalRate + parseFloat(this.props.cartItems[index].rate)
+    })
+  }
+
+  onIncrement(id) {
+    let index = this.props.cartItems.findIndex(item => item.id === id)
+    this.props.cartItems[index].quantity += 1
+    this.props.cartItems[index].amount += parseFloat(this.props.cartItems[index].rate)
+
+    this.setState({
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
+      totalItems: this.state.totalItems + 1,
+      totalRate: this.state.totalRate + parseFloat(this.props.cartItems[index].rate)
+    })
+  }
+
+  onDecrement(id) {
+    let index = this.props.cartItems.findIndex(item => item.id === id)
+    this.setState({
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
+      totalItems: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
+      totalRate: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalRate - parseFloat(this.props.cartItems[index].rate) : this.state.totalRate
+    })
+    this.props.cartItems[index].quantity = this.props.cartItems[index].quantity > 0 ? this.props.cartItems[index].quantity - 1 : 0
+    this.props.cartItems[index].amount = this.props.cartItems[index].quantity > 0 && this.props.cartItems[index].amount > 0 ? this.props.cartItems[index].amount - parseFloat(this.props.cartItems[index].rate) : this.props.cartItems[index].amount
+    this.props.cartItems[index].accept =  this.props.cartItems[index].quantity == 0 ? false : true
+  }
+
   render() {
     const { props } = this;
     console.log(this.props.cartItems, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyuuuuuuuuuuuuuuuuuuuuuuuuuuu')
@@ -72,9 +114,9 @@ class CheckoutPage extends React.Component {
           </td>
           <td>
             <div className="qtybtn">
-              <span className="minus"> - </span>
+              <span className="minus" onClick={() => this.onDecrement(item.id)}> - </span>
               <span className="count"> {item.quantity} </span>
-              <span className="plus"> + </span>
+              <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
             </div>
           </td>
           <td className="checkout-item-name"> {` ${item.amount}`} </td>
@@ -147,10 +189,10 @@ class CheckoutPage extends React.Component {
         {/* confirmation modal */}
         <Modal
           isOpen={this.state.modal}
-          toggle={this.anotherToggle}
+          toggle={this.toggle}
           className="modal-div"
         >
-          <ModalHeader toggle={this.anotherToggle}>
+          <ModalHeader toggle={this.toggle}>
             
             Confirmation Message
           </ModalHeader>

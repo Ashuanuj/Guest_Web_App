@@ -5,6 +5,7 @@ import React from 'react';
 
 import {Row, Col, Card, Media,Collapse,Table} from 'reactstrap';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
+import moment from 'moment';
 
 import vegImg from '../../components/assets/img/icons/veg.png';
 import NonvegImg from '../../components/assets/img/icons/non-veg.png'
@@ -16,6 +17,20 @@ import { loadGuestRequests } from "../../actions";
 //   {  exact: false },
 // ];
 
+let month = {
+  1: 'Jan',
+  2: 'Feb',
+  3: 'Mar',
+  4: 'Apr',
+  5: 'May',
+  6: 'Jun',
+  7: 'Jul',
+  8: 'Aug',
+  9: 'Sep',
+  10: 'Oct',
+  11: 'Nov',
+  12: 'Dec'
+}
 
 class Active extends React.Component{
   constructor(props) {
@@ -32,7 +47,6 @@ class Active extends React.Component{
   }
     
     toggleCollapse = (collapseID, orderId) => () => { 
-        console.log(this.state, 'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
         this.setState(prevState => ({ [`collapseID${orderId}`]: prevState[`collapseID${orderId}`] !== collapseID ? collapseID : "" })); }    
 
     render(){
@@ -43,13 +57,21 @@ class Active extends React.Component{
           );
           let data = this.props.data && this.props.data.map((item, index) => {
               let total = 0;
+              let time = new Date(moment.unix(item.createdAt));
+              let hrs = time.getHours() > 12 ? time.getHours()-12 : time.getHours();
+              let mins = time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes();
+              let str = time.getHours() > 12 ? 'pm' : 'am';
+              let newTime = `${time.getDate()} ${month[time.getMonth()+1]} ${time.getFullYear()} | ${hrs}:${mins}${str}`;
+              console.log(newTime)
+              // console.log(time)
               return (
                   <Col md={6} sm={6} xs={12} className="mb-3">
                   <Card className="requestTab-main">
                     <Media className="mediaMain">
                       <Media body>
                         <Media heading>{`Order ID: ${item.orderId}`}</Media>
-                        <span className="sub-title">{item.created_at}</span>
+                        {/* <span className="sub-title">23 Jun 2019 | 7:30am</span> */}
+                        <span className="sub-title">{newTime}</span>
                         {/* //23 Jun 2019 | 7:30am */}
                         <span className="sub-title2"> Request Received </span>
                       </Media>
