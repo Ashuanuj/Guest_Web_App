@@ -8,23 +8,25 @@ import Page from '../components/Page';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {loadService} from '../actions'
+import {loadService,handle_header} from '../actions'
 import history from '../helper/history';
 
 class DashboardPage extends React.Component {
 
   componentWillMount() {
     this.props.actions.loadService();
+    this.props.actions.handle_header([localStorage.getItem(' '), false]);
   }
-handleClick = (id, link) => {
-  history.push(`/${link}`)
-  localStorage.setItem('serviceCategoryId', id)
-}
+  handleClick = (id, serviceName, link) => {
+    this.props.actions.handle_header([serviceName,true]);
+    localStorage.setItem('serviceCategoryId', id)
+    history.push(`/${link}`)
+    }
   render(){
     const {props} = this;
     
     const services = props.requests && props.requests.map(request =>(
-      <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id, request.link)}>
+      <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id,request.serviceName, request.link)}>
         {/* <Link to={`/${request.link}`} > */}
           <Card className="flex-row card-serv-main-dash">
             <CardImg
@@ -71,7 +73,8 @@ function mapDispatchToProps(dispatch)
 {
      return {
           actions: bindActionCreators({
-            loadService
+            loadService,
+            handle_header
           }, dispatch),
      };
 }

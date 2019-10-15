@@ -5,7 +5,7 @@ import { Row, Col, Card, Media, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getServiceSubCategory, storeOrder } from '../../actions'
+import { getServiceSubCategory, storeOrder, handle_header } from '../../actions'
 import {Link} from 'react-router-dom';
 import history from '../../helper/history';
 
@@ -22,7 +22,8 @@ class SubCategory1 extends Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
   componentWillMount() {
-    this.props.actions.getServiceSubCategory(localStorage.getItem('serviceSubCategoryId'));    
+    this.props.actions.getServiceSubCategory(localStorage.getItem('serviceSubCategoryId')); 
+    this.props.actions.handle_header(['Break Fast', true]);   
   }
 
   handleAddItem(id) {
@@ -65,8 +66,9 @@ class SubCategory1 extends Component {
 
   handleContinue(e) {
     e.preventDefault();
-    this.props.actions.storeOrder(this.props.subcategory)
-    history.push('/checkout')
+this.props.actions.storeOrder(this.props.subcategory)
+history.push('/checkout')
+this.props.actions.handle_header(['Cart',true])
   }
 
   render() {
@@ -150,7 +152,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       getServiceSubCategory,
-      storeOrder
+      storeOrder,
+      handle_header
     }, dispatch),
   };
 }

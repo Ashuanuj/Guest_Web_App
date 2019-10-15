@@ -8,6 +8,7 @@ import "./styles/myStyles.scss";
 import { MainLayout } from "./components/Layout";
 import RequestFormPage from "./pages/RequestFormPage";
 import { Router, Route, Switch } from "react-router-dom";
+import { Redirect, IndexRedirect, IndexRoute } from "react-router";
 
 import DashboardPage from "./pages/DashboardPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -38,19 +39,23 @@ class App extends React.Component {
             onChange={isFull => this.setState({ isFull })}
           >
             <Route exact path="/" component={RequestFormPage} />
-            <MainLayout>
-              <Route exact path="/dashboard" component={DashboardPage} />
-              <Route exact path="/services" component={ServicesPage} />
-              <Route
-                exact
-                path="/mainsubcategorypage"
-                component={MainSubcategoryPage}
-              />
-              <Route exact path="/checkout" component={CheckoutPage} />
-              <Route exact path="/wakeup" component={WakeUp} />
-              <Route exact path="/frontoffice" component={FrontOffice} />
-              <Route exact path="/requestmain" component={RequestMain} />
-            </MainLayout>
+            {localStorage.getItem("accessToken") === null ? (
+              history.push("/")
+            ) : (
+              <MainLayout>
+                <Route exact path="/dashboard" component={DashboardPage} />
+                <Route exact path="/services" component={ServicesPage} />
+                <Route
+                  exact
+                  path="/mainsubcategorypage"
+                  component={MainSubcategoryPage}
+                />
+                <Route exact path="/checkout" component={CheckoutPage} />
+                <Route exact path="/wakeup" component={WakeUp} />
+                <Route exact path="/frontoffice" component={FrontOffice} />
+                <Route exact path="/requestmain" component={RequestMain} />
+              </MainLayout>
+            )}
           </Fullscreen>
         </Switch>
       </Router>

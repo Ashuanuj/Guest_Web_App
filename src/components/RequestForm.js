@@ -83,33 +83,23 @@ class RequestForm extends React.Component {
     return (
       <Col className="form-main">
         <Form onSubmit={handleSubmit} autoComplete="off">
+        <div style={{height: 'fit-content',border: this.props.error && (this.props.error.indexOf('Guest') !== -1 || this.props.error.indexOf('Invalid') !== -1) ?"1px solid red" : ''}}>
           <Field
             component={TextInput}
             name="name"
             label="Name"
             onChange={this.props.onChange}
           />
+          </div>
+          <div style={{height: 'fit-content',border: this.props.error && (this.props.error.indexOf('Room') !== -1 || this.props.error.indexOf('Invalid') !== -1) ?"1px solid red" : ''}}>
           <Field
             component={TextInput}
             name="roomno"
             label="Room No."
             onChange={this.props.onChange}
           />
-          {/* <Field
-            name="datePicker"
-            label="Date of Birth"
-            component={DatePicker}
-            value={this.state.time}
-            isOpen={this.state.isOpen}
-            onSelect={this.handleSelect}
-            onCancel={this.handleCancel}
-          /> */}
-          {/* </Field> */}
-          {/* <DatePicker
-          value={this.state.time}
-          isOpen={this.state.isOpen}
-          onSelect={this.handleSelect}
-          onCancel={this.handleCancel} /> */}
+          </div>
+          <div style={{ height: 'fit-content', border: this.props.error && (this.props.error.indexOf('Date') !== -1 || this.props.error.indexOf('Invalid') !== -1) ?"1px solid red" : ''}}>
           <Field
             component={TextInput}
             name="dob"
@@ -117,15 +107,7 @@ class RequestForm extends React.Component {
             type="date"
             value=""
           />
-          {/* <Field
-          name="dob"
-          placeholderText="Date of Birth"
-          inputValueFormat="MM/DD/YYYY"
-          fixedHeight
-          normalize={value => (value ? moment(value).format('MM/DD/YYYY') : null)}
-          component={DatePickerInput}
-          onChange={this.props.onChange} */}
-          />
+          </div>
           <Button
             size="lg"
             disabled={pristine || submitting}

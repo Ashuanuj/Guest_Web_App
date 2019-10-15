@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { createRequest, getCartItems } from "../actions";
+import { createRequest, getCartItems,handle_header } from "../actions";
 import Checkout from './CheckoutPage';
 import { bindActionCreators } from "redux";
 
@@ -25,6 +25,7 @@ class Cart extends React.Component {
     componentDidMount() {
         this.props.actions.getCartItems(localStorage.getItem('areaId'))
         this.intervalId = setInterval(this.timer.bind(this), 12000);
+        this.props.actions.handle_header(['Cart',true])
       }
     render() {
        if( this.props.cartItems && this.props.cartItems.length > 0 )
@@ -48,7 +49,8 @@ function mapDispatchToProps(dispatch) {
       actions: bindActionCreators(
         {
           createRequest,
-          getCartItems
+          getCartItems,
+          handle_header
         },
         dispatch
       )

@@ -97,3 +97,7 @@ export const placeOrder = createCrudActions(PLACE_ORDER);
 
 export const STORE_ORDER = 'STORE_ORDER';
 export const storeOrder = createAction(STORE_ORDER)
+
+
+export const HANDLE_HEADER = 'HANDLE_HEADER';
+export const handle_header = createAction(HANDLE_HEADER);

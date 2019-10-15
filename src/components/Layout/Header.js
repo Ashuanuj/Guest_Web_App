@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,11 +12,10 @@ import componentImg from '../assets/img/bg/component.png'
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
-// import { FaShoppingCart} from 'react-icons/fa';
-import cartIcon from '../assets/img/icons/cart.svg';
+import { FaShoppingCart} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Footer from '../Layout/Footer';
-
+import {shallowEqual,  useSelector } from "react-redux";
+import history from '../../helper/history';
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -24,20 +24,40 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
-
+// 
+var qa;
 export default function Header() {
+
+  let { header, dashboard } = useSelector(state => ({
+    header: state.header.header,
+    dashboard: state.header.dashbaord 
+  }),shallowEqual)
+   
+   qa=header;
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
   });
-
+  const handleClick=(link)=>{
+    history.push(link)
+  }
+  const handleLogOut=(link)=>{
+    history.push(link)
+    localStorage.removeItem('roomNo')
+    localStorage.removeItem('header')
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('guestName')
+    localStorage.removeItem('areaId')
+    localStorage.removeItem('guestId')
+    localStorage.removeItem('dashboard')
+  }
+  console.log(qa,'aaaaaaaaaaaaaaaaaaaaaaaa')
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setState({ ...state, [side]: open });
   };
-
   const sideList = side => (
   <>
     <div className="sidebarImg-main">
@@ -47,6 +67,7 @@ export default function Header() {
         alt="cmp"
       />
       <span className="headername text-white">
+        
         {`Welcome Mr. ${ localStorage.getItem('guestName') }`}
       </span>
       <span className="crossbtn" onClick={toggleDrawer('left', false)}> <MdClose/></span>
@@ -58,37 +79,30 @@ export default function Header() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        <Link to="/dashboard">
-        {['Services'].map((text) => (
+      <List onClick={()=>handleClick("/dashboard")}>
+        {['Service'].map((text) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        </Link>
 
       </List>
-      <List>
-      <Link to="/requestmain">
+      <List  onClick={()=>handleClick("/requestmain")} >
         {['My Request'].map((text) => (
           <ListItem button key={text}>
              <ListItemText primary={text} />
           </ListItem>
         ))}
-        </Link>
       </List>
-      <List>
-      <Link to="/">
+      <List  onClick={()=>handleLogOut("/")} >
+      {/* <Link to="/"> */}
         {['Logout'].map((text) => (
           <ListItem button key={text}>
               <ListItemText primary={text} />
           </ListItem>
         ))}
-        </Link>
+        {/* </Link> */}
       </List>
-    </div>
-    <div className="sidebar-footer">
-       <Footer/>
     </div>
   </>
   );
@@ -108,21 +122,15 @@ export default function Header() {
          </Nav>
 
         <Nav className="Nav-Name">
-          {`Welcome Mr. ${localStorage.getItem('guestName')}`}
+        {dashboard==true? header :`Welcome Mr. ${ localStorage.getItem('guestName') }`}
+        {/* {localStorage.getItem('header')} */}
         </Nav>
 
      
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
-            <Link to="/checkout">
-              {/* <span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span> */}
-              <img
-                  src={cartIcon}
-                  className="cartImg"
-                  alt="cartimg"   
-              />
-            </Link>         
-          </NavItem>
+          <Link to="/checkout"><span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span></Link>        
+           </NavItem>
         </Nav>
     
       </Navbar> 
@@ -133,4 +141,5 @@ export default function Header() {
     </div>
   );
 }
+
 

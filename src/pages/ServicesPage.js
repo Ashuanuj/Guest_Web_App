@@ -9,28 +9,36 @@ import {  MdKeyboardArrowRight } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getServiceCategory} from '../actions'
+import {getServiceCategory,handle_header} from '../actions'
 import history from "../helper/history";
 
 class ServicesPage extends React.Component {
   constructor(props) {
     super(props)
   }
-  componentWillMount() {
-    this.props.actions.getServiceCategory(localStorage.getItem('serviceCategoryId'));
+//   componentWillMount() {
+//     this.props.actions.getServiceCategory(localStorage.getItem('serviceCategoryId'));
+//   }
+// handleClick = (link, id) => {
+//   history.push(`/${link}`)
+//   localStorage.setItem('serviceSubCategoryId', id)
+// }
+componentWillMount() {
+  this.props.actions.getServiceCategory(localStorage.getItem('serviceCategoryId'));
+  this.props.actions.handle_header(['All Day Dining',true]);
   }
-handleClick = (link, id) => {
-  history.push(`/${link}`)
+  handleClick = (id,link, serviceName) => {
+  this.props.actions.handle_header([serviceName,true]);
   localStorage.setItem('serviceSubCategoryId', id)
-}
-
+  history.push(`/${link}`)
+  }
   render(){
     const {props} = this;
     
     const servicesCategory = props.category && props.category.map(requestCategory =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={requestCategory.id}>
         {/* <Link to={`/${requestCategory.link}`} > */}
-          <Card className="card-serv-main" onClick={()=>this.handleClick(requestCategory.link, requestCategory.id)}>
+          <Card className="card-serv-main" onClick={()=>this.handleClick( requestCategory.id,requestCategory.link,requestCategory.title)}>
            <Media className="mediaMain">
               <Media left>
                 <Media object src={requestCategory.icon} alt="image"/>
@@ -41,10 +49,10 @@ handleClick = (link, id) => {
                   </Media>
                    <span className="sub-title"> {requestCategory.subTitle} </span>
               </Media> 
-              <Media right>
-                <Link to={`/${requestCategory.link}`} > 
+              <Media right onClick={()=>this.handleClick( requestCategory.id,requestCategory.link,requestCategory.title)}>
+                {/* <Link to={`/${requestCategory.link}`} >  */}
                   <MdKeyboardArrowRight/>
-                </Link>
+                {/* </Link> */}
               </Media>
            </Media>
           </Card> 
@@ -81,7 +89,8 @@ function mapDispatchToProps(dispatch)
 {
      return {
           actions: bindActionCreators({
-            getServiceCategory
+            getServiceCategory,
+            handle_header
           }, dispatch),
      };
 }

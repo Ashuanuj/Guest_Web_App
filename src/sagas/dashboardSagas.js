@@ -11,8 +11,8 @@ export function* ServiceData() {
     yield put(actions.ServiceData.request());
     try {
         let objArray = [
-            { icon: SwipeImage, link: `frontoffice` },
-            { icon: BellImage, link: `dashboard` },
+            { icon: SwipeImage, link: `dashboard` },
+            { icon: BellImage, link: `frontoffice` },
             { icon: ForkImage, link: `services` },
             { icon: FileImage, link: `dashboard` },
             { icon: FileImage, link: `dashboard` }
@@ -21,7 +21,7 @@ export function* ServiceData() {
         response.guestServices && response.guestServices.forEach((item, index) =>
             objArray.forEach((elem, i) => {
                 if (i == index) {
-                    item.icon = elem.icon
+                    item.icon = elem.icon   
                     item.link = elem.link
                 };
             })

@@ -13,7 +13,7 @@ import classnames from "classnames";
 import Active from "./Active";
 import Completed from "./Completed";
 import { connect } from "react-redux";
-import { loadGuestRequests } from "../../actions";
+import { loadGuestRequests,handle_header } from "../../actions";
 import { bindActionCreators } from "redux";
 
 class RequestMain extends React.Component {
@@ -28,13 +28,17 @@ class RequestMain extends React.Component {
     };
   }
 
+ 
+
   componentWillMount() {
     let data = {
-      roomNo: localStorage.getItem("roomNo"),
-      user_last_name: localStorage.getItem("guestName")
+    roomNo: localStorage.getItem("roomNo"),
+    user_last_name: localStorage.getItem("guestName")
     };
     this.props.actions.loadGuestRequests(data);
-  }
+    this.props.actions.handle_header(['Request',true])
+    
+    }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -121,7 +125,8 @@ const  mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(
       {
-        loadGuestRequests
+        loadGuestRequests,
+        handle_header
       },
       dispatch
     )

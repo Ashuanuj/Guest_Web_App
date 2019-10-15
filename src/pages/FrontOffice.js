@@ -7,18 +7,27 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {loadFrontOffice} from '../actions'
+import {loadFrontOffice,handle_header} from '../actions'
+import history from "../helper/history"
 
 class FrontOffice extends React.Component {
-    componentWillMount() {
-        this.props.actions.loadFrontOffice();
-      }
+    // componentWillMount() {
+    //     this.props.actions.loadFrontOffice();
+    //   }
     
+    componentWillMount() {
+      this.props.actions.loadFrontOffice();
+      this.props.actions.handle_header(['Front Office', true]);
+      }
+      handleClick = (link, serviceName) => {
+      this.props.actions.handle_header([serviceName,true]);
+      history.push(`/${link}`)
+      }
       render(){
         const {props} = this;
         const front_office = props.request && props.request.map(data =>(
-            <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={data.id}>
-              <Link to={`/${data.link}`} >
+            <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={data.id} onClick={()=>this.handleClick(data.link,data.Title)}>
+              {/* <Link to={`/${data.link}`} > */}
                 <Card className="front-office-main">
                 <Media className="mediaMain">
                     <Media body>
@@ -32,7 +41,7 @@ class FrontOffice extends React.Component {
                     </Media>
                 </Media>
                 </Card> 
-                </Link>
+                {/* </Link> */}
             </Col>
         ));
        return (
@@ -65,7 +74,8 @@ FrontOffice.propTypes = {
   {
        return {
             actions: bindActionCreators({
-                loadFrontOffice
+                loadFrontOffice,
+                handle_header
             }, dispatch),
        };
   }
