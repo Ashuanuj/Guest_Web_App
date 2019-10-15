@@ -80,7 +80,7 @@ export default function Header() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List onClick={()=>handleClick("/dashboard")}>
-        {['Service'].map((text) => (
+        {['Services'].map((text) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>
