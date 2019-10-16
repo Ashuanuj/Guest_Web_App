@@ -4,7 +4,7 @@ import React from 'react';
 // import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import {Row, Col, Card, Media,Collapse,Table} from 'reactstrap';
-import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import moment from 'moment';
 
 import vegImg from '../../components/assets/img/icons/veg.png';

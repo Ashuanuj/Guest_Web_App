@@ -8,10 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 
+
 import componentImg from '../assets/img/bg/component.png'
+// import Cart from '../assets/img/icons/cart1.svg';
 
 import cartIcon from '../assets/img/icons/cart.svg';
-import Footer from '../Layout/Footer';
+import Footer from './Footer';
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
@@ -31,9 +33,10 @@ const useStyles = makeStyles({
 var qa;
 export default function Header() {
 
-  let { header, dashboard } = useSelector(state => ({
+  let { header, dashboard ,cart} = useSelector(state => ({
     header: state.header.header,
-    dashboard: state.header.dashbaord 
+    dashboard: state.header.dashbaord,
+    cart:state.header.cart 
   }),shallowEqual)
    
    qa=header;
@@ -132,7 +135,8 @@ export default function Header() {
         {/* {localStorage.getItem('header')} */}
         </Nav>
 
-     
+         <div>
+           {cart?<div></div>:
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
           {/* <Link to="/checkout"><span><img src="../assets/img/icons/cart.svg" /></span></Link>        
@@ -140,7 +144,6 @@ export default function Header() {
           <IconButton>
            <Cart /> 
   </IconButton> */}
-
           <Link to="/checkout">
               {/* <span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span> */}
               <img
@@ -151,7 +154,8 @@ export default function Header() {
             </Link> 
            </NavItem>
         </Nav>
-    
+           }
+    </div>
       </Navbar> 
      
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>

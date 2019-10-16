@@ -3,16 +3,21 @@ import {Row,Button,Table,FormGroup,Label,CustomInput,Input } from 'reactstrap';
 import Page from '../components/Page'
 import history from '../helper/history';
 import TextInput from "../components/forms/TextInput";
-
-export default class CheckoutPage extends React.Component{
+import {handle_header} from '../actions';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+class WakeUp extends React.Component{
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
-
-    handleClick = (link) => {
+    componentWillMount(){
+        this.props.actions.handle_header(['Wake up Call',true])
+        }
+        handleClick = (link) => {
         history.push(link)
-    }
+        }
+    
 
     render(){
         return(
@@ -63,3 +68,19 @@ export default class CheckoutPage extends React.Component{
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+    actions: bindActionCreators(
+    {
+    handle_header
+    },
+    dispatch
+    )
+    };
+    }
+    
+    export default connect(
+    null,
+    mapDispatchToProps
+    )(WakeUp);

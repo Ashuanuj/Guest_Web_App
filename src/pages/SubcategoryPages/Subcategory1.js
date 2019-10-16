@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getServiceSubCategory, storeOrder, handle_header } from '../../actions'
-import {Link} from 'react-router-dom';
 import history from '../../helper/history';
 
 class SubCategory1 extends Component {
