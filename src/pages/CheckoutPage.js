@@ -17,6 +17,7 @@ import Page from "../components/Page";
 
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
+import patternImg from "../components/assets/img/icons/linear-design.png"
 
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
@@ -176,7 +177,13 @@ class CheckoutPage extends React.Component {
                 </tr>
               </tbody>
             </Table>
-            <div className="pattern"></div>
+            <div className="pattern-img">
+            <img
+                src={patternImg}
+                className=""
+                alt="cmp"
+              />
+            </div>
             <div className="confirmBtn-div">
               <Button
                 size="lg"

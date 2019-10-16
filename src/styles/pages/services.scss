@@ -304,13 +304,14 @@
           font-size: 14px;
         }
         background: #1F3C53;
-        margin-bottom: 0px !important;
+        margin-bottom: -6px !important;
     }
-    .pattern{
-        background: linear-gradient(-45deg, transparent 75%, #1f3c53 0) 0 8%, linear-gradient(45deg, transparent 75%, #1f3c53 0) 0 12%;
-        background-size: 20px;
-        padding: 10px;
-        width: 100%;
+    .pattern-img img{
+        // background: linear-gradient(-45deg, transparent 75%, #1f3c53 0) 0 8%, linear-gradient(45deg, transparent 75%, #1f3c53 0) 0 12%;
+        // background-size: 20px;
+        // padding: 10px;
+        height: 20px;
+        // width: 100%;
     }
 
 .TableMainList{

@@ -140,7 +140,7 @@
   span{
     position: absolute;
     top:140px;
-    left: 80px;
+    left: 70px;
     font-size: 18px;
     font-weight: 700;
     font-family: 'Neo_Sans';
@@ -247,4 +247,8 @@
 }
 .MuiListItem-button:hover{
   background: none !important;
+}
+
+.MuiPaper-root .makeStyles-list-1 ul:hover{
+  border: 0px !important;
 }

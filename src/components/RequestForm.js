@@ -53,14 +53,15 @@ class RequestForm extends React.Component{
         <FormGroup style={{border:a==true?'1px solid red':
           this.props.error && (this.props.error.customMessage.indexOf('Date') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true ||this.props.error.customMessage.indexOf('User') !== -1)
           ?'1px solid red':''}}>
-          {/* <Field type="text" component={TextInput} name="dob" label="Date of Birth" value=""  />   */}
+          {/* <Field type="date" component={TextInput} name="dob" label="Date of Birth" value=""  />   */}
         
         <Field
           name="dob"
           placeholderText="Date of Birth"
-          inputValueFormat='YYYY-MM-DD'
+         inputValueFormat='YYYY-MM-DD'
           normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
           component={DatePickerInput}
+          
           onChange={this.props.onChange}
         /> 
         </FormGroup>
