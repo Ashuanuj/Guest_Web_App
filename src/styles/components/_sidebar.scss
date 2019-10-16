@@ -235,3 +235,16 @@
     width: 100%;
   }
 }
+
+.MuiList-root{
+  background: #1F3C53;
+  color: #1F3C53;
+  transition: none !important;
+}
+
+.MuiListItem-button{
+  transition: none !important;
+}
+.MuiListItem-button:hover{
+  background: none !important;
+}

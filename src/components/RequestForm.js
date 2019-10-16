@@ -7,6 +7,9 @@ import TextInput from '../components/forms/TextInput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import flow from 'lodash/flow';
+import DatePickerInput from './forms/DatePickerInput';
+import moment from 'moment';
+
 // const validate = values => {
 //   const errors = {};
 //   if (!values.name) {
@@ -24,8 +27,8 @@ class RequestForm extends React.Component{
     render(){
       const { handleSubmit} = this.props;
       console.log(this.props.error, 'ppppppppppppp')
-      if( this.props.error&&this.props.error.message){
-      this.props.error&&this.props.error.message.indexOf('Missing')!== -1? a=true:a=false
+      if( this.props.error && this.props.error.message){
+      this.props.error && this.props.error.message.indexOf('Missing')!== -1? a=true:a=false
       }else{
         a=false
       }
@@ -36,19 +39,32 @@ class RequestForm extends React.Component{
       <Form onSubmit={handleSubmit} autoComplete="off">
 
         <FormGroup style={{border:a==true?'1px solid red':
-          this.props.error && (this.props.error.customMessage.indexOf('Guest') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true)  ?'1px solid red':''}} >
+          this.props.error && (this.props.error.customMessage.indexOf('Guest') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true)  
+          ?'1px solid red':''}} >
           <Field component={TextInput} name="name" label="Name" onChange={this.props.onChange} />
         </FormGroup>
 
         <FormGroup style={{border:a==true?'1px solid red':
-          this.props.error && (this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true) ?'1px solid red':''}}>
+          this.props.error && (this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true) 
+          ?'1px solid red':''}}>
           <Field component={TextInput} name="roomno" label="Room No." onChange={this.props.onChange} />
         </FormGroup>
         
         <FormGroup style={{border:a==true?'1px solid red':
-          this.props.error && (this.props.error.customMessage.indexOf('Date') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 ||a==true)?'1px solid red':''}}>
-          <Field type="date" component={TextInput} name="dob" label="Date of Birth"  value=""/>  
+          this.props.error && (this.props.error.customMessage.indexOf('Date') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true ||this.props.error.customMessage.indexOf('User') !== -1)
+          ?'1px solid red':''}}>
+          {/* <Field type="text" component={TextInput} name="dob" label="Date of Birth" value=""  />   */}
+        
+        <Field
+          name="dob"
+          placeholderText="Date of Birth"
+          inputValueFormat='YYYY-MM-DD'
+          normalize={value => (value ? moment(value).format('YYYY-MM-DD') : null)}
+          component={DatePickerInput}
+          onChange={this.props.onChange}
+        /> 
         </FormGroup>
+
  
         <Button
           size="lg"

@@ -7,6 +7,7 @@ const renderField = (props) => (
        props.type === 'password' ||
        props.type === 'text' ||
        props.type === 'date' ||
+       props.type === 'textarea' ||
        props.type === 'number') &&
       <TextInput {...props} />
     }

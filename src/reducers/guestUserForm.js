@@ -23,7 +23,7 @@ export default function reducer(state = initialState, action) {
                 console.log(action.payload, 'oooooooooooooooooooooooooooooooooooooooooooooo')
                 return {
                     ...state,
-                    error: action.payload.customMessage,
+                    error: action.payload,
                 };
             }
         default:

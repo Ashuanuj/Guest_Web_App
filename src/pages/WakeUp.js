@@ -1,7 +1,8 @@
 import React from 'react';
-import {Row,Button,Table,FormGroup,Label,CustomInput } from 'reactstrap';
+import {Row,Button,Table,FormGroup,Label,CustomInput,Input } from 'reactstrap';
 import Page from '../components/Page'
 import history from '../helper/history';
+import TextInput from "../components/forms/TextInput";
 
 export default class CheckoutPage extends React.Component{
     constructor(props){
@@ -34,8 +35,11 @@ export default class CheckoutPage extends React.Component{
                             </tr>
                     </tbody>
                 </Table>
-                <div  className="note-text"> E.g. Wake me up at 7am sharp tomorrow </div>
-
+                <div className="note-text"> 
+                 <FormGroup>
+                     <Input type="textarea" component={TextInput} placeholder="E.g. Wake me up at 7am sharp tomorrow" />
+                 </FormGroup>
+                </div>
                 <div className="WakeupRequestBtn-div" >
                         <Button
                             size="lg"

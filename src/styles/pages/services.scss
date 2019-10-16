@@ -31,6 +31,7 @@
         color: #fff;
     }
     margin-top: 40px;
+    background: #142A3B;
 }
 
 
@@ -264,11 +265,11 @@
 //Checkout page
 // table one
 .checkout-div{ 
+    // height: 100vh;
     .note-text-checkout{
         font-family: "Open_Sans";
         font-size: 12px;
         color: #A2B0BA;
-        padding: 10px;
         background: #1F3C53;
         width: 100%;
         height: 101px;
@@ -287,7 +288,7 @@
             font-size: "Open_Sans";
             font-weight: 400;
             font-size: 13px;
-            text-align: center;
+            text-align: right;
         }
         .totalamt1{
             color: #fff;
@@ -316,6 +317,10 @@
     .checkout-item-name{
         padding-top: 17px;
     }
+    .checkout-item-amt{
+        text-align: right;
+        padding-top: 17px;
+    }
     .items-gap{
         border: 2px solid #142a3b;
         background: #1f3c53;
@@ -329,6 +334,7 @@
             width: 11px;
             height: 11px;
             margin-right: 5px;
+            margin-bottom: 2px;
         }
         color: #fff;
         border-top: none;
@@ -344,11 +350,16 @@
             cursor: pointer;
             .minus{
                 padding: 5px;
-                font-weight: 600
+                font-weight: 600;
+                margin-left:10px;
+                font-size: 13px;
+                cursor: pointer;
             }
             .plus{
                 padding: 5px;
-                font-weight: 600
+                font-weight: 600;
+                font-size: 13px;
+                cursor: pointer;
             }
             .count{
                 padding: 5px;
@@ -373,7 +384,6 @@
         font-family: "Open_Sans";
         font-size: 12px;
         color: #A2B0BA;
-        padding: 10px;
         background: #1F3C53;
         width: 100%;
         margin-bottom: 1rem;
@@ -783,7 +793,7 @@
      .confirmBtn-div{
         width: 100%;
         flex-direction: row;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         z-index: 1;
@@ -791,7 +801,6 @@
         .confirmBtn{
             border-radius: 0 !important;
             height: 56px;
-            position: fixed;
             bottom: 0;
         }
         
@@ -909,4 +918,31 @@
 
 .col-spacing{
     padding: 0px 5px;
+}
+
+@media only screen and (min-width:375px) {
+    .checkout-div .pattern{
+        padding: 8px;
+        background-size: 10px;
+    }
+}
+
+.note-text{
+    textarea::-webkit-input-placeholder
+    {
+    color: #fff !important;
+    }
+    textarea::placeholder{
+    color: #fff !important;
+    }
+}
+
+.note-text-checkout{
+    textarea::-webkit-input-placeholder
+    {
+    color: #A2B0BA !important;
+    }
+    textarea::placeholder{
+    color: #A2B0BA !important;
+    }
 }

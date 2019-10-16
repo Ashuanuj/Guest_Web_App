@@ -65,7 +65,7 @@ class Active extends React.Component{
               console.log(newTime)
               // console.log(time)
               return (
-                  <Col md={6} sm={6} xs={12} className="pz mb-1">
+                  <Col sm={6} xs={12} className="pz mb-1 col-md-6 offset-md-3">
                   <Card className="requestTab-main">
                     <Media className="mediaMain">
                       <Media body>

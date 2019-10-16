@@ -68,7 +68,7 @@ class SubCategory1 extends Component {
     e.preventDefault();
 this.props.actions.storeOrder(this.props.subcategory)
 history.push('/checkout')
-this.props.actions.handle_header(['Cart',true])
+this.props.actions.handle_header(['Checkout',true])
   }
 
   render() {
