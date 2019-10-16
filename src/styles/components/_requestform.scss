@@ -8,9 +8,7 @@
 .card{
   background-color: none;
 }
-// input{
-//   color: #fff;
-// }
+
  .btn-secondary.disabled, .btn-secondary:disabled {
   background: #5FBAFE;
   color: #fff;
@@ -74,24 +72,44 @@
 }
 
 //Date in bootstrap
+
+//Date input start
 input[type="date"]::before {
-  content: attr(placeholder) !important;
-  // color: #A2B0BA;
-  margin-right: 5px;
-  color: #a2b0baa8;
+    content: attr(placeholder);
+    margin-right: 5px;
+    color: #a2b0baa8;
 }
 .form-group input[type=date]:focus {
   color: white !important;
 }
-
 .form-group input[value=""] {
-  // color: #6c757c !important  ;
-  color: #e9ecef00;
+  color: #6c757c !important  ;
 }
-input[type="date"]:focus:before,
-input[type="date"]:valid:before {
+input[type="date"]:hover:before
+{
   content: "";
 }
+
+//Date input end
+
+// input[type="date"]::before {
+//   content: attr(placeholder) !important;
+//   // color: #A2B0BA;
+//   // margin-right: 5px;
+//   color: #a2b0baa8;
+// }
+// .form-group input[type=date]:focus {
+//   color: white !important;
+// }
+
+// .form-group input[value=""] {
+//   // color: #6c757c !important  ;
+//   color: #e9ecef00;
+// }
+// input[type="date"]:focus:before,
+// input[type="date"]:valid:before {
+//   content: "";
+// }
 // input[type="date"]:focus:before,
 // input[type="date"]:not([value=""]):before
 // {
@@ -156,7 +174,7 @@ input[type="date"]::-webkit-inner-spin-button{
   }
  
 .cardbody-main{
-    background-color: none;
+    // background: none;
     // border:0px !important;
     padding: 0px;
     position: relative;
@@ -202,6 +220,7 @@ input[type="date"]::-webkit-inner-spin-button{
     .cardbody-main{
       position: relative;
       border: 0px !important;
+      background: none;
     }
     .cardImgtext{
         // margin-top:9em;
@@ -259,6 +278,7 @@ input[type="date"]::-webkit-inner-spin-button{
 @media screen and (max-width:320px){
   .cardbody-main{
     position: relative;
+    background: none;
     border: 0px !important;
   }
 }

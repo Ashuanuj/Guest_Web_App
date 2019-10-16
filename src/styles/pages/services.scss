@@ -1,18 +1,12 @@
-
-.btn-secondary:hover{
+//general
+  .btn-secondary:hover{
     border: 1px solid #5FBAFE;
     outline: none;
-}
-.btn-secondary:hover{
-    // background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8) repeat-x;
-    border-color: 1px solid #5FBAFE !important;
-  }
-  
+  } 
   .btn-secondary:not(:disabled):not(.disabled):active{
     background: none !important;
     border: 1px solid #5FBAFE !important;
   }
-  
   .btn-secondary:not(:disabled):not(.disabled):active:focus{
     box-shadow: none;
     border: 1px solid #5FBAFE !important;
@@ -36,6 +30,7 @@
         text-decoration: none;
         color: #fff;
     }
+    margin-top: 40px;
 }
 
 
@@ -126,7 +121,7 @@
                 color: #A2B0BA;
                 font-size: 12px;
                 font-family: 'Open_Sans';
-                line-height: 2;
+                text-align: left;
             }
             b{
                 display: block;
@@ -143,6 +138,10 @@
             border-radius: 20px;
             font-size: 13px;
             font-family: 'Neo_Sans_Pro';
+            box-shadow: none !important;
+            :hover{
+                border: 1px solid #fff !important;  
+            }
             }
         
         .qtybtn{
@@ -194,13 +193,17 @@
        border-radius: 17px;
        text-transform: uppercase;
        font-family: 'Neo_Sans_Pro';
-       font-size: 14px;
+       font-size: 13px;
        font-weight: 600;
-       padding-top: 12px;
+       padding-top: 8px;
        box-shadow: 0px 3px 7px 0px #5780F880;
     }
     span{
         float: left;
+        text-align: center;
+        padding: 12px;
+        font-family: 'Neo_Sans_Pro';
+        font-size: 14px;
     }
     padding: 16px;
     background: #142A3B;
@@ -208,105 +211,9 @@
     font-family: 'Open_Sans';
     font-size: 14px;
     font-weight: bold;
-    position: fixed;
-    width: 100%;
-    bottom:0;
-}
-
-
-// .col-main:hover{
-//     border-color: $blue;
-// }
-
-@media screen and (max-width:480px){
-    //Checkout table
-    .TableMainList{
-        .t-body td{
-            .qtybtn{
-                width: 70% !important;
-            }
-        }
-     }
-}
-
-@media screen and (max-width:768px){
-    .SubcategoryMain {
-        .card{
-            border: 0px !important;
-            border-radius: 0px !important
-        }
-    }
-
-    //Checkout table
-    .TableMainList{
-        .t-body td{
-            .qtybtn{
-                width: 30%;
-            }
-        }
-     }
-     .confirmBtn-div{
-        width: 100%;
-        height: 56px;
-        flex-direction: row;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 1;
-        border: 0px;
-        .confirmBtn{
-            border-radius: 0 !important;
-        }
-        
-     }
-     //Wake up Request
-     .WakeupRequestBtn-div{
-         width: 100%;
-         flex-direction: row;
-            position: absolute;
-            bottom: 0;
-            z-index: 1;
-           .btn{
-            font-size: 13px;
-            font-family: 'Neo_Sans_Pro';
-            text-transform: uppercase;
-            font-weight: 700;
-            width: 100%;
-           }
-        .btnCancel{
-            width: 40%;
-            margin: 0 !important;
-            border-radius: 0px;
-            color: #000;
-            font-size: 13px;
-            font-family: 'Neo_Sans_Pro';
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        .btnReqt{
-            width: 60%;
-            border-radius: 0px;
-            background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8);
-            font-size: 13px;
-            font-family: 'Neo_Sans_Pro';
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        //Add Item Continue btn
-        .addItem-div{
-            padding-top: 5px;
-            width: 100%;
-            flex-direction: row;
-            // position: absolute;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 1;
-            :hover{
-                border-top: 1px solid #5FBAFE !important;
-            }
-        }
-    }
+    // position: fixed;
+    // width: 100%;
+    // bottom:0;
 }
 
 // MainSubcategoryPage Tabs main Page
@@ -331,6 +238,7 @@
     z-index: 1;
     left: 0;
     background: #1f3c53;
+   
 
     .nav-tabs{
         border-bottom: none;
@@ -356,10 +264,6 @@
 //Checkout page
 // table one
 .checkout-div{ 
-    // .table-responsive{
-    //     background: #1F3C53;
-    //     margin-bottom: 5px;
-    // }
     .note-text-checkout{
         font-family: "Open_Sans";
         font-size: 12px;
@@ -523,7 +427,6 @@
     margin: 0 auto;
     .confirmBtn{
         width: 100%;
-        height: 56px;
         font-family: 'Open_Sans';
         font-size: 14px;
         color: #fff;
@@ -557,9 +460,15 @@
         margin: 0 auto;
     }
     .okBtn{
-        background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
-        border-radius: 15px;
-        padding: 5px 15px;
+        background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8) repeat-x;
+        border-radius: 18px;
+        padding: 10px 30px;
+        box-shadow: 0px 4px 4px 0px #5780F880;
+        font-family: "Neo_Sans_Pro";
+        font-size: 13px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 }
 
@@ -567,8 +476,6 @@
 .WakeupRequestBtn-div{
     display: flex;
     margin: 0 auto;
-    height: 56px;
-    // width: 100%;
     .btnCancel{
         margin-right: 10px;
         background: #fff;
@@ -619,11 +526,17 @@
 
 // Request Tab Main 
 .tabRequestMain{
+    position: fixed;
+    width: 100%;
+    justify-content: center;
+    background: #1f3c53;
+    align-items: center;
+    z-index: 8;
+    box-shadow: 0px 1px 4px 0px #142a3b;
+    padding-top:10px;
     .nav-tabs{
         border-bottom: none;
         justify-content: center;
-        background: #1f3c53;
-        padding: 10px 0px 0px 0px;
         .nav-item .nav-link{
             font-family: 'Neo_Sans_Pro';
             font-size: 12px;
@@ -653,8 +566,9 @@
 }
 .requestTab-main{
     .table-responsive{
-        padding: 0px 8px; 
+        padding: 0px 10px; 
     }
+   
     .mediaMain{
         position: relative;
         padding:16px;
@@ -709,7 +623,7 @@
         font-size: "Open_Sans";
         font-weight: 600;
         font-size: 13px;
-        text-align: center;
+        text-align: right;
       }
         .totaltext{
             color: #fff;
@@ -731,6 +645,9 @@
     .TableMainList .t-body td .qtybtn{
         width: 80% !important;
     }
+    .item-amt{
+        text-align: right;
+    }
   .TableMainList{
     .order-list{
        margin-bottom: 1px;
@@ -743,18 +660,22 @@
     }
 
   }
+
+ .TableMainList {
+    border-top: 1px solid #1b3448;
+ }
+
     .TableMainList .t-body tr td{
         border-top: none;
         color: #fff;
-        font-family: 'Open_Sans';
-        font-size: 13px;
-        padding: 10px;
-
-        
+        font-family: 'Neo_Sans_Pro';
+        font-size: 14px;
+        padding: 10px;      
     .media-object{
         width: 11px;
         height: 11px;
         margin-right: 5px;
+        margin-bottom: 5px;
     }
      .order-total 
      {  color: #fff;
@@ -791,4 +712,201 @@
 
 .custom-control-input:hover{
   cursor: pointer;
+}
+
+
+@media screen and (max-width:480px){
+    //Checkout table
+    .TableMainList{
+        .t-body td{
+            .qtybtn{
+                width: 70% !important;
+            }
+        }
+     }
+
+     //main and subcategory continue btn
+     .addItem-div{
+        padding-top: 5px;
+        width: 100%;
+        flex-direction: row;
+        // position: absolute;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        :hover{
+            border-top: 1px solid #5FBAFE !important;
+        }
+      }
+}
+
+@media screen and (max-width:768px){
+    .SubcategoryMain {
+        .card{
+            border: 0px !important;
+            border-radius: 0px !important
+        }
+    }
+    //Main & Subcategory tabs
+      .tabMain{
+        position: fixed;
+        top: 47px;
+        width: 100%; 
+        box-shadow: 0px 1px 2px #142a3b;
+        padding: 5px 8px 0px;
+        left: 0;
+        height: 40px;
+        background: #1f3c53;
+        .nav-tabs{
+            display: flex;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex-wrap: nowrap;
+            &::-webkit-scrollbar{
+                // display: none;
+                background: transparent; 
+            }
+        }
+      }
+
+    //Checkout table
+    .TableMainList{
+        .t-body td{
+            .qtybtn{
+                width: 30%;
+            }
+        }
+     }
+     .confirmBtn-div{
+        width: 100%;
+        flex-direction: row;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        border: 0px;
+        .confirmBtn{
+            border-radius: 0 !important;
+            height: 56px;
+            position: fixed;
+            bottom: 0;
+        }
+        
+     }
+     //Wake up Request
+     .WakeupRequestBtn-div{
+         width: 100%;
+         height: 56px;
+         flex-direction: row;
+            // position: absolute;
+            position: fixed;
+            bottom: 0;
+            left:0;
+            z-index: 1;
+           .btn{
+            font-size: 13px;
+            font-family: 'Neo_Sans_Pro';
+            text-transform: uppercase;
+            font-weight: 700;
+            width: 100%;
+           }
+        .btnCancel{
+            width: 40%;
+            margin: 0 !important;
+            border-radius: 0px;
+            color: #000;
+            font-size: 13px;
+            font-family: 'Neo_Sans_Pro';
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .btnReqt{
+            width: 60%;
+            border-radius: 0px;
+            background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8);
+            font-size: 13px;
+            font-family: 'Neo_Sans_Pro';
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        //Add Item Continue btn
+        .addItem-div{
+            padding-top: 5px;
+            width: 100%;
+            flex-direction: row;
+            // position: absolute;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            :hover{
+                border-top: 1px solid #5FBAFE !important;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:1024px){
+    //WakeupRequestBtn-div
+.WakeupRequestBtn-div{
+    display: flex;
+    margin: 0 auto;
+    height: 40px;
+    // width: 100%;
+    .btnCancel{
+        margin-right: 10px;
+        background: #fff;
+        color: #000;
+        font-size: 13px;
+        font-family: 'Neo_Sans_Pro';
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .btnReqt{
+        background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8);
+        color: #fff;
+        font-size: 13px;
+        font-family: 'Neo_Sans_Pro';
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+  }
+
+//  For order collapse overlap
+  @media screen and (min-width:767px){
+//     div#basicCollapse {
+//         position: absolute;
+//         top: 122px;
+//         background: #1F3C53;
+//         width: 100%;
+//         z-index: 9999;
+//     }
+    .requestTab-main{
+         margin: 0 auto;
+    }
+  }
+
+   //Add Item Continue btn
+   .addItem-div{
+    padding-top: 5px;
+    width: 100%;
+    flex-direction: row;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    :hover{
+        border-top: 1px solid #5FBAFE !important;
+    }
+  }
+}
+
+
+//Columns spacing for big screen
+
+.col-spacing{
+    padding: 0px 5px;
 }

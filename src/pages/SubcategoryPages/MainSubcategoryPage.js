@@ -51,6 +51,14 @@ export default class MainSubcategoryPage extends React.Component {
               Meals
             </NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '4' })}
+              onClick={() => { this.toggle('4'); }}
+            >
+              South Meals
+            </NavLink>
+          </NavItem>
         </Nav>
         </div>
         <div className="sometext">

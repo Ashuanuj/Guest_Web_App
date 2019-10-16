@@ -65,7 +65,7 @@ class Active extends React.Component{
               console.log(newTime)
               // console.log(time)
               return (
-                  <Col md={6} sm={6} xs={12} className="mb-3">
+                  <Col md={6} sm={6} xs={12} className="pz mb-1">
                   <Card className="requestTab-main">
                     <Media className="mediaMain">
                       <Media body>
@@ -98,8 +98,8 @@ class Active extends React.Component{
                                 <td>
                                   <Media object src={this.state[elem.type]} alt="image" /> {`${elem.title} x ${elem.quantity}`}
                                 </td>
-                                <td>-</td>
-                                <td> {`$${elem.amount}`} </td>
+                                <td></td>
+                                <td className="item-amt"> {`${elem.amount}`} </td>
                               </tr>
                             )})}
                         </tbody>
@@ -108,8 +108,8 @@ class Active extends React.Component{
                         <tbody className="t-body">
                           <tr className="order-total">
                             <td className="totaltext">Total Bill</td>
-                            <td>-</td>
-                            <td className="totalamt1"> {`$${total}`} </td>
+                            <td></td>
+                            <td className="totalamt1"> {`${total}`} </td>
                           </tr>
                         </tbody>
                       </Table>
@@ -122,97 +122,8 @@ class Active extends React.Component{
 
             <div>
                
-               <Row className="ServicePageMain">
+               <Row className="ServicePageMainActive">
                    {data}
-                {/* <Col md={6} sm={6} xs={12} className="mb-3">
-                    <Card className="requestTab-main">
-                    <Media className="mediaMain">
-                            <Media body>
-                            <Media heading>
-                            Order ID: 3457
-                            </Media>
-                            <span className="sub-title">23 Jun 2019 | 7:30am</span>
-                            <span className="sub-title2"> Request Received </span>
-                            </Media>
-                        <Media right>
-                            <MdKeyboardArrowDown onClick={this.toggleCollapse("basicCollapse")} 
-                            style={{ transform: this.state.collapseID ? 'rotate(0deg)' : 'rotate(-90deg)', 
-                            transitionDuration: '0.3s', transitionProperty: 'transform', }} />
-                        </Media>
-                    </Media>
-                    <Collapse id="basicCollapse" isOpen={this.state.collapseID} >
-                    <Table responsive className="TableMainList" >
-                        <tbody className="t-body">
-                        <tr>
-                            <td>  
-                               <Media object src={vegImg} alt="image"/> Idly Vada x 1
-                            </td>
-                            <td>  
-                              -
-                            </td>
-                            <td> $4.00 </td>
-                        </tr>
-                        <tr>
-                            <td>  
-                               <Media object src={vegImg} alt="image"/> Bread Toast x 2 
-                            </td>
-                            <td> -</td>
-                            <td> $4.00 </td>
-                        </tr>
-                        <tr>
-                            <td>  
-                                 <Media object src={NonvegImg} alt="image"/> Omelette x 3
-                            </td>
-                            <td>- </td>
-                            <td> $3.00 </td>
-                        </tr>
-                        </tbody>
-                    </Table>
-                    <Table responsive className="TableMainList">
-                        <tbody className="t-body">
-                            <tr className="order-total">
-                                <td className="totaltext">Total Bill</td>
-                                <td>-</td>
-                                <td className="totalamt1"> $11.00 </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    </Collapse>
-                    </Card> 
-                </Col>
-
-                <Col md={6} sm={6} xs={12} className="mb-3">
-                    <Card className="requestTab-main">
-                    <Media className="mediaMain">
-                            <Media body>
-                            <Media heading>
-                            Order ID: 3457
-                            </Media>
-                            <span className="sub-title">23 Jun 2019 | 7:30am</span>
-                            <span className="sub-title2"> Request Received </span>
-                            </Media>
-                        <Media right>
-                         <MdKeyboardArrowRight/>
-                        </Media>
-                    </Media>
-                    </Card> 
-                </Col>
-                <Col md={6} sm={6} xs={12} className="mb-3">
-                    <Card className="requestTab-main">
-                    <Media className="mediaMain">
-                            <Media body>
-                            <Media heading>
-                            Order ID: 3456
-                            </Media>
-                            <span className="sub-title">23 Jun 2019 | 7:30am</span>
-                            <span className="sub-title2"> Request Received </span>
-                            </Media>
-                        <Media right>
-                        <MdKeyboardArrowRight/>
-                        </Media>
-                    </Media>
-                    </Card> 
-                </Col> */}
                 </Row>
              
             </div>
