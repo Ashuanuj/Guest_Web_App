@@ -9,6 +9,11 @@
   background-color: none;
 }
 
+    input[type=text]::-webkit-input-placeholder
+    {
+    color: #A2B0BA !important;
+    }
+
  .btn-secondary.disabled, .btn-secondary:disabled {
   background: #5FBAFE;
   color: #fff;
