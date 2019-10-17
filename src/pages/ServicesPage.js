@@ -28,6 +28,7 @@ componentWillMount() {
   this.props.actions.handle_header(['All Day Dining',true]);
   }
   handleClick = (id,link, serviceName) => {
+    if(serviceName == 'Breakfast')
   this.props.actions.handle_header([serviceName,true]);
   localStorage.setItem('serviceSubCategoryId', id)
   history.push(`/${link}`)

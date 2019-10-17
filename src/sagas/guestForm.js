@@ -16,12 +16,12 @@ export function* LogIn(data) {
     const response = yield call(api.login, authData);
     if (response) {
       yield put(actions.login.success(response));
-      sessionStorage.setItem("accessToken", response.authorization.token);
-      sessionStorage.setItem("guestId", response.guest.id);
-      sessionStorage.setItem("guestName", response.guest.lastName);
-      sessionStorage.setItem("roomNo", response.roomNo);
-      sessionStorage.setItem("areaId", response.guest.areaId);
-      console.log(sessionStorage.getItem("accessToken"));
+      localStorage.setItem("accessToken", response.authorization.token);
+      localStorage.setItem("guestId", response.guest.id);
+      localStorage.setItem("guestName", response.guest.lastName);
+      localStorage.setItem("roomNo", response.roomNo);
+      localStorage.setItem("areaId", response.guest.areaId);
+      console.log(localStorage.getItem("accessToken"));
     //   yield call(setAuthData, response);
         yield call(history.push, "/dashboard");
     } else {

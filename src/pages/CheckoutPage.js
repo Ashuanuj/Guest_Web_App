@@ -95,7 +95,9 @@ class CheckoutPage extends React.Component {
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.cartItems[index].rate)
-    })
+    });
+    localStorage.setItem(id, this.props.cartItems[index].quantity)
+    localStorage.setItem('amount', this.props.cartItems[index].amount)
   }
 
   onDecrement(id) {
@@ -110,6 +112,9 @@ class CheckoutPage extends React.Component {
     this.props.cartItems[index].quantity = this.props.cartItems[index].quantity > 0 ? this.props.cartItems[index].quantity - 1 : 0
     this.props.cartItems[index].amount = this.props.cartItems[index].quantity > 0 && this.props.cartItems[index].amount > 0 ? this.props.cartItems[index].amount - parseFloat(this.props.cartItems[index].rate) : 0
     this.props.cartItems[index].accept =  this.props.cartItems[index].quantity == 0 ? false : true
+    localStorage.setItem(id, this.props.cartItems[index].quantity)
+    localStorage.setItem(this.props.cartItems[index].itemName, this.props.cartItems[index].quantity)
+    localStorage.setItem('amount', this.props.cartItems[index].amount)
   }
 
   render() {
@@ -119,15 +124,14 @@ class CheckoutPage extends React.Component {
       localStorage.setItem('instructions','')
       //localStorage.setItem('cartcount',0)
     }
-    console.log(this.props, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyuuuuuuuuuuuuuuuuuuuuuuuuuuu')
     //setAuthData(this.props.)
     totalBill=0
 
     let item = props.cartItems && props.cartItems.map((item, index) => {
         
-            totalBill += item.amount
+            totalBill = item.quantity != 0 && localStorage.getItem(item.id) != 0 && localStorage.getItem('amount') == null ? totalBill + item.amount : localStorage.getItem('amount')
           let item1 = 
-
+        item.quantity != 0 && localStorage.getItem(item.id) != 0 ?
         <tr className="items-gap">
           <td className="checkout-item-name">
             <Media object src={this.state[item.type]} alt="image" /> {item.itemName}
@@ -135,12 +139,12 @@ class CheckoutPage extends React.Component {
           <td>
             <div className="qtybtn">
               <span className="minus" onClick={() => this.onDecrement(item.id)}> - </span>
-              <span className="count"> {item.quantity} </span>
+              <span className="count"> {localStorage.getItem(item.id) !== null ? localStorage.getItem(item.id) : item.quantity} </span>
               <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
             </div>
           </td>
           <td className="checkout-item-amt"> {` ${item.amount}`} </td>
-        </tr>
+        </tr> : ''
           return item1
       });
 
