@@ -14,6 +14,7 @@ import {
   Input
 } from "reactstrap";
 import Page from "../components/Page";
+import {MdAdd,MdRemove} from 'react-icons/md'; 
 
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
@@ -117,9 +118,9 @@ class CheckoutPage extends React.Component {
           </td>
           <td>
             <div className="qtybtn">
-              <span className="minus" onClick={() => this.onDecrement(item.id)}> - </span>
+              <span className="minus" onClick={() => this.onDecrement(item.id)}> <MdRemove size={15}/> </span>
               <span className="count"> {item.quantity} </span>
-              <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
+              <span className="plus" onClick={() => this.onIncrement(item.id)}><MdAdd size={15}/></span>
             </div>
           </td>
           <td className="checkout-item-amt"> {` ${item.amount}`} </td>
@@ -130,6 +131,7 @@ class CheckoutPage extends React.Component {
     return (
       <div>
         <Page>
+          <div className="gap"></div>
         <Row className="checkout-div">
           <Table responsive className="TableMainList">
             <tbody className="t-body">

@@ -15,7 +15,7 @@ export function* ServiceData() {
             { icon: BellImage, link: `frontoffice` },
             { icon: ForkImage, link: `services` },
             { icon: FileImage, link: `dashboard` },
-            { icon: FileImage, link: `dashboard` }
+            { link: `dashboard` }
         ]
         const response = yield call(api.getGuestServices);
         response.guestServices && response.guestServices.forEach((item, index) =>

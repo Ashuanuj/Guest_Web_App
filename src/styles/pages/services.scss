@@ -146,27 +146,27 @@
             }
         
         .qtybtn{
-            margin-top: 24px;
+            margin-top: 22px;
             margin-right: 15px;
             background: none;
             border: #fff 1px solid;
             border-radius: 20px;
-            padding: 0px 5px;
+            padding: 4px 5px;
             font-size: 12px;
             font-weight: 500;
             cursor: pointer;
             .minus{
-                padding: 5px 8px;
+                padding: 5px;
                 font-weight: 300;
-                font-size:22px;
+                font-size:13px;
             }
             .plus{
-                padding: 5px 8px;
+                padding: 5px;
                 font-weight: 300;
                 font-size: 17px;
             }
             .count{
-                padding: 5px 8px;
+                padding: 5px;
                 font-size: 13px;
             }
         }
@@ -196,7 +196,7 @@
        font-family: 'Neo_Sans_Pro';
        font-size: 13px;
        font-weight: 600;
-       padding-top: 8px;
+       padding-top: 10px;
        box-shadow: 0px 3px 7px 0px #5780F880;
     }
     span{
@@ -264,6 +264,15 @@
 
 //Checkout page
 // table one
+.gap{
+    background: #1f3c53;
+    height: 20px;
+    display: block;
+    width: 100%;
+    margin-top: -17px;
+    left: 0;
+    position: absolute;
+}
 .checkout-div{ 
     // height: 100vh;
     .note-text-checkout{
@@ -289,6 +298,7 @@
             font-weight: 400;
             font-size: 13px;
             text-align: right;
+            padding-right: 16px;
         }
         .totalamt1{
             color: #fff;
@@ -299,9 +309,10 @@
         }
         .totaltext{
             color: #fff;
-          font-size: 'Neo_Sans';
-          font-weight: 400;
-          font-size: 14px;
+            font-size: 'Neo_Sans';
+            font-weight: 400;
+            font-size: 14px;
+            padding-left: 16px;
         }
         background: #1F3C53;
         margin-bottom: -6px !important;
@@ -317,13 +328,15 @@
 .TableMainList{
     .checkout-item-name{
         padding-top: 17px;
+        padding-left: 16px;
     }
     .checkout-item-amt{
         text-align: right;
         padding-top: 17px;
+        padding-right: 16px;
     }
     .items-gap{
-        border: 2px solid #142a3b;
+        border-bottom: 2px solid #142a3b;
         background: #1f3c53;
     }
     td{
@@ -352,7 +365,7 @@
             .minus{
                 padding: 5px;
                 font-weight: 600;
-                margin-left:10px;
+                // margin-left:8px;
                 font-size: 13px;
                 cursor: pointer;
             }
@@ -444,6 +457,7 @@
         font-size: 14px;
         color: #fff;
         font-weight: bold;
+        border-radius: 15px;
         text-transform: uppercase;
         background: #5FBAFE linear-gradient(180deg, #5FBAFE, #567CF8) repeat-x;
     }
@@ -497,6 +511,7 @@
         font-family: 'Neo_Sans_Pro';
         text-transform: uppercase;
         font-weight: 700;
+        border-radius: 15px;
     }
     .btnReqt{
         background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8);
@@ -505,6 +520,7 @@
         font-family: 'Neo_Sans_Pro';
         text-transform: uppercase;
         font-weight: 700;
+        border-radius: 15px;
     }
 }
 
@@ -595,6 +611,7 @@
         font-weight: bold;
         margin-bottom: 0.5rem;
         margin-top: 0.5rem;
+        cursor: pointer;
     }
     .sub-title{
         display: block;
@@ -828,7 +845,7 @@
         .btnCancel{
             width: 40%;
             margin: 0 !important;
-            border-radius: 0px;
+            border-radius: 0px !important;
             color: #000;
             font-size: 13px;
             font-family: 'Neo_Sans_Pro';
@@ -837,7 +854,7 @@
         }
         .btnReqt{
             width: 60%;
-            border-radius: 0px;
+            border-radius: 0px !important;
             background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8);
             font-size: 13px;
             font-family: 'Neo_Sans_Pro';
