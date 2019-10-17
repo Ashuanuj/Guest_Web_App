@@ -148,7 +148,7 @@ export default function Header() {
                   style={{position: 'relative', display: 'inline-block'}}
                   alt="cartimg"   
               />
-              <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '80%', position: 'absolute', textAlign: 'center' }}>
+              <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '120%', position: 'absolute', textAlign: 'center' }}>
               {localStorage.getItem('cartcount')}
               </span>
             </div>

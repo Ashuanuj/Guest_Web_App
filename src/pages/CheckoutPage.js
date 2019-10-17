@@ -14,12 +14,8 @@ import {
   Input
 } from "reactstrap";
 import Page from "../components/Page";
-<<<<<<< HEAD
 import {MdAdd,MdRemove} from 'react-icons/md'; 
 
-=======
-//import setAuthData from "../utility/auth";
->>>>>>> 87de6f23baa87f5fffd8f81e8155fdc658a53704
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
 import TextInput from '../components/forms/TextInput';
@@ -188,7 +184,7 @@ class CheckoutPage extends React.Component {
             </Table>
             <div className="note-text-checkout">
               <FormGroup>
-              <Input component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
+              <Input type="textarea" rows="4" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
               </FormGroup>
             </div>
             <Table className="bill-amt">
