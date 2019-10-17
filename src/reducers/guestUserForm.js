@@ -1,4 +1,4 @@
-import { LOG_IN } from '../actions';
+import { LOG_IN, HANDLE_ERROR } from '../actions';
 
 const initialState = {
     error: undefined,
@@ -18,6 +18,12 @@ export default function reducer(state = initialState, action) {
                     guestDetails: action.payload,
                     services: action.payload.services
                 };
+            }
+            case HANDLE_ERROR: {
+                return {
+                    ...state,
+                    error: undefined
+                }
             }
         case LOG_IN.FAILURE:
             {

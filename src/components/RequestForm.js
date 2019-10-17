@@ -7,6 +7,7 @@ import TextInput from '../components/forms/TextInput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import flow from 'lodash/flow';
+import { handleError } from '../actions'
 import DatePickerInput from './forms/DatePickerInput';
 import moment from 'moment';
 
@@ -23,6 +24,11 @@ import moment from 'moment';
 //   };
 let a
 class RequestForm extends React.Component{
+
+  changeData = () => {
+    this.props.actions.handleError()
+    // this.props.onChange()
+  }
   
     render(){
       const { handleSubmit} = this.props;
@@ -37,19 +43,19 @@ class RequestForm extends React.Component{
     <Col className="form-main">
       <Form onSubmit={handleSubmit} autoComplete="off">
 
-        <FormGroup style={{border:this.props.values.name ? '' :a==true?'1px solid red':
-          this.props.error && (this.props.error.customMessage.indexOf('Guest') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true)  
+        <FormGroup style={{border:this.props.values.name && !this.props.error ? '' :a==true?'1px solid red':
+          this.props.values.name && this.props.error && (this.props.error.customMessage.indexOf('Guest') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true)  
           ?'1px solid red':  ''}} >
-          <Field component={TextInput} name="name" label="Name" onChange={this.props.onChange} />
+          <Field component={TextInput} name="name" label="Name" onChange={this.changeData} />
         </FormGroup>
 
-        <FormGroup style={{border:this.props.values.roomno ? '' : a==true?'1px solid red':
+        <FormGroup style={{border:this.props.values.roomno && !this.props.error ? '' : a==true?'1px solid red':
           this.props.error && (this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true) 
           ?'1px solid red':''}}>
-          <Field component={TextInput} name="roomno" label="Room No." onChange={this.props.onChange} />
+          <Field component={TextInput} name="roomno" label="Room No." onChange={this.changeData} />
         </FormGroup>
         
-        <FormGroup style={{border:this.props.values.dob ? '' : a==true?'1px solid red':
+        <FormGroup style={{border:this.props.values.dob && !this.props.error ? '' : a==true?'1px solid red':
           this.props.error && (this.props.error.customMessage.indexOf('Date') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true ||this.props.error.customMessage.indexOf('User') !== -1)
           ?'1px solid red':''}}>
           <Field type="date" component={TextInput} name="dob" label="Date of Birth" value=""  />  
@@ -98,8 +104,16 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators({
+      handleError
+    },dispatch)
+  }
+}
+
 export default flow([
-  connect(mapStateToProps, null),
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
   form: "guestForm",
   //validate
