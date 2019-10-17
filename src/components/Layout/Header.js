@@ -8,7 +8,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 
+
 import componentImg from '../assets/img/bg/component.png'
+// import Cart from '../assets/img/icons/cart1.svg';
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
@@ -129,7 +131,11 @@ export default function Header() {
      
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
-          <Link to="/checkout"><span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span></Link>        
+          <Link to="/checkout"><span><img src="../assets/img/icons/cart.svg" />{localStorage.getItem('cartcount')}</span></Link>        
+          {/* <FaShoppingCart size={25} style={{ color: '#fff' }} /> */}
+          <IconButton>
+          {/* <Cart /> */}
+          </IconButton>
            </NavItem>
         </Nav>
     

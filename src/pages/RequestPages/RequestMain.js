@@ -59,8 +59,8 @@ generateCompletedData = () => {
 }
 
   render() {
-
     return (
+      this.props.requests && this.props.requests.length > 0 ?
       <div className="RequestMainDiv">
         {/* <Page> */}
           <div className="tabRequestMain">
@@ -109,7 +109,7 @@ generateCompletedData = () => {
             </TabPane>
           </TabContent>
         {/* </Page> */}
-      </div>
+      </div> : <div></div>
     );
   }
 }

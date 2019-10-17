@@ -67,12 +67,19 @@ class SubCategory1 extends Component {
   handleContinue(e) {
     e.preventDefault();
 this.props.actions.storeOrder(this.props.subcategory)
+this.props.actions.handle_header(['Checkout',true])
 history.push('/checkout')
-this.props.actions.handle_header(['Cart',true])
   }
 
   render() {
     const { props } = this;
+   // var a=parseInt(localStorage.getItem('cartcount'))
+    var count=0
+     //console.log(a)
+    // props.subcategory.forEach(elem => elem.accept ? count+=1 : '');
+    // localStorage.setItem('cartcount',count)
+  //console.log( a,localStorage.getItem('cartcount'),'cccccccccccccccccccccc')
+    // console.log(props,'lllllljjjjjjjjjjjjjjjjjjjjjjjjj')
     const subCategoryitems = props.subcategory && props.subcategory.map(data => (
       <Col lg={4} md={6} sm={6} xs={12} className="" key={data.id} >
         <Card style={{borderRadius:'0px'}}>

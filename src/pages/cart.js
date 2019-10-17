@@ -25,7 +25,7 @@ class Cart extends React.Component {
     componentDidMount() {
         this.props.actions.getCartItems(localStorage.getItem('areaId'))
         this.intervalId = setInterval(this.timer.bind(this), 12000);
-        this.props.actions.handle_header(['Cart',true])
+        this.props.actions.handle_header(['Checkout',true])
       }
     render() {
        if( this.props.cartItems && this.props.cartItems.length > 0 )

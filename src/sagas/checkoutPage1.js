@@ -9,10 +9,14 @@ export function* createRequest(data) {
         let _data = {
             cartItems: data,
             room_no: localStorage.getItem('roomNo'),
-            areaId: localStorage.getItem('areaId')
+            areaId: localStorage.getItem('areaId'),
+            instruction:localStorage.getItem('instructions')
         }
+        console.log(_data,'dessssssssssssssss')
+        localStorage.setItem('cartcount',0)
         const response = yield call(api.requestCreate, _data);
         yield put(actions.checkout.create.success(response));
+       
     }
     catch ({ error }) {
         yield put(actions.checkout.create.failure(error));
@@ -24,6 +28,7 @@ export function* loadCartItems(id) {
     console.log(id, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
     try {
         const response = yield call(api.getCartDetails, id);
+        console.log(response,'resssssssssssssssssssssssssssssssssssssssssssssss')
       yield put(actions.loadCartItems.success(response));
     } catch ({ error }) {
       yield put(actions.loadCartItems.failure(error));

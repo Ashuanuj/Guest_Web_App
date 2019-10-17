@@ -13,7 +13,7 @@ import history from '../helper/history';
 
 class DashboardPage extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.loadService();
     this.props.actions.handle_header([localStorage.getItem(' '), false]);
   }

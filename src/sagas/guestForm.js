@@ -14,6 +14,7 @@ export function* LogIn(data) {
             password: data.roomno,
             dob: data.dob
         }
+        console.log(authData,'oooooooooooooooooooooooo')
         const response = yield call(api.login, authData);
         if (response) {
             // yield put(actions.login.success(response));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            )
