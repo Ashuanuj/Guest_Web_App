@@ -143,7 +143,7 @@ class CheckoutPage extends React.Component {
               <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
             </div>
           </td>
-          <td className="checkout-item-amt"> {` ${item.amount}`} </td>
+          <td className="checkout-item-amt"> {localStorage.getItem(item.id) !== null ? `${localStorage.getItem(item.id)* item.rate}` : `$ ${item.amount}`} </td>
         </tr> : ''
           return item1
       });
