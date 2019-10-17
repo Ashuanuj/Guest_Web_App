@@ -26,15 +26,7 @@
  input .form-control{
   margin: 0px !important; 
  }
-
- input::-webkit-input-placeholder
- {
-    color: #A2B0BA !important;
- }
- input::placeholder{
-   color: #A2B0BA !important;
- }
-
+ 
 .form-control{
   background-color:#1F3C53 !important;
   border: 1px solid #1F3C53 !important;
@@ -70,19 +62,21 @@
 }
 
 //Date in bootstrap
-
-//Date input start
-input[type="date"]::before {
-    content: attr(placeholder);
-    margin-right: 5px;
-    color: #a2b0baa8;
+.form-group input[value=""]:before {
+  content: attr(placeholder);
+  margin-right: 5px;
+  color: #a2b0baa8;
 }
+
+.form-group input[value=""] {
+  color: transparent;
+}
+
 .form-group input[type=date]:focus {
   color: white !important;
 }
-.form-group input[value=""] {
-  color: #6c757c !important  ;
-}
+
+
 //Date input end
 
 // input[type="date"]::before {
