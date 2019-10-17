@@ -3,7 +3,7 @@ import { LOG_IN } from '../actions';
 const initialState = {
     error: undefined,
     IS_LOGIN: false,
-    guestDetails: []
+    services: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -16,11 +16,11 @@ export default function reducer(state = initialState, action) {
                     //   ...action.payload,
                     IS_LOGIN: true,
                     guestDetails: action.payload,
+                    services: action.payload.services
                 };
             }
         case LOG_IN.FAILURE:
             {
-                console.log(action.payload, 'oooooooooooooooooooooooooooooooooooooooooooooo')
                 return {
                     ...state,
                     error: action.payload,

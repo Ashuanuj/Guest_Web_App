@@ -91,7 +91,7 @@ history.push('/checkout')
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`${data.rate}`}</b>
+              <b>{`$ ${data.rate}`}</b>
             </Media>
 
             <Media right>

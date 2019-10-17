@@ -29,8 +29,6 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
-// 
-var qa;
 export default function Header() {
 
   let { header, dashboard ,cart} = useSelector(state => ({
@@ -38,8 +36,6 @@ export default function Header() {
     dashboard: state.header.dashbaord,
     cart:state.header.cart 
   }),shallowEqual)
-   
-   qa=header;
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -50,15 +46,19 @@ export default function Header() {
 
   const handleLogOut=(link)=>{
     history.push(link)
-    localStorage.removeItem('roomNo')
-    localStorage.removeItem('header')
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('guestName')
-    localStorage.removeItem('areaId')
-    localStorage.removeItem('guestId')
-    localStorage.removeItem('dashboard')
+    sessionStorage.removeItem('roomNo')
+    sessionStorage.removeItem('header')
+    sessionStorage.removeItem('accessToken')
+    sessionStorage.removeItem('guestName')
+    sessionStorage.removeItem('areaId')
+    sessionStorage.removeItem('guestId')
+    sessionStorage.removeItem('serviceCategoryId')
+    sessionStorage.removeItem('room_no')
+    // sessionStorage.removeItem('dashboard')
+    sessionStorage.removeItem('instructions')
+    sessionStorage.removeItem('dashboard')
+    sessionStorage.removeItem('serviceSubCategoryId')
   }
-  console.log(qa,'aaaaaaaaaaaaaaaaaaaaaaaa')
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -75,7 +75,7 @@ export default function Header() {
       />
       <span className="headername text-white">
         
-        {`Welcome Mr. ${ localStorage.getItem('guestName') }`}
+        {`Welcome Mr. ${ sessionStorage.getItem('guestName') }`}
       </span>
       <span className="crossbtn" onClick={toggleDrawer('left', false)}> <MdClose/></span>
     </div>
@@ -132,8 +132,8 @@ export default function Header() {
          </Nav>
 
         <Nav className="Nav-Name">
-        {dashboard==true? header :`Welcome Mr. ${ localStorage.getItem('guestName') }`}
-        {/* {localStorage.getItem('header')} */}
+        {dashboard==true? header :`Welcome Mr. ${ sessionStorage.getItem('guestName') }`}
+        {/* {sessionStorage.getItem('header')} */}
         </Nav>
 
          <div>
@@ -149,7 +149,7 @@ export default function Header() {
                   alt="cartimg"   
               />
               <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '80%', position: 'absolute', textAlign: 'center' }}>
-              {localStorage.getItem('cartcount')}
+              {sessionStorage.getItem('cartcount')}
               </span>
             </div>
             
