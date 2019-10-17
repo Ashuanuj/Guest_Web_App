@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getServiceSubCategory, storeOrder, handle_header } from '../../actions'
-import {Link} from 'react-router-dom';
 import history from '../../helper/history';
 
 class SubCategory1 extends Component {
@@ -81,7 +80,7 @@ history.push('/checkout')
   //console.log( a,localStorage.getItem('cartcount'),'cccccccccccccccccccccc')
     // console.log(props,'lllllljjjjjjjjjjjjjjjjjjjjjjjjj')
     const subCategoryitems = props.subcategory && props.subcategory.map(data => (
-      <Col lg={4} md={6} sm={6} xs={12} className="" key={data.id} >
+      <Col lg={4} md={6} sm={6} xs={12} className="col-spacing" key={data.id} >
         <Card style={{borderRadius:'0px'}}>
           <Media className="SubcategoryMain">
             <Media left>
@@ -92,7 +91,7 @@ history.push('/checkout')
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`$ ${data.rate}`}</b>
+              <b>{`${data.rate}`}</b>
             </Media>
 
             <Media right>
@@ -114,7 +113,7 @@ history.push('/checkout')
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`${this.state.totalItems} Items | $ ${this.state.totalRate}`}</span>
+          <span> {`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"

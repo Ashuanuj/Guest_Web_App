@@ -39,6 +39,7 @@ export default class DatePickerInput extends React.Component {
     });
  
     this.props.input.onChange(date);
+    console.log(date,'date')
   }
 
   render() {
@@ -48,7 +49,7 @@ export default class DatePickerInput extends React.Component {
     } = this.props;
 
     return (
-      <div className="form-group">
+      <div>
         <DatePicker
           {...input}
           selected={this.state.selectedDate}

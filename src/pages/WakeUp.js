@@ -1,17 +1,23 @@
 import React from 'react';
-import {Row,Button,Table,FormGroup,Label,CustomInput } from 'reactstrap';
+import {Row,Button,Table,FormGroup,Label,CustomInput,Input } from 'reactstrap';
 import Page from '../components/Page'
 import history from '../helper/history';
-
-export default class CheckoutPage extends React.Component{
+import TextInput from "../components/forms/TextInput";
+import {handle_header} from '../actions';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+class WakeUp extends React.Component{
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
-
-    handleClick = (link) => {
+    componentWillMount(){
+        this.props.actions.handle_header(['Wake up Call',true])
+        }
+        handleClick = (link) => {
         history.push(link)
-    }
+        }
+    
 
     render(){
         return(
@@ -34,8 +40,11 @@ export default class CheckoutPage extends React.Component{
                             </tr>
                     </tbody>
                 </Table>
-                <div  className="note-text"> E.g. Wake me up at 7am sharp tomorrow </div>
-
+                <div className="note-text"> 
+                 <FormGroup>
+                     <Input type="textarea" component={TextInput} placeholder="E.g. Wake me up at 7am sharp tomorrow" />
+                 </FormGroup>
+                </div>
                 <div className="WakeupRequestBtn-div" >
                         <Button
                             size="lg"
@@ -59,3 +68,19 @@ export default class CheckoutPage extends React.Component{
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+    actions: bindActionCreators(
+    {
+    handle_header
+    },
+    dispatch
+    )
+    };
+    }
+    
+    export default connect(
+    null,
+    mapDispatchToProps
+    )(WakeUp);

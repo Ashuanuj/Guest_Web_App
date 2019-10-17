@@ -26,6 +26,7 @@ import { connect } from "react-redux";
 import history from "../helper/history";
 
 import { createRequest, getCartItems } from "../actions";
+import TextInput from "../components/forms/TextInput";
 
 let totalBill = 0;
 class CheckoutPage extends React.Component {
@@ -139,7 +140,7 @@ class CheckoutPage extends React.Component {
               <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
             </div>
           </td>
-          <td className="checkout-item-name"> {` ${item.amount}`} </td>
+          <td className="checkout-item-amt"> {` ${item.amount}`} </td>
         </tr>
           return item1
       });
@@ -149,8 +150,8 @@ class CheckoutPage extends React.Component {
         <Page>
         <Row className="checkout-div">
           <Table responsive className="TableMainList">
-           <tbody className="t-body">
-            {item}
+            <tbody className="t-body">
+             {item}
             </tbody>
           </Table>
 
@@ -159,7 +160,6 @@ class CheckoutPage extends React.Component {
                 <tr>
                   <FormGroup row className="table-div">
                     <Label className="label" for="exampleCheckbox">
-                      
                       Select a Slot:
                     </Label>
                     <CustomInput
@@ -190,11 +190,18 @@ class CheckoutPage extends React.Component {
               <tbody className="radio-div">
                 <tr>
                   <td className="totaltext"> Total Bill </td> 
+                  <td></td>
                   <td className="totalamt"> {totalBill} </td>
                 </tr>
               </tbody>
             </Table>
-            <div className="pattern"></div>
+            <div className="pattern-img">
+            <img
+                src={patternImg}
+                className=""
+                alt="cmp"
+              />
+            </div>
             <div className="confirmBtn-div">
               <Button
                 size="lg"

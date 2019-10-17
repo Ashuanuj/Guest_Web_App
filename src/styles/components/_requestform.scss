@@ -8,9 +8,7 @@
 .card{
   background-color: none;
 }
-// input{
-//   color: #fff;
-// }
+
  .btn-secondary.disabled, .btn-secondary:disabled {
   background: #5FBAFE;
   color: #fff;
@@ -23,12 +21,19 @@
     outline:none;
     box-shadow: none;
 }
-
+//placeholder color
 
  input .form-control{
   margin: 0px !important; 
  }
 
+ input::-webkit-input-placeholder
+ {
+    color: #A2B0BA !important;
+ }
+ input::placeholder{
+   color: #A2B0BA !important;
+ }
 
 .form-control{
   background-color:#1F3C53 !important;
@@ -50,12 +55,6 @@
   color: #fff !important;
 }
 
-// .form-control:focus{
-//   outline:none;
-//   box-shadow: none;
-//   color: #fff !important;
-// }
-
 //Error text
 .text-danger{
   color: #ff0000 !important;
@@ -63,10 +62,7 @@
   font-size: 12px;
   font-family:'Open_Sans';
 }
-// .input-bgColor:hover{
-//   color:#A2B0BA;
-//   border: 1px solid #1F3C53;
-// }
+
 //Datepicker width
 .react-datepicker-wrapper{
   width:100%;
@@ -74,40 +70,55 @@
 }
 
 //Date in bootstrap
+
+//Date input start
 input[type="date"]::before {
-  content: attr(placeholder) !important;
-  // color: #A2B0BA;
-  margin-right: 5px;
-  color: #a2b0baa8;
+    content: attr(placeholder);
+    margin-right: 5px;
+    color: #a2b0baa8;
 }
 .form-group input[type=date]:focus {
   color: white !important;
 }
-
 .form-group input[value=""] {
-  // color: #6c757c !important  ;
-  color: #e9ecef00;
+  color: #6c757c !important  ;
 }
-input[type="date"]:focus:before,
-input[type="date"]:valid:before {
-  content: "";
-}
+//Date input end
+
+// input[type="date"]::before {
+//   content: attr(placeholder) !important;
+//   // color: #A2B0BA;
+//   // margin-right: 5px;
+//   color: #a2b0baa8;
+// }
+// .form-group input[type=date]:focus {
+//   color: white !important;
+// }
+
+// .form-group input[value=""] {
+//   // color: #6c757c !important  ;
+//   color: #e9ecef00;
+// }
+// input[type="date"]:focus:before,
+// input[type="date"]:valid:before {
+//   content: "";
+// }
 // input[type="date"]:focus:before,
 // input[type="date"]:not([value=""]):before
 // {
 //   display: none;
 // }
+input[type="date"]:hover:before
+{ content: ""; }
+
+//Date input end
+
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button{
     display: none;
 }
 
-// #dateInput:not([value])::-webkit-datetime-edit-fields-wrapper,
-// #dateInput[value=""]::-webkit-datetime-edit-fields-wrapper { 
-//     visibility: hidden;
-// }
-
-  .Requestbtn{
+.Requestbtn{
   font-family: 'Neo_Sans' ;
     font-size: 13px;
     font-weight: bold;
@@ -118,9 +129,7 @@ input[type="date"]::-webkit-inner-spin-button{
     border-radius: 8px 8px;
     transition: .3s;
     background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8) repeat-x;
-
   }
-
 
   .btn-secondary:hover{
     background: #5FBAFE linear-gradient(90deg, #5FBAFE, #567CF8) repeat-x;
@@ -156,7 +165,7 @@ input[type="date"]::-webkit-inner-spin-button{
   }
  
 .cardbody-main{
-    background-color: none;
+    // background: none;
     // border:0px !important;
     padding: 0px;
     position: relative;
@@ -202,6 +211,7 @@ input[type="date"]::-webkit-inner-spin-button{
     .cardbody-main{
       position: relative;
       border: 0px !important;
+      background: none;
     }
     .cardImgtext{
         // margin-top:9em;
@@ -259,6 +269,7 @@ input[type="date"]::-webkit-inner-spin-button{
 @media screen and (max-width:320px){
   .cardbody-main{
     position: relative;
+    background: none;
     border: 0px !important;
   }
 }
