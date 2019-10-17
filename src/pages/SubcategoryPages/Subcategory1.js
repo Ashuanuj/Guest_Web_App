@@ -37,6 +37,10 @@ class SubCategory1 extends Component {
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
+    localStorage.getItem('cartCount') == null ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
+    
+    localStorage.getItem(this.props.subcategory[index].Title) != null ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
+
   }
 
   onIncrement(id) {
@@ -72,13 +76,6 @@ history.push('/checkout')
 
   render() {
     const { props } = this;
-   // var a=parseInt(localStorage.getItem('cartcount'))
-    var count=0
-     //console.log(a)
-    // props.subcategory.forEach(elem => elem.accept ? count+=1 : '');
-    // localStorage.setItem('cartcount',count)
-  //console.log( a,localStorage.getItem('cartcount'),'cccccccccccccccccccccc')
-    // console.log(props,'lllllljjjjjjjjjjjjjjjjjjjjjjjjj')
     const subCategoryitems = props.subcategory && props.subcategory.map(data => (
       <Col lg={4} md={6} sm={6} xs={12} className="col-spacing" key={data.id} >
         <Card style={{borderRadius:'0px'}}>

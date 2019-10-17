@@ -16,7 +16,7 @@ class DashboardPage extends React.Component {
   componentWillMount() {
     // this.props.actions.handle_header([localStorage.getItem(' '), false]);
     console.log('lokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
-    this.props.actions.handle_header([`Welcom Mr. ${localStorage.getItem('guestName')}`,true]);
+    this.props.actions.handle_header([`WelcomE Mr. ${localStorage.getItem('guestName')}`,true]);
     this.props.actions.loadService();
   }
   handleClick = (id, serviceName, link) => {

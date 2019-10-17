@@ -70,6 +70,8 @@ class CheckoutPage extends React.Component {
     let _data = this.props.cartItems;
     this.props.actions.createRequest(_data);
     history.push("/requestmain");
+    localStorage.removeItem('amount');
+    this.props.cartItems.forEach(item => localStorage.removeItem(item.id))
   }
   
   handleAddItem(id) {
@@ -88,8 +90,8 @@ class CheckoutPage extends React.Component {
 
   onIncrement(id) {
     let index = this.props.cartItems.findIndex(item => item.id === id)
-    this.props.cartItems[index].quantity += 1
-    this.props.cartItems[index].amount += parseFloat(this.props.cartItems[index].rate)
+    this.props.cartItems[index].quantity = localStorage.getItem(id) != null ? localStorage.getItem(id) + 1 : this.props.cartItems[index].quantity + 1
+    this.props.cartItems[index].amount = localStorage.getItem('amount') != null ? localStorage.getItem('amount') + parseFloat(this.props.cartItems[index].rate) : this.props.cartItems[index].amount + parseFloat(this.props.cartItems[index].rate)
 
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
@@ -108,12 +110,11 @@ class CheckoutPage extends React.Component {
       totalItems: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalRate - parseFloat(this.props.cartItems[index].rate) : 0
     })
-    console.log(this.state.totalRate,';;;;;',this.props.cartItems[index].rate)
     this.props.cartItems[index].quantity = this.props.cartItems[index].quantity > 0 ? this.props.cartItems[index].quantity - 1 : 0
     this.props.cartItems[index].amount = this.props.cartItems[index].quantity > 0 && this.props.cartItems[index].amount > 0 ? this.props.cartItems[index].amount - parseFloat(this.props.cartItems[index].rate) : 0
     this.props.cartItems[index].accept =  this.props.cartItems[index].quantity == 0 ? false : true
     localStorage.setItem(id, this.props.cartItems[index].quantity)
-    localStorage.setItem(this.props.cartItems[index].itemName, this.props.cartItems[index].quantity)
+    // localStorage.setItem(this.props.cartItems[index].itemName, this.props.cartItems[index].quantity)
     localStorage.setItem('amount', this.props.cartItems[index].amount)
   }
 
@@ -143,7 +144,7 @@ class CheckoutPage extends React.Component {
               <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
             </div>
           </td>
-          <td className="checkout-item-amt"> {localStorage.getItem(item.id) !== null ? `${localStorage.getItem(item.id)* item.rate}` : `$ ${item.amount}`} </td>
+          <td className="checkout-item-amt"> {localStorage.getItem(item.id) !== null ? `$ ${localStorage.getItem(item.id)* item.rate}` : `$ ${item.amount}`} </td>
         </tr> : ''
           return item1
       });
