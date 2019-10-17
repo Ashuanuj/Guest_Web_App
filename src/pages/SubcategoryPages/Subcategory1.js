@@ -5,7 +5,7 @@ import { Row, Col, Card, Media, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getServiceSubCategory, storeOrder, handle_header } from '../../actions'
+import { getServiceSubCategory, storeOrder, handle_header, setCounter } from '../../actions'
 import history from '../../helper/history';
 
 class SubCategory1 extends Component {
@@ -26,6 +26,8 @@ class SubCategory1 extends Component {
   }
 
   handleAddItem(id) {
+    // this.props.actions.setCounter(); 
+    console.log('hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo' ,this.props.subcategory)
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
@@ -37,10 +39,10 @@ class SubCategory1 extends Component {
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
-    localStorage.getItem('cartCount') == null ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
-    
-    localStorage.getItem(this.props.subcategory[index].Title) != null ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
 
+    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null || localStorage.getItem(this.props.subcategory[index].Title) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
+    
+    localStorage.getItem(this.props.subcategory[index].Title) != null || localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
   }
 
   onIncrement(id) {
@@ -110,7 +112,7 @@ history.push('/checkout')
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
+          <span> {`$ ${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"
@@ -156,7 +158,8 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       getServiceSubCategory,
       storeOrder,
-      handle_header
+      handle_header,
+      setCounter
     }, dispatch),
   };
 }

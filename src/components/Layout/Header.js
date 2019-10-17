@@ -20,6 +20,7 @@ import { Nav,Navbar,NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import {shallowEqual,  useSelector } from "react-redux";
 import history from '../../helper/history';
+import { CART_ITEMS } from '../../actions';
 
 const useStyles = makeStyles({
   list: {
@@ -29,8 +30,8 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
-export default function Header() {
-
+export default function Header(props) {
+console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooopppppppppppppppppppppppppppppppppppppppppppppppppppppppppp')
   let { header, dashboard ,cart} = useSelector(state => ({
     header: state.header.header,
     dashboard: state.header.dashbaord,
@@ -40,6 +41,7 @@ export default function Header() {
   const [state, setState] = React.useState({
     left: false,
   });
+  const [cartItems, setCartItems] = React.useState(0);
   const handleClick=(link)=>{
     history.push(link)
   }
@@ -65,6 +67,16 @@ export default function Header() {
     }
     setState({ ...state, [side]: open });
   };
+
+  React.useEffect(
+    () => {
+      // if (componentDidUpdate & (x or y changed))
+      localStorage.getItem('cartCount') === null ?
+      setCartItems(0) : setCartItems(localStorage.getItem('cartCount'));
+    }
+  );
+
+
   const sideList = side => (
   <>
     <div className="sidebarImg-main">
@@ -149,7 +161,7 @@ export default function Header() {
                   alt="cartimg"   
               />
               <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '80%', position: 'absolute', textAlign: 'center' }}>
-              {localStorage.getItem('cartCount') == null ? 0 : localStorage.getItem('cartCount')}
+              {localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? 0 : localStorage.getItem('cartCount')}
               </span>
             </div>
             
