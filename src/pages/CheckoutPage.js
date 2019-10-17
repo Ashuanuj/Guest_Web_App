@@ -14,19 +14,23 @@ import {
   Input
 } from "reactstrap";
 import Page from "../components/Page";
+<<<<<<< HEAD
 import {MdAdd,MdRemove} from 'react-icons/md'; 
 
+=======
+//import setAuthData from "../utility/auth";
+>>>>>>> 87de6f23baa87f5fffd8f81e8155fdc658a53704
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
+import TextInput from '../components/forms/TextInput';
+import { Field,reduxForm } from 'redux-form';
 import patternImg from "../components/assets/img/icons/linear-design.png"
-
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import history from "../helper/history";
 
 import { createRequest, getCartItems } from "../actions";
-import TextInput from "../components/forms/TextInput";
 
 let totalBill = 0;
 class CheckoutPage extends React.Component {
@@ -38,18 +42,26 @@ class CheckoutPage extends React.Component {
       Nonveg: NonvegImg,
       veg: vegImg,
       totalItems: 0,
-      totalRate: 0
+      totalRate: 0,
+      value:0
     };
 
     this.toggle = this.toggle.bind(this);
     this.anotherToggle = this.anotherToggle.bind(this);
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
+    this.onChange=this.onChange.bind(this)
   }
-
+  
+  onChange(event){
+    this.setState({value: 1});
+    console.log(event,';;;;;;;;;;;;;;;;;;;;;;;;')
+   localStorage.setItem('instructions',event.target.value)
+  }
   // componentWillMount() {
   //   this.props.actions.getCartItems(localStorage.getItem('areaId'))
   // }
+  
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
@@ -64,7 +76,7 @@ class CheckoutPage extends React.Component {
     this.props.actions.createRequest(_data);
     history.push("/requestmain");
   }
-
+  
   handleAddItem(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
@@ -93,20 +105,29 @@ class CheckoutPage extends React.Component {
 
   onDecrement(id) {
     let index = this.props.cartItems.findIndex(item => item.id === id)
+    console.log(this.state.totalRate,';;;;;',this.props.cartItems[index].rate)
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
       totalItems: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
-      totalRate: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalRate - parseFloat(this.props.cartItems[index].rate) : this.state.totalRate
+      totalRate: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalRate - parseFloat(this.props.cartItems[index].rate) : 0
     })
+    console.log(this.state.totalRate,';;;;;',this.props.cartItems[index].rate)
     this.props.cartItems[index].quantity = this.props.cartItems[index].quantity > 0 ? this.props.cartItems[index].quantity - 1 : 0
-    this.props.cartItems[index].amount = this.props.cartItems[index].quantity > 0 && this.props.cartItems[index].amount > 0 ? this.props.cartItems[index].amount - parseFloat(this.props.cartItems[index].rate) : this.props.cartItems[index].amount
+    this.props.cartItems[index].amount = this.props.cartItems[index].quantity > 0 && this.props.cartItems[index].amount > 0 ? this.props.cartItems[index].amount - parseFloat(this.props.cartItems[index].rate) : 0
     this.props.cartItems[index].accept =  this.props.cartItems[index].quantity == 0 ? false : true
   }
 
   render() {
     const { props } = this;
-    console.log(this.props.cartItems, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+    localStorage.setItem('cartcount',props.cartItems.length)
+    if(this.state.value==0){
+      localStorage.setItem('instructions','')
+      //localStorage.setItem('cartcount',0)
+    }
+    console.log(this.props, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+    //setAuthData(this.props.)
     totalBill=0
+
     let item = props.cartItems && props.cartItems.map((item, index) => {
         
             totalBill += item.amount
@@ -167,7 +188,7 @@ class CheckoutPage extends React.Component {
             </Table>
             <div className="note-text-checkout">
               <FormGroup>
-              <Input type="textarea" component={TextInput} placeholder="Instructions ? E.g.Don’t ring the doorbell" />
+              <Input component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
               </FormGroup>
             </div>
             <Table className="bill-amt">

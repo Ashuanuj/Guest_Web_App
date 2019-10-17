@@ -5,7 +5,7 @@ import RequestForm from '../components/RequestForm'
 import componentImg from '../components/assets/img/bg/component.png'
 import Footer from '../components/Layout/Footer';
 
-import { guestLogIn } from '../actions';
+import { guestLogIn, loadService, } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,6 +16,7 @@ class RequestFormPage extends React.Component {
   }
   _handleSubmit = (data, dispatch) => {
     this.props.actions.guestLogIn(data);
+    this.props.actions.loadService();
   };
 
   render() {
@@ -64,6 +65,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       guestLogIn,
+      loadService,
     }, dispatch),
   };
 }

@@ -47,6 +47,7 @@ export default function Header() {
   const handleClick=(link)=>{
     history.push(link)
   }
+
   const handleLogOut=(link)=>{
     history.push(link)
     localStorage.removeItem('roomNo')
@@ -139,19 +140,20 @@ export default function Header() {
            {cart?<div></div>:
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
-          {/* <Link to="/checkout"><span><img src="../assets/img/icons/cart.svg" /></span></Link>        
-          {/* <FaShoppingCart size={25} style={{ color: '#fff' }} /> 
-          <IconButton>
-           <Cart /> 
-  </IconButton> */}
-          <Link to="/checkout">
-              {/* <span> <FaShoppingCart size={25} style={{ color: '#fff' }} /></span> */}
+            <div style={{ position: 'relative', width: '30%', alignItems: 'center' }} onClick={() => handleClick("/checkout")}> 
+            {/* style={{display: 'flex', flexDirection: 'row', width: '30%', alignItems: 'center', justifyContent: 'space-between'}} */}
               <img
                   src={cartIcon}
                   className="cartImg"
+                  style={{position: 'relative', display: 'inline-block'}}
                   alt="cartimg"   
               />
-            </Link> 
+              <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '80%', position: 'absolute', textAlign: 'center' }}>
+              {localStorage.getItem('cartcount')}
+              </span>
+            </div>
+            
+            {/* </Link>  */}
            </NavItem>
         </Nav>
            }
@@ -164,5 +166,4 @@ export default function Header() {
     </div>
   );
 }
-
 

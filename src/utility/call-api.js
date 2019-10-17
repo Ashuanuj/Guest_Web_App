@@ -26,7 +26,7 @@ export default function callApi(endpoint, body, method, queryData, isFile = fals
      let URL = 'https://heliusbe.tech-active.com:70';
 
      URL = `${URL}/${endpoint}${queryParams}`;
-
+      console.log(URL)
      return fetch(URL, {
           headers,
           method: method || (body ? 'post' : 'get'),
