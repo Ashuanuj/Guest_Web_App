@@ -19,14 +19,13 @@ import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
 import TextInput from '../components/forms/TextInput';
 import { Field,reduxForm } from 'redux-form';
-
+import patternImg from "../components/assets/img/icons/linear-design.png"
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import history from "../helper/history";
 
 import { createRequest, getCartItems } from "../actions";
-import TextInput from "../components/forms/TextInput";
 
 let totalBill = 0;
 class CheckoutPage extends React.Component {
