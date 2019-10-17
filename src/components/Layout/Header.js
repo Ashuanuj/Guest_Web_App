@@ -29,8 +29,6 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
-// 
-var qa;
 export default function Header() {
 
   let { header, dashboard ,cart} = useSelector(state => ({
@@ -38,8 +36,6 @@ export default function Header() {
     dashboard: state.header.dashbaord,
     cart:state.header.cart 
   }),shallowEqual)
-   
-   qa=header;
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -56,9 +52,13 @@ export default function Header() {
     localStorage.removeItem('guestName')
     localStorage.removeItem('areaId')
     localStorage.removeItem('guestId')
+    localStorage.removeItem('serviceCategoryId')
+    localStorage.removeItem('room_no')
+    // localStorage.removeItem('dashboard')
+    localStorage.removeItem('instructions')
     localStorage.removeItem('dashboard')
+    localStorage.removeItem('serviceSubCategoryId')
   }
-  console.log(qa,'aaaaaaaaaaaaaaaaaaaaaaaa')
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -148,8 +148,13 @@ export default function Header() {
                   style={{position: 'relative', display: 'inline-block'}}
                   alt="cartimg"   
               />
+<<<<<<< HEAD
               <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '120%', position: 'absolute', textAlign: 'center' }}>
               {localStorage.getItem('cartcount')}
+=======
+              <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '80%', position: 'absolute', textAlign: 'center' }}>
+              {localStorage.getItem('cartCount') == null ? 0 : localStorage.getItem('cartCount')}
+>>>>>>> 1f45c85bc7ef70a01d80d72bcede22f3e1264979
               </span>
             </div>
             

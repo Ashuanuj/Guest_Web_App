@@ -39,9 +39,9 @@ class App extends React.Component {
             onChange={isFull => this.setState({ isFull })}
           >
             <Route exact path="/" component={RequestFormPage} />
-            {localStorage.getItem("accessToken") === null ? (
+            {/* {localStorage.getItem("accessToken") === null ? (
               history.push("/")
-            ) : (
+            ) : ( */}
               <MainLayout>
                 <Route exact path="/dashboard" component={DashboardPage} />
                 <Route exact path="/services" component={ServicesPage} />
@@ -55,7 +55,7 @@ class App extends React.Component {
                 <Route exact path="/frontoffice" component={FrontOffice} />
                 <Route exact path="/requestmain" component={RequestMain} />
               </MainLayout>
-            )}
+            {/* )} */}
           </Fullscreen>
         </Switch>
       </Router>

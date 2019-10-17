@@ -2,9 +2,11 @@ import { camelizeKeys, decamelizeKeys } from 'humps';
 import fetch from 'isomorphic-fetch';
 import qs from 'qs';
 
-export default function callApi(endpoint, body, method, queryData, isFile = false, outside = false) {
+export default async  function callApi(endpoint, body, method, queryData, isFile = false, outside = false) {
      const headers = new Headers();
-     const accessToken = localStorage.getItem('accessToken');
+     // const accessToken = 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibGFzdF9uYW1lIjoiQmFuc2FsIiwiZG9iIjoiMjAxOC0xMS0xNCIsImlhdCI6MTU3MTMwNjYzMSwiZXhwIjoxNTc5OTQ2NjMxfQ.IZUEY5BltAltxWL-9SYw1SfHOjLOh3S47xfYKfHbDVM' //
+     let accessToken = await localStorage.getItem('accessToken');
+     console.log(accessToken, 'uuuuuuuuuuuuuuuuuuuuuuuttttttttttttttttttoooooooooooooooooppppppppppppppiiiiiiiiiiiiiiiiaaaaaaaaaaaaaa')
      const passwordUpdatedAt = 1556194811//localStorage.getItem('passwordUpdatedAt');
      let bodyData = body;
      let queryParams = '';
