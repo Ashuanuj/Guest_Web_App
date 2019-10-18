@@ -675,7 +675,7 @@
         font-size: 'Neo_Sans';
         font-weight: 600;
         font-size: 14px;
-        text-align: center;
+        text-align: left;
         }
         .totalamt2{
             color: #fff;
@@ -762,13 +762,13 @@
 
 @media screen and (max-width:480px){
     //Checkout table
-    .TableMainList{
-        .t-body td{
-            .qtybtn{
-                width: 70% !important;
-            }
-        }
-     }
+    // .TableMainList{
+    //     .t-body td{
+    //         .qtybtn{
+    //             width: 70% !important;
+    //         }
+    //     }
+    //  }
 
      //main and subcategory continue btn
      .addItem-div{
@@ -983,13 +983,13 @@
 }
 
 
-@media screen and (max-width:320px){
+// @media screen and (max-width:320px){
     //Checkout table
-    .TableMainList{
-        .t-body td{
-            .qtybtn{
-                width: 75% !important;
-            }
-        }
-     }
-    }
+    // .TableMainList{
+    //     .t-body td{
+    //         .qtybtn{
+    //             width: 75% !important;
+    //         }
+    //     }
+    //  }
+    // }
