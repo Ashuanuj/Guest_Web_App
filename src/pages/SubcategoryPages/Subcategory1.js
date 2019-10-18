@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, Media, Button } from 'reactstrap';
 // import{Link} from 'react-router-dom';
-import aa from '../../utility/auth'
+import {MdAdd,MdRemove} from 'react-icons/md'; 
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getServiceSubCategory, storeOrder, handle_header } from '../../actions'
+import { getServiceSubCategory, storeOrder, handle_header, setCounter } from '../../actions'
 import history from '../../helper/history';
  
 class SubCategory1 extends Component {
@@ -25,7 +25,9 @@ class SubCategory1 extends Component {
     this.props.actions.handle_header(['Break Fast', true]);   
   }
 
-  handleAddItem(id) {
+  handleAddItem(id, e) {
+    e.preventDefault()
+   // this.props.actions.setCounter(); 
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
@@ -37,11 +39,10 @@ class SubCategory1 extends Component {
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
-    localStorage.getItem('cartCount') == null ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
-    
-    localStorage.getItem(this.props.subcategory[index].Title) != null ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
-    //this.props.actions.handle_header(['Break Fast', true]);   
 
+    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null || localStorage.getItem(this.props.subcategory[index].Title) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
+    
+    localStorage.getItem(this.props.subcategory[index].Title) != null || localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
   }
 
   onIncrement(id) {
@@ -70,9 +71,26 @@ class SubCategory1 extends Component {
 
   handleContinue(e) {
     e.preventDefault();
+    console.log(this.props.subcategory,'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
 this.props.actions.storeOrder(this.props.subcategory)
 this.props.actions.handle_header(['Checkout',true])
 history.push('/checkout')
+       if(localStorage.getItem('cart_details')==null){
+         localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
+       }else{
+         let object=JSON.parse(localStorage.getItem('cart_details'))
+         object.forEach(cart => {
+           this.props.subcategory.forEach(obj=>{
+            if(obj.id==cart.id){
+              obj.selectedItems=obj.selectedItems+cart.selectedItems
+              obj.itemsRate=obj.itemsRate+cart.itemsRate
+             // cart.accept=true;
+            }
+          })
+        });
+        console.log(this.props.subcategory,';;;;;;;;;;;;;;;;;;;;;;;;;;')
+        localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
+       }
   }
 
   render() {
@@ -89,15 +107,15 @@ history.push('/checkout')
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`$ ${data.rate}`}</b>
+              <b>{` ${data.rate}.00`}</b>
             </Media>
 
             <Media right>
-              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={() => this.handleAddItem(data.id)}>Add</Button>
+              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>Add</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
-                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}>-</span>
+                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}> <MdRemove size={15}/></span>
                 <span className="count"><b>{data.selectedItems}</b></span>
-                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}>+</span>
+                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}><MdAdd size={15}/></span>
               </div>
             </Media>
 
@@ -107,11 +125,14 @@ history.push('/checkout')
     ));
     return (
       <div className='tabContent'>
+        <div style={{right: -100, bottom: 0, zIndex: -9999999, position: "absolute"}}>
+          <img src="../../components/assets/img/icons/cart.svg" />
+        </div>
         <Row className="ServicePageMain">
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
+          <span> {` ${this.state.totalItems} Items | ${this.state.totalRate}.00`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"
@@ -156,7 +177,8 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       getServiceSubCategory,
       storeOrder,
-      handle_header
+      handle_header,
+      setCounter
     }, dispatch),
   };
 }

@@ -16,9 +16,7 @@ export default function reducer(state = initialState, action) {
         //     };
         // }
         case SERVICE_CATEGORY.SUCCESS:
-            {
-                console.log(action.payload.serviceCategory, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioppppppppppppppppppppppppppppppppp');
-                
+            {                
                 return {
                     ...state,
                     Category: action.payload.serviceCategory,

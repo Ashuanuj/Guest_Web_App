@@ -7,6 +7,12 @@ export const login = createActionsFromTypes(LOG_IN);
 export const GUEST_LOG_IN = 'GUEST_LOG_IN';
 export const guestLogIn = createAction(GUEST_LOG_IN);
 
+export const HANDLE_ERROR = 'HANDLE_ERROR';
+export const handleError = createAction(HANDLE_ERROR);
+
+export const SET_COUNTER = 'SET_COUNTER';
+export const setCounter = createAction(SET_COUNTER);
+
 //Initialize
 export const INITIALIZE = 'INITIALIZE';
 export const initialize = createAction(INITIALIZE);

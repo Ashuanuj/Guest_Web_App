@@ -50,19 +50,27 @@ class Active extends React.Component{
         this.setState(prevState => ({ [`collapseID${orderId}`]: prevState[`collapseID${orderId}`] !== collapseID ? collapseID : "" })); }    
 
     render(){
-        console.log(this.props)
-        console.log(
-            this.props,
-            "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
-          );
-          let data = this.props.data && this.props.data.map((item, index) => {
+       // console.log(this.props)
+       function compare(a, b) {
+        const genreA = a.orderId;
+        const genreB = b.orderId;
+        
+        let comparison = 0;
+        if (genreA < genreB) {
+          comparison = 1;
+        } else if (genreA > genreB) {
+          comparison = -1;
+        }
+        return comparison;
+      }
+          let data = this.props.data && this.props.data.sort(compare).map((item, index) => {
               let total = 0;
               let time = new Date(moment.unix(item.createdAt));
               let hrs = time.getHours() > 12 ? time.getHours()-12 : time.getHours();
               let mins = time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes();
               let str = time.getHours() > 12 ? 'pm' : 'am';
               let newTime = `${time.getDate()} ${month[time.getMonth()+1]} ${time.getFullYear()} | ${hrs}:${mins}${str}`;
-              console.log(newTime)
+             // console.log(newTime)
               // console.log(time)
               return (
                   <Col sm={6} xs={12} className="pz mb-1 col-md-6 offset-md-3">
@@ -99,7 +107,7 @@ class Active extends React.Component{
                                   <Media object src={this.state[elem.type]} alt="image" /> {`${elem.title} x ${elem.quantity}`}
                                 </td>
                                 <td></td>
-                                <td className="item-amt"> {`${elem.amount}`} </td>
+                                <td className="item-amt"> {`${elem.amount}.00`} </td>
                               </tr>
                             )})}
                         </tbody>
@@ -109,7 +117,7 @@ class Active extends React.Component{
                           <tr className="order-total">
                             <td className="totaltext">Total Bill</td>
                             <td></td>
-                            <td className="totalamt1"> {`${total}`} </td>
+                            <td className="totalamt1"> {`${total}.00`} </td>
                           </tr>
                         </tbody>
                       </Table>

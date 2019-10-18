@@ -20,6 +20,7 @@ class FrontOffice extends React.Component {
       this.props.actions.handle_header(['Front Office', true]);
       }
       handleClick = (link, serviceName) => {
+        if(serviceName == 'Wake up Call')
       this.props.actions.handle_header([serviceName,true]);
       history.push(`/${link}`)
       }

@@ -49,8 +49,8 @@
   &__content {
     position: relative;
     z-index: 4;
-    height: calc(100vh - 20px);
-    // height: 80vh;
+    // height: calc(100vh - 20px);
+    height: 100vh;
     padding-bottom: 30px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -171,14 +171,14 @@
     color: #fff;
     text-align: center;
     font-size: 15px;
-    font-family: Neo_Sans_Pro;
+    font-family: 'Neo_Sans';
     font-weight: 600;
   }
   .MuiListItemText-root{
     text-align: center;
   .MuiTypography-body1{
     font-size: 15px;
-    font-family: Neo_Sans_Pro;
+    font-family: 'Neo_Sans';
     font-weight: 600;
     color: #fff;
   }

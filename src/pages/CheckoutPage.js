@@ -14,7 +14,8 @@ import {
   Input
 } from "reactstrap";
 import Page from "../components/Page";
-//import setAuthData from "../utility/auth";
+import {MdAdd,MdRemove} from 'react-icons/md'; 
+
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
 import TextInput from '../components/forms/TextInput';
@@ -28,6 +29,7 @@ import history from "../helper/history";
 import { createRequest, getCartItems } from "../actions";
 
 let totalBill = 0;
+var cart_details
 class CheckoutPage extends React.Component {
   constructor(props) {
     super(props);
@@ -50,12 +52,12 @@ class CheckoutPage extends React.Component {
   
   onChange(event){
     this.setState({value: 1});
-    console.log(event,';;;;;;;;;;;;;;;;;;;;;;;;')
    localStorage.setItem('instructions',event.target.value)
   }
-  // componentWillMount() {
-  //   this.props.actions.getCartItems(localStorage.getItem('areaId'))
-  // }
+  componentWillMount() {
+    // this.props.actions.getCartItems(localStorage.getItem('areaId'))
+    cart_details=JSON.parse(localStorage.getItem('cart_details'))
+  }
   
   toggle() {
     this.setState(prevState => ({
@@ -67,9 +69,16 @@ class CheckoutPage extends React.Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
-    let _data = this.props.cartItems;
+    let _data = cart_details;
     this.props.actions.createRequest(_data);
     history.push("/requestmain");
+    localStorage.removeItem('amount');
+    this.props.cartItems.forEach(item => {
+      localStorage.removeItem(item.id)
+      localStorage.removeItem(item.itemName)
+    })
+   localStorage.removeItem('cartCount')
+   localStorage.removeItem('cart_details')
   }
   
   handleAddItem(id) {
@@ -87,71 +96,73 @@ class CheckoutPage extends React.Component {
   }
 
   onIncrement(id) {
-    let index = this.props.cartItems.findIndex(item => item.id === id)
-    this.props.cartItems[index].quantity += 1
-    this.props.cartItems[index].amount += parseFloat(this.props.cartItems[index].rate)
+    let index = cart_details.findIndex(item => item.id === id)
+    cart_details[index].selectedItems = cart_details[index].selectedItems+1//localStorage.getItem(id) != null ?  parseFloat(localStorage.getItem(id)) + 1 : parseFloat(cart_details[index].selectedItems) + 1
+    cart_details[index].itemsRate = cart_details[index].itemsRate + parseFloat(cart_details[index].rate)//localStorage.getItem('amount') != null ?parseFloat(localStorage.getItem('amount')) + parseFloat(cart_details[index].rate) : cart_details[index].itemsRate + parseFloat(cart_details[index].rate)
 
     this.setState({
-      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = cart_details[index].selectedItems,
       totalItems: this.state.totalItems + 1,
-      totalRate: this.state.totalRate + parseFloat(this.props.cartItems[index].rate)
-    })
+      totalRate: this.state.totalRate + parseFloat(cart_details[index].rate)
+    });
+    localStorage.setItem(id, cart_details[index].selectedItems)
+    localStorage.setItem('amount', cart_details[index].itemsRate)
+ console.log(cart_details[index])
   }
-  // onIncrement(id) {
-  //   let index = this.props.subcategory.findIndex(item => item.id === id)
-  //   this.props.subcategory[index].selectedItems += 1
-  //   this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
-
-  //   this.setState({
-  //     [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
-  //     totalItems: this.state.totalItems + 1,
-  //     totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
-  //   })
-  // }
 
   onDecrement(id) {
-    let index = this.props.cartItems.findIndex(item => item.id === id)
-    console.log(this.state.totalRate,';;;;;',this.props.cartItems[index].rate)
+    let index = cart_details.findIndex(item => item.id === id)
+    console.log(this.state.totalRate,';;;;;',cart_details[index].rate)
     this.setState({
-      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.cartItems[index].quantity,
-      totalItems: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
-      totalRate: this.state.totalItems > 0 && this.props.cartItems[index].quantity > 0 ? this.state.totalRate - parseFloat(this.props.cartItems[index].rate) : 0
+      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = cart_details[index].selectedItems,
+      totalItems: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
+      totalRate: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalRate - parseFloat(cart_details[index].rate) : 0
     })
-    console.log(this.state.totalRate,';;;;;',this.props.cartItems[index].rate)
-    this.props.cartItems[index].quantity = this.props.cartItems[index].quantity > 0 ? this.props.cartItems[index].quantity - 1 : 0
-    this.props.cartItems[index].amount = this.props.cartItems[index].quantity > 0 && this.props.cartItems[index].amount > 0 ? this.props.cartItems[index].amount - parseFloat(this.props.cartItems[index].rate) : 0
-    this.props.cartItems[index].accept =  this.props.cartItems[index].quantity == 0 ? false : true
+    cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? cart_details[index].selectedItems - 1 : 0
+    cart_details[index].itemsRate = cart_details[index].selectedItems > 0 && cart_details[index].itemsRate > 0 ? cart_details[index].itemsRate - parseFloat(cart_details[index].rate) : 0
+    cart_details[index].accept =  cart_details[index].selectedItems == 0 ? false : true
+    localStorage.setItem(id, cart_details[index].selectedItems)
+    // localStorage.setItem(cart_details[index].itemName, cart_details[index].selectedItems)
+    localStorage.setItem('amount', cart_details[index].itemsRate)
+
   }
 
   render() {
     const { props } = this;
-  
+    localStorage.setItem('cartcount',props.cartItems.length)
+    localStorage.setItem('cart_details',JSON.stringify(cart_details))
+    if(this.state.value==0){
+      localStorage.setItem('instructions','')
+      //localStorage.setItem('cartcount',0)
+    }
+    //setAuthData(this.props.)
     totalBill=0
 
-    let item = props.cartItems && props.cartItems.map((item, index) => {
-        
-            totalBill += item.amount
+    let item = cart_details && cart_details.map((item, index) => {
+            totalBill =totalBill +item.itemsRate
+            console.log(totalBill)
           let item1 = 
-
+        item.selectedItems != 0  ?
         <tr className="items-gap">
           <td className="checkout-item-name">
-            <Media object src={this.state[item.type]} alt="image" /> {item.itemName}
+            <Media object src={item.icon} alt="image" /> {item.Title}
           </td>
           <td>
             <div className="qtybtn">
-              <span className="minus" onClick={() => this.onDecrement(item.id)}> - </span>
-              <span className="count"> {item.quantity} </span>
-              <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
+              <span className="minus" onClick={() => this.onDecrement(item.id)}> <MdRemove size={15}/> </span>
+              <span className="count"> {item.selectedItems} </span>
+              <span className="plus" onClick={() => this.onIncrement(item.id)}><MdAdd size={15}/></span>
             </div>
           </td>
-          <td className="checkout-item-amt"> {` ${item.amount}`} </td>
-        </tr>
+          <td className="checkout-item-amt"> {item.itemsRate}.00 </td>
+        </tr> : ''
           return item1
       });
 
     return (
       <div>
         <Page>
+          <div className="gap"></div>
         <Row className="checkout-div">
           <Table responsive className="TableMainList">
             <tbody className="t-body">
@@ -187,7 +198,7 @@ class CheckoutPage extends React.Component {
             </Table>
             <div className="note-text-checkout">
               <FormGroup>
-              <Input component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
+              <Input type="textarea" rows="4" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Donâ€™ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
               </FormGroup>
             </div>
             <Table className="bill-amt">
@@ -195,7 +206,7 @@ class CheckoutPage extends React.Component {
                 <tr>
                   <td className="totaltext"> Total Bill </td> 
                   <td></td>
-                  <td className="totalamt"> {totalBill} </td>
+                  <td className="totalamt"> {totalBill}.00 </td>
                 </tr>
               </tbody>
             </Table>

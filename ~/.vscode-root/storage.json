@@ -2,6 +2,8 @@
     "telemetry.machineId": "4b9dcf2f1ef95c86e29bb0b681fe5f423ed82706e81a675487143967a7b31d2b",
     "openedPathsList": {
         "workspaces3": [
+            "file:///home/active35/Desktop/helius-app-5",
+            "file:///home/active35/Downloads",
             "file:///home/active35/Downloads/helius-app-5"
         ],
         "files2": []
@@ -49,7 +51,29 @@
                                     "id": "openRecentFolder",
                                     "uri": {
                                         "$mid": 1,
-                                        "fsPath": "/home/active35/Downloads/helius-app-5",
+                                        "fsPath": "/home/active35/Desktop/helius-app-5",
+                                        "external": "file:///home/active35/Desktop/helius-app-5",
+                                        "path": "/home/active35/Desktop/helius-app-5",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/active35/Desktop/helius-app-5"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/active35/Downloads",
+                                        "path": "/home/active35/Downloads",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/active35/Downloads"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
                                         "external": "file:///home/active35/Downloads/helius-app-5",
                                         "path": "/home/active35/Downloads/helius-app-5",
                                         "scheme": "file"
@@ -1376,5 +1400,5 @@
     },
     "theme": "vs-dark",
     "themeBackground": "#1e1e1e",
-    "pickerWorkingDir": "/home/active35/Downloads"
+    "pickerWorkingDir": "/home/active35/Desktop"
 }

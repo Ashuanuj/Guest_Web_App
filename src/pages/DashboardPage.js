@@ -13,17 +13,21 @@ import history from '../helper/history';
 
 class DashboardPage extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
+    // this.props.actions.handle_header([localStorage.getItem(' '), false]);
+    console.log('lokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+    this.props.actions.handle_header([`Welcome Mr. ${localStorage.getItem('guestName')}`,true]);
     this.props.actions.loadService();
-    this.props.actions.handle_header([localStorage.getItem(' '), false]);
   }
   handleClick = (id, serviceName, link) => {
+    if(serviceName == 'Front Office' || serviceName == 'All Day Dining')
     this.props.actions.handle_header([serviceName,true]);
     localStorage.setItem('serviceCategoryId', id)
     history.push(`/${link}`)
     }
   render(){
     const {props} = this;
+    console.log(props, 'uuuuuuuuuuuuuyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
     
     const services = props.requests && props.requests.map(request =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id,request.serviceName, request.link)}>
@@ -66,6 +70,7 @@ function mapStateToProps(state)
      return {
        // reducers function name and action name
           requests: state.dashboardServicesReducers.services,
+          services: state.gformReducers.services
      };
 }
 
