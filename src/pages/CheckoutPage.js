@@ -72,7 +72,11 @@ class CheckoutPage extends React.Component {
     this.props.actions.createRequest(_data);
     history.push("/requestmain");
     localStorage.removeItem('amount');
-    this.props.cartItems.forEach(item => localStorage.removeItem(item.id))
+    this.props.cartItems.forEach(item => {
+      localStorage.removeItem(item.id)
+      localStorage.removeItem(item.itemName)
+    })
+   localStorage.removeItem('cartCount')
   }
   
   handleAddItem(id) {

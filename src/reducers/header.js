@@ -1,4 +1,4 @@
-import { HANDLE_HEADER } from '../actions';
+import { HANDLE_HEADER, SET_COUNTER } from '../actions';
 import { setAuthData } from '../utility/auth'
 
 const initialState = {
@@ -19,7 +19,15 @@ export default function reducer(state = initialState, action) {
             return {
                 header:action.payload[0],
                 dashbaord:action.payload[1],
-                cart:enable
+                cart:enable,
+                
+            }
+        }
+
+        case SET_COUNTER: {
+            return {
+                ...state,
+                cartCount: localStorage.getItem('cartCount')
             }
         }
         default:
