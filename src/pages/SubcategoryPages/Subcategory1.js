@@ -25,8 +25,9 @@ class SubCategory1 extends Component {
     this.props.actions.handle_header(['Break Fast', true]);   
   }
 
-  handleAddItem(id) {
-    // this.props.actions.setCounter(); 
+  handleAddItem(id, e) {
+    e.preventDefault()
+    this.props.actions.setCounter(); 
     console.log('hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo' ,this.props.subcategory)
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
@@ -94,7 +95,7 @@ history.push('/checkout')
             </Media>
 
             <Media right>
-              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={() => this.handleAddItem(data.id)}>Add</Button>
+              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>Add</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
                 <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}> <MdRemove size={15}/></span>
                 <span className="count"><b>{data.selectedItems}</b></span>
@@ -108,6 +109,9 @@ history.push('/checkout')
     ));
     return (
       <div className='tabContent'>
+        <div style={{right: -100, bottom: 0, zIndex: -9999999, position: "absolute"}}>
+          <img src="../../components/assets/img/icons/cart.svg" />
+        </div>
         <Row className="ServicePageMain">
           {subCategoryitems}
         </Row>
