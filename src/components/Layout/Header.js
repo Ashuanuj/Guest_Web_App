@@ -13,7 +13,6 @@ import componentImg from '../assets/img/bg/component.png'
 // import Cart from '../assets/img/icons/cart1.svg';
 
 import cartIcon from '../assets/img/icons/cart.svg';
-import Footer from './Footer';
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
@@ -23,7 +22,9 @@ import history from '../../helper/history';
 // import { CART_ITEMS } from '../../actions';
 
 const useStyles = makeStyles({
-  
+  // list: {
+  //   width: 250,
+  // },
   fullList: {
     width: 'auto',
   },
@@ -121,7 +122,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
       </List>
     </div>
     <div className="sidebar-footer">
-       <Footer/>
+      <p> Copyright Helius © 2019 </p>
     </div>
   </>
   );

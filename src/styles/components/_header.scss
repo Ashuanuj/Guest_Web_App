@@ -49,7 +49,15 @@
 .sidebar-footer{
   position: fixed;
   bottom: 0px; 
-  left: 100px; 
+  left: 76px; 
+  p{
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Neo_Sans_Pro';
+    font-size:11px;
+    margin-bottom: 0px;
+  }
 }
 
 button:focus {
