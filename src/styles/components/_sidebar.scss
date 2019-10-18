@@ -142,7 +142,7 @@
     top:140px;
     left: 70px;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
     font-family: 'Neo_Sans';
   }
   .crossbtn{
@@ -184,12 +184,10 @@
   }
 }
 
-  .makeStyles-list-1 {
-    ul:hover{
+  .makeStyles-list-1 ul:hover{
       border: #107bd2 1px solid;
     }
-    width: 300px;
-  }
+ 
 }
 
 .MuiList-root {
@@ -251,4 +249,8 @@
 
 .MuiPaper-root .makeStyles-list-1 ul:hover{
   border: 0px !important;
+}
+
+.MuiDrawer-paper{
+ height: 110% !important;
 }

@@ -80,7 +80,6 @@ class CheckoutPage extends React.Component {
    localStorage.removeItem('cartCount')
    localStorage.removeItem('cart_details')
   }
-  
   handleAddItem(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
@@ -97,7 +96,7 @@ class CheckoutPage extends React.Component {
 
   onIncrement(id) {
     let index = cart_details.findIndex(item => item.id === id)
-    cart_details[index].selectedItems = cart_details[index].selectedItems+1//localStorage.getItem(id) != null ?  parseFloat(localStorage.getItem(id)) + 1 : parseFloat(cart_details[index].selectedItems) + 1
+    cart_details[index].selectedItems = parseFloat(cart_details[index].selectedItems)+1//localStorage.getItem(id) != null ?  parseFloat(localStorage.getItem(id)) + 1 : parseFloat(cart_details[index].selectedItems) + 1
     cart_details[index].itemsRate = cart_details[index].itemsRate + parseFloat(cart_details[index].rate)//localStorage.getItem('amount') != null ?parseFloat(localStorage.getItem('amount')) + parseFloat(cart_details[index].rate) : cart_details[index].itemsRate + parseFloat(cart_details[index].rate)
 
     this.setState({
@@ -118,7 +117,7 @@ class CheckoutPage extends React.Component {
       totalItems: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalRate - parseFloat(cart_details[index].rate) : 0
     })
-    cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? cart_details[index].selectedItems - 1 : 0
+    cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? parseFloat(cart_details[index].selectedItems) - 1 : 0
     cart_details[index].itemsRate = cart_details[index].selectedItems > 0 && cart_details[index].itemsRate > 0 ? cart_details[index].itemsRate - parseFloat(cart_details[index].rate) : 0
     cart_details[index].accept =  cart_details[index].selectedItems == 0 ? false : true
     localStorage.setItem(id, cart_details[index].selectedItems)
@@ -129,6 +128,7 @@ class CheckoutPage extends React.Component {
 
   render() {
     const { props } = this;
+    console.log(cart_details,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
     localStorage.setItem('cartcount',props.cartItems.length)
     localStorage.setItem('cart_details',JSON.stringify(cart_details))
     if(this.state.value==0){

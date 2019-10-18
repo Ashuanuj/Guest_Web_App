@@ -26,8 +26,9 @@ class SubCategory1 extends Component {
   }
 
   handleAddItem(id, e) {
-    e.preventDefault()
-   // this.props.actions.setCounter(); 
+    // e.preventDefault()
+    // this.props.actions.setCounter(); 
+    console.log('hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo' ,this.props.subcategory)
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
@@ -40,21 +41,56 @@ class SubCategory1 extends Component {
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
 
-    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null || localStorage.getItem(this.props.subcategory[index].Title) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
+    localStorage.getItem('totalItems') != null ? localStorage.setItem('totalItems', parseFloat(localStorage.getItem('totalItems'))+1):localStorage.setItem('totalItems',1);
     
-    localStorage.getItem(this.props.subcategory[index].Title) != null || localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
+    localStorage.getItem('totalRate') != null ? localStorage.setItem('totalRate', parseFloat(localStorage.getItem('totalRate'))+parseFloat(this.props.subcategory[index].rate)):localStorage.setItem('totalRate', this.props.subcategory[index].rate);
+    
+    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log() 
+    
+    localStorage.getItem(this.props.subcategory[index].Title) != null && localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
+
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) != null && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) !=0 ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))+1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 1)
+    
+    localStorage.getItem(this.props.subcategory[index].id) != null ? localStorage.setItem(this.props.subcategory[index].id, parseFloat(localStorage.getItem(this.props.subcategory[index].id))+1) : localStorage.setItem(this.props.subcategory[index].id, 1)
+    
+    this.props.actions.handle_header(['Break Fast',true])
   }
 
+  handleCartAdd = (index,[servicename, justify]) => {
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) + 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
+    this.props.actions.handle_header([servicename,justify])
+  }
+  
   onIncrement(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].selectedItems += 1
     this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
-
+    
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
+
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 && localStorage.getItem(`_${this.props.subcategory[index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
+
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? 
+    localStorage.setItem(`_${this.props.subcategory[index].Title}`, -1) 
+    : console.log()
+
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) != null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) !=0 ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))+1) : console.log()
+
+    localStorage.getItem('totalItems') != null ? localStorage.setItem('totalItems', parseFloat(localStorage.getItem('totalItems'))+1):localStorage.setItem('totalItems',localStorage.getItem('totalItems'));
+    
+    localStorage.getItem('totalRate') != null ? localStorage.setItem('totalRate', parseFloat(localStorage.getItem('totalRate'))+parseFloat(this.props.subcategory[index].rate)):localStorage.setItem('totalRate', localStorage.getItem('totalRate'));
+
+
+    localStorage.getItem(this.props.subcategory[index].id) != null ? localStorage.setItem(this.props.subcategory[index].id, parseFloat(localStorage.getItem(this.props.subcategory[index].id))+1) : localStorage.setItem(this.props.subcategory[index].id, 1)
+  }
+
+  handleCartSub = (index,[servicename, justify]) => {
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) - 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
+    this.props.actions.handle_header([servicename,justify])
   }
 
   onDecrement(id) {
@@ -64,9 +100,26 @@ class SubCategory1 extends Component {
       totalItems: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalRate - parseFloat(this.props.subcategory[index].rate) : this.state.totalRate
     })
+
+    localStorage.getItem('totalItems') != null && localStorage.getItem('totalItems') > 0 && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) > 0 ? localStorage.setItem('totalItems', parseFloat(localStorage.getItem('totalItems'))-1):localStorage.setItem('totalItems', localStorage.getItem('totalItems'));
+    
+    localStorage.getItem('totalRate') != null && localStorage.getItem('totalRate') > 0 && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) > 0 ? localStorage.setItem('totalRate', parseFloat(localStorage.getItem('totalRate'))-parseFloat(this.props.subcategory[index].rate)):localStorage.setItem('totalRate', localStorage.getItem('totalRate'));
+    
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) 
+    > 0 && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) 
+    != null ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))-1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 0)
+
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 && localStorage.getItem(`_${this.props.subcategory[index].Title}`) != 0 ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
+
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? 
+    localStorage.setItem(`_${this.props.subcategory[index].Title}`, 0) 
+    : console.log()
+
+    localStorage.getItem(this.props.subcategory[index].id) != null && localStorage.getItem(this.props.subcategory[index].id) > 0 ? localStorage.setItem(this.props.subcategory[index].id, parseFloat(this.props.subcategory[index].id)-1) : localStorage.setItem(this.props.subcategory[index].id, localStorage.getItem(this.props.subcategory[index].id))
+
     this.props.subcategory[index].selectedItems = this.props.subcategory[index].selectedItems > 0 ? this.props.subcategory[index].selectedItems - 1 : 0
     this.props.subcategory[index].itemsRate = this.props.subcategory[index].selectedItems > 0 && this.props.subcategory[index].itemsRate > 0 ? this.props.subcategory[index].itemsRate - parseFloat(this.props.subcategory[index].rate) : this.props.subcategory[index].itemsRate
-    this.props.subcategory[index].accept =  this.props.subcategory[index].selectedItems == 0 ? false : true
+    this.props.subcategory[index].accept =  this.props.subcategory[index].selectedItems == 0 ? false : true; 
   }
 
   handleContinue(e) {
@@ -74,24 +127,31 @@ class SubCategory1 extends Component {
     console.log(this.props.subcategory,'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
 this.props.actions.storeOrder(this.props.subcategory)
 this.props.actions.handle_header(['Checkout',true])
+
 history.push('/checkout')
-       if(localStorage.getItem('cart_details')==null){
-         localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
-       }else{
-         let object=JSON.parse(localStorage.getItem('cart_details'))
-         object.forEach(cart => {
-           this.props.subcategory.forEach(obj=>{
-            if(obj.id==cart.id){
-              obj.selectedItems=obj.selectedItems+cart.selectedItems
-              obj.itemsRate=obj.itemsRate+cart.itemsRate
-             // cart.accept=true;
-            }
-          })
-        });
-        console.log(this.props.subcategory,';;;;;;;;;;;;;;;;;;;;;;;;;;')
-        localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
-       }
+this.props.subcategory&& this.props.subcategory.forEach(item => {
+  item.accept = localStorage.getItem(`${item.Title}_${item.id}`) != null && localStorage.getItem(`${item.Title}_${item.id}`) != 0 ? true : false;
+  item.selectedItems = localStorage.getItem(`${item.Title}_${item.id}`) != null ? localStorage.getItem(`${item.Title}_${item.id}`) : 0;
+  item.itemsRate = localStorage.getItem(`${item.Title}_${item.id}`) != null ? parseFloat(localStorage.getItem(`${item.Title}_${item.id}`))*item.rate : 0;
+})
+
+if(localStorage.getItem('cart_details')==null){
+  localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
+  }else{
+  let object=JSON.parse(localStorage.getItem('cart_details'))
+  object.forEach(cart => {
+  this.props.subcategory.forEach(obj=>{
+  if(obj.id==cart.id){
+  obj.selectedItems=obj.selectedItems+cart.selectedItems
+  obj.itemsRate=obj.itemsRate+cart.itemsRate
+  // cart.accept=true;
   }
+  })
+  });
+  console.log(this.props.subcategory,'lllllljjjjjjjjjjjjjjj')
+  localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
+  }
+}
 
   render() {
     const { props } = this;
@@ -111,11 +171,13 @@ history.push('/checkout')
             </Media>
 
             <Media right>
-              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>Add</Button>
+              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>{localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) != 0 ? localStorage.getItem(`${data.Title}_${data.id}`) : 'Add'}</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
-                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}> <MdRemove size={15}/></span>
-                <span className="count"><b>{data.selectedItems}</b></span>
-                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}><MdAdd size={15}/></span>
+                <span className="minus" style={{display: localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) >= 0 ? 'block' : 'none'}} onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}><MdRemove size={15}/></span>
+                                
+                <span className="count"><b>{localStorage.getItem(`${data.Title}_${data.id}`) != null || localStorage.getItem(`${data.Title}_${data.id}`) != 0 ? localStorage.getItem(`${data.Title}_${data.id}`) : data.selectedItems}</b></span>
+                
+                <span className="plus" style={{display: localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) >= 0 ? 'block' : 'none'}} onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}><MdAdd size={15}/></span>
               </div>
             </Media>
 
@@ -132,7 +194,7 @@ history.push('/checkout')
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {` ${this.state.totalItems} Items | ${this.state.totalRate}.00`}</span>
+          <span> {localStorage.getItem('totalItems') != null ? `${localStorage.getItem('totalItems')} Items | ${localStorage.getItem('totalRate')}.00` :`${this.state.totalItems} Items | ${this.state.totalRate}.00`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"

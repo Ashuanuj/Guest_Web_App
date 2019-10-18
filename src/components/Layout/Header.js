@@ -13,7 +13,6 @@ import componentImg from '../assets/img/bg/component.png'
 // import Cart from '../assets/img/icons/cart1.svg';
 
 import cartIcon from '../assets/img/icons/cart.svg';
-import Footer from './Footer';
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
@@ -23,20 +22,20 @@ import history from '../../helper/history';
 // import { CART_ITEMS } from '../../actions';
 
 const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
+  // list: {
+  //   width: 250,
+  // },
   fullList: {
     width: 'auto',
   },
 });
 export default function Header(props) {
 console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooopppppppppppppppppppppppppppppppppppppppppppppppppppppppppp')
-  let { header, dashboard ,cart,count} = useSelector(state => ({
+  let { header, dashboard ,cart, cartCount} = useSelector(state => ({
     header: state.header.header,
     dashboard: state.header.dashbaord,
     cart:state.header.cart,
-    count:state.header.cartCount 
+    cartCount: state.header.cartCount 
   }),shallowEqual)
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -124,7 +123,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
       </List>
     </div>
     <div className="sidebar-footer">
-       <Footer/>
+      <p> Copyright Helius Â© 2019 </p>
     </div>
   </>
   );
@@ -162,7 +161,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
               />
 
               <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '120%', position: 'absolute', textAlign: 'center' }}>
-              {count}
+              {localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? 0 : localStorage.getItem('cartCount')}
               </span>
             </div>
             
@@ -179,4 +178,3 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
     </div>
   );
 }
-
