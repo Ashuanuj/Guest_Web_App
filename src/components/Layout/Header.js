@@ -23,9 +23,7 @@ import history from '../../helper/history';
 // import { CART_ITEMS } from '../../actions';
 
 const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
+  
   fullList: {
     width: 'auto',
   },
