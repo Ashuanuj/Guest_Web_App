@@ -19,14 +19,13 @@ import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
 import TextInput from '../components/forms/TextInput';
 import { Field,reduxForm } from 'redux-form';
-
+import patternImg from "../components/assets/img/icons/linear-design.png"
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import history from "../helper/history";
 
 import { createRequest, getCartItems } from "../actions";
-import TextInput from "../components/forms/TextInput";
 
 let totalBill = 0;
 class CheckoutPage extends React.Component {
@@ -98,6 +97,17 @@ class CheckoutPage extends React.Component {
       totalRate: this.state.totalRate + parseFloat(this.props.cartItems[index].rate)
     })
   }
+  // onIncrement(id) {
+  //   let index = this.props.subcategory.findIndex(item => item.id === id)
+  //   this.props.subcategory[index].selectedItems += 1
+  //   this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
+
+  //   this.setState({
+  //     [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
+  //     totalItems: this.state.totalItems + 1,
+  //     totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
+  //   })
+  // }
 
   onDecrement(id) {
     let index = this.props.cartItems.findIndex(item => item.id === id)
@@ -115,13 +125,7 @@ class CheckoutPage extends React.Component {
 
   render() {
     const { props } = this;
-    localStorage.setItem('cartcount',props.cartItems.length)
-    if(this.state.value==0){
-      localStorage.setItem('instructions','')
-      //localStorage.setItem('cartcount',0)
-    }
-    console.log(this.props, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyuuuuuuuuuuuuuuuuuuuuuuuuuuu')
-    //setAuthData(this.props.)
+  
     totalBill=0
 
     let item = props.cartItems && props.cartItems.map((item, index) => {

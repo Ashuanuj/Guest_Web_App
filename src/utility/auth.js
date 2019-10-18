@@ -3,6 +3,7 @@ import { Base64 } from 'js-base64';
 import jwt_decode from 'jwt-decode';
 
 export const setAuthData = (data) => new Promise((resolve, reject) => {
+    
     console.log(data,'lllllllllllllllllll')
     if (!data.guest || !data.authorization || !data.authorization.token || !data.guest.id)
     {

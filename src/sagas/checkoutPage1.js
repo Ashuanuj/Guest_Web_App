@@ -13,7 +13,10 @@ export function* createRequest(data) {
             instruction:localStorage.getItem('instructions')
         }
         console.log(_data,'dessssssssssssssss')
-        localStorage.setItem('cartcount',0)
+        localStorage.setItem('cartCount',0)
+        localStorage.removeItem('Idly Vada')
+        localStorage.removeItem('Bread Toast')
+        localStorage.removeItem('Omelette')
         const response = yield call(api.requestCreate, _data);
         yield put(actions.checkout.create.success(response));
        
