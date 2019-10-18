@@ -24,9 +24,14 @@ import moment from 'moment';
 //   };
 let a
 class RequestForm extends React.Component{
-
-  changeData = () => {
+ state ={
+   error: this.props.error
+ }
+  changeData = (errorId) => {
     this.props.actions.handleError()
+    this.setState({
+      [`error${errorId}`]: this.props.error
+    })
     // this.props.onChange()
   }
   
@@ -43,16 +48,16 @@ class RequestForm extends React.Component{
     <Col className="form-main">
       <Form onSubmit={handleSubmit} autoComplete="off">
 
-        <FormGroup style={{border:this.props.values.name && !this.props.error ? '' :a==true?'1px solid red':
+        <FormGroup style={{border:this.props.values.name && !this.state[`error${1}`] ? '' :a==true?'1px solid red':
           this.props.values.name && this.props.error && (this.props.error.customMessage.indexOf('Guest') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true)  
           ?'1px solid red':  ''}} >
-          <Field component={TextInput} name="name" label="Name" onChange={this.changeData} />
+          <Field component={TextInput} name="name" label="Name" onChange={()=>this.changeData(1)} />
         </FormGroup>
 
-        <FormGroup style={{border:this.props.values.roomno && !this.props.error ? '' : a==true?'1px solid red':
+        <FormGroup style={{border:this.props.values.roomno && !this.state[`error${1}`] ? '' : a==true?'1px solid red':
           this.props.error && (this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true) 
           ?'1px solid red':''}}>
-          <Field component={TextInput} name="roomno" label="Room No." onChange={this.changeData} />
+          <Field component={TextInput} name="roomno" label="Room No." onChange={()=>this.changeData(2)} />
         </FormGroup>
         
         <FormGroup style={{border:this.props.values.dob && !this.props.error ? '' : a==true?'1px solid red':
