@@ -140,15 +140,9 @@ class CheckoutPage extends React.Component {
           </td>
           <td>
             <div className="qtybtn">
-<<<<<<< HEAD
               <span className="minus" onClick={() => this.onDecrement(item.id)}> <MdRemove size={15}/> </span>
               <span className="count"> {item.quantity} </span>
               <span className="plus" onClick={() => this.onIncrement(item.id)}><MdAdd size={15}/></span>
-=======
-              <span className="minus" onClick={() => this.onDecrement(item.id)}> - </span>
-              <span className="count"> {localStorage.getItem(item.id) !== null ? localStorage.getItem(item.id) : item.quantity} </span>
-              <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
->>>>>>> 1f45c85bc7ef70a01d80d72bcede22f3e1264979
             </div>
           </td>
           <td className="checkout-item-amt"> {localStorage.getItem(item.id) !== null ? `$ ${localStorage.getItem(item.id)* item.rate}` : `$ ${item.amount}`} </td>
