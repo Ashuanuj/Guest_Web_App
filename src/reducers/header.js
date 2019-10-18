@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
                 header:action.payload[0],
                 dashbaord:action.payload[1],
                 cart:enable,
-                
+                cartCount: localStorage.getItem('cartCount')
             }
         }
 

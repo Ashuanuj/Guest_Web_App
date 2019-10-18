@@ -26,8 +26,8 @@ class SubCategory1 extends Component {
   }
 
   handleAddItem(id, e) {
-    e.preventDefault()
-    this.props.actions.setCounter(); 
+    // e.preventDefault()
+    // this.props.actions.setCounter(); 
     console.log('hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo' ,this.props.subcategory)
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
@@ -40,34 +40,44 @@ class SubCategory1 extends Component {
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
-
-    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].Title) == null || localStorage.getItem(this.props.subcategory[index].Title) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log('hiiiiiiiiii') 
     
-    localStorage.getItem(this.props.subcategory[index].Title) != null || localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
-  }
+    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index][`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`]) == null || localStorage.getItem(this.props.subcategory[index][`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`]) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log() 
+    
+    localStorage.getItem(this.props.subcategory[index].Title) != null && localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
 
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) != null && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) !=0 ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))+1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 1)
+    this.props.actions.handle_header(['Break Fast',true])
+  }
+  
   onIncrement(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].selectedItems += 1
     this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
-
+    
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
+    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) != null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) !=0 ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))+1) : console.log()
   }
 
   onDecrement(id) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
+    console.log(this.props.subcategory[index].selectedItems, 'pppppppppppppppppppppppppppppoooooooooooooooooooooooottttttttttttttttrrrrrrrrrrrrrrrraaaaaaaa')
     this.setState({
       [`selectedItem${id}`]: this.state[`selectedItem${id}`] = this.props.subcategory[index].selectedItems,
       totalItems: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && this.props.subcategory[index].selectedItems > 0 ? this.state.totalRate - parseFloat(this.props.subcategory[index].rate) : this.state.totalRate
     })
+    
+    this.props.subcategory[index].selectedItems > 0 && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) 
+    > 0 && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) 
+    != null ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))-1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 0)
+
     this.props.subcategory[index].selectedItems = this.props.subcategory[index].selectedItems > 0 ? this.props.subcategory[index].selectedItems - 1 : 0
     this.props.subcategory[index].itemsRate = this.props.subcategory[index].selectedItems > 0 && this.props.subcategory[index].itemsRate > 0 ? this.props.subcategory[index].itemsRate - parseFloat(this.props.subcategory[index].rate) : this.props.subcategory[index].itemsRate
-    this.props.subcategory[index].accept =  this.props.subcategory[index].selectedItems == 0 ? false : true
+    this.props.subcategory[index].accept =  this.props.subcategory[index].selectedItems == 0 ? false : true;
   }
 
   handleContinue(e) {
@@ -95,11 +105,13 @@ history.push('/checkout')
             </Media>
 
             <Media right>
-              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>Add</Button>
+              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>{localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) != 0 ? localStorage.getItem(`${data.Title}_${data.id}`) : 'Add'}</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
-                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}> <MdRemove size={15}/></span>
-                <span className="count"><b>{data.selectedItems}</b></span>
-                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}><MdAdd size={15}/></span>
+                <span className="minus" style={{display: localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) >= 0 ? 'block' : 'none'}} onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}><MdRemove size={15}/></span>
+                                
+                <span className="count"><b>{localStorage.getItem(`${data.Title}_${data.id}`) != null || localStorage.getItem(`${data.Title}_${data.id}`) != 0 ? localStorage.getItem(`${data.Title}_${data.id}`) : data.selectedItems}</b></span>
+                
+                <span className="plus" style={{display: localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) >= 0 ? 'block' : 'none'}} onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}><MdAdd size={15}/></span>
               </div>
             </Media>
 
@@ -116,7 +128,7 @@ history.push('/checkout')
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {`$ ${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
+          <span> {` ${this.state.totalItems} Items | $ ${this.state.totalRate}`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"

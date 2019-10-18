@@ -32,10 +32,11 @@ const useStyles = makeStyles({
 });
 export default function Header(props) {
 console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooopppppppppppppppppppppppppppppppppppppppppppppppppppppppppp')
-  let { header, dashboard ,cart} = useSelector(state => ({
+  let { header, dashboard ,cart, cartCount} = useSelector(state => ({
     header: state.header.header,
     dashboard: state.header.dashbaord,
-    cart:state.header.cart 
+    cart:state.header.cart,
+    cartCount: state.header.cartCount 
   }),shallowEqual)
   const classes = useStyles();
   const [state, setState] = React.useState({
