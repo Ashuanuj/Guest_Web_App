@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, Media, Button } from 'reactstrap';
 // import{Link} from 'react-router-dom';
-
+import {MdAdd,MdRemove} from 'react-icons/md'; 
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -97,9 +97,9 @@ history.push('/checkout')
             <Media right>
               <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>Add</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
-                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}>-</span>
+                <span className="minus" onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}> <MdRemove size={15}/></span>
                 <span className="count"><b>{data.selectedItems}</b></span>
-                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}>+</span>
+                <span className="plus" onClick={() => this.onIncrement(data.id)} style={{userSelect:"none"}}><MdAdd size={15}/></span>
               </div>
             </Media>
 

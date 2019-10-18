@@ -20,7 +20,7 @@ import { Nav,Navbar,NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import {shallowEqual,  useSelector } from "react-redux";
 import history from '../../helper/history';
-import { CART_ITEMS } from '../../actions';
+// import { CART_ITEMS } from '../../actions';
 
 const useStyles = makeStyles({
   list: {
@@ -56,7 +56,6 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
     localStorage.removeItem('guestId')
     localStorage.removeItem('serviceCategoryId')
     localStorage.removeItem('room_no')
-    // localStorage.removeItem('dashboard')
     localStorage.removeItem('instructions')
     localStorage.removeItem('dashboard')
     localStorage.removeItem('serviceSubCategoryId')
@@ -160,7 +159,8 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
                   style={{position: 'relative', display: 'inline-block'}}
                   alt="cartimg"   
               />
-              <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '80%', position: 'absolute', textAlign: 'center' }}>
+
+              <span style={{borderRadius: '50%', backgroundColor: 'white', color: 'black', height: '62%', width: '230%', fontSize: '0.7em', padding: '10% 20%', left: '-3%', top: '40%', left: '120%', position: 'absolute', textAlign: 'center' }}>
               {localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? 0 : localStorage.getItem('cartCount')}
               </span>
             </div>

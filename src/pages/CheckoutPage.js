@@ -14,7 +14,8 @@ import {
   Input
 } from "reactstrap";
 import Page from "../components/Page";
-//import setAuthData from "../utility/auth";
+import {MdAdd,MdRemove} from 'react-icons/md'; 
+
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
 import TextInput from '../components/forms/TextInput';
@@ -143,9 +144,9 @@ class CheckoutPage extends React.Component {
           </td>
           <td>
             <div className="qtybtn">
-              <span className="minus" onClick={() => this.onDecrement(item.id)}> - </span>
-              <span className="count"> {localStorage.getItem(item.id) !== null ? localStorage.getItem(item.id) : item.quantity} </span>
-              <span className="plus" onClick={() => this.onIncrement(item.id)}> + </span>
+              <span className="minus" onClick={() => this.onDecrement(item.id)}> <MdRemove size={15}/> </span>
+              <span className="count"> {item.quantity} </span>
+              <span className="plus" onClick={() => this.onIncrement(item.id)}><MdAdd size={15}/></span>
             </div>
           </td>
           <td className="checkout-item-amt"> {localStorage.getItem(item.id) !== null ? `$ ${localStorage.getItem(item.id)* item.rate}` : `$ ${item.amount}`} </td>
@@ -156,6 +157,7 @@ class CheckoutPage extends React.Component {
     return (
       <div>
         <Page>
+          <div className="gap"></div>
         <Row className="checkout-div">
           <Table responsive className="TableMainList">
             <tbody className="t-body">
@@ -191,7 +193,7 @@ class CheckoutPage extends React.Component {
             </Table>
             <div className="note-text-checkout">
               <FormGroup>
-              <Input component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
+              <Input type="textarea" rows="4" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’ t ring the doorbell"  onChange={this.onChange.bind(this)}  />
               </FormGroup>
             </div>
             <Table className="bill-amt">
