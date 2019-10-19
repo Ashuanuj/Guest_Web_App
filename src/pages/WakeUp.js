@@ -42,7 +42,7 @@ class WakeUp extends React.Component{
                 </Table>
                 <div className="note-text"> 
                  <FormGroup>
-                     <Input type="textarea" rows="4" component={TextInput} placeholder="E.g. Wake me up at 7am sharp tomorrow" />
+                     <Input type="textarea" rows="3" component={TextInput} placeholder="E.g. Wake me up at 7am sharp tomorrow" />
                  </FormGroup>
                 </div>
                 <div className="WakeupRequestBtn-div" >

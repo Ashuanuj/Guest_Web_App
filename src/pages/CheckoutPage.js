@@ -160,6 +160,7 @@ class CheckoutPage extends React.Component {
       });
 
     return (
+      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 0 ? <div></div>:
       <div>
         <Page>
           <div className="gap"></div>
@@ -198,7 +199,7 @@ class CheckoutPage extends React.Component {
             </Table>
             <div className="note-text-checkout">
               <FormGroup>
-              <Input type="textarea" rows="4" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’t ring the doorbell"  onChange={this.onChange.bind(this)}  />
+              <Input type="textarea" rows="3" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’t ring the doorbell"  onChange={this.onChange.bind(this)}  />
               </FormGroup>
             </div>
             <Table className="bill-amt">

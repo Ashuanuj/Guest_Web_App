@@ -28,7 +28,6 @@ class SubCategory1 extends Component {
   handleAddItem(id, e) {
     // e.preventDefault()
     // this.props.actions.setCounter(); 
-    console.log('hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo' ,this.props.subcategory)
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
@@ -134,6 +133,8 @@ this.props.subcategory&& this.props.subcategory.forEach(item => {
   item.itemsRate = localStorage.getItem(`${item.Title}_${item.id}`) != null ? parseFloat(localStorage.getItem(`${item.Title}_${item.id}`))*item.rate : 0;
   localStorage.removeItem(`${item.Title}_${item.id}`)
 })
+localStorage.removeItem('totalRate')
+localStorage.removeItem('totalItems')
 
 if(localStorage.getItem('cart_details')==null){
   localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
