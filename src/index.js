@@ -9,12 +9,12 @@ import  configureStore  from './helper/store';
 // import 'core-js/es6/'; 
 // import 'raf/polyfill';
 
-import App from './App';
+import App from './App1';
 
 const store = configureStore({});
 console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttttt')
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, 
+    // <Provider store={store}>
+        <App />,
+    // </Provider>, 
 document.getElementById('root'));
