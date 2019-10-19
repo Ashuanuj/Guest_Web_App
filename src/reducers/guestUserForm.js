@@ -22,7 +22,7 @@ export default function reducer(state = initialState, action) {
             case HANDLE_ERROR: {
                 return {
                     ...state,
-                    error: undefined
+                    error_1: undefined
                 }
             }
         case LOG_IN.FAILURE:

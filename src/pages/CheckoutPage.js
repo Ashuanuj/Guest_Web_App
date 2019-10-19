@@ -81,10 +81,10 @@ class CheckoutPage extends React.Component {
    localStorage.removeItem('cart_details')
   }
   handleAddItem(id) {
-    let index = this.props.subcategory.findIndex(item => item.id === id)
-    this.props.subcategory[index].accept = true
-    this.props.subcategory[index].selectedItems += 1
-    this.props.subcategory[index].itemsRate += parseFloat(this.props.cartItems[index].rate)
+    let index = cart_details.findIndex(item => item.id === id)
+    cart_details[index].accept = true
+    cart_details[index].selectedItems += 1
+    cart_details[index].itemsRate += parseFloat(this.props.cartItems[index].rate)
     
     this.setState({
       [`add${id}`]: this.state[`add${id}`] == undefined ? this.state[`add${id}`] = true : this.state[`add${id}`] == true ? this.state[`add${id}`] = false : this.state[`add${id}`] == true,
@@ -94,6 +94,11 @@ class CheckoutPage extends React.Component {
     })
   }
 
+  handleCartAdd = (index,[servicename, justify]) => {
+    cart_details[index].selectedItems == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) + 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
+    // this.props.actions.handle_header([servicename,justify])
+  }
+  
   onIncrement(id) {
     let index = cart_details.findIndex(item => item.id === id)
     cart_details[index].selectedItems = parseFloat(cart_details[index].selectedItems)+1//localStorage.getItem(id) != null ?  parseFloat(localStorage.getItem(id)) + 1 : parseFloat(cart_details[index].selectedItems) + 1
@@ -104,9 +109,22 @@ class CheckoutPage extends React.Component {
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(cart_details[index].rate)
     });
+
+    localStorage.getItem(`${cart_details[index][index].Title}_${cart_details[index][index].id}`) == 0 && localStorage.getItem(`_${cart_details[index][index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
+
+    localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
+    localStorage.setItem(`_${cart_details[index].Title}`, -1) 
+    : console.log()
+
     localStorage.setItem(id, cart_details[index].selectedItems)
     localStorage.setItem('amount', cart_details[index].itemsRate)
  console.log(cart_details[index])
+  }
+
+  handleCartSub = (index,[servicename, justify]) => {
+    console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkoooooooooooooooooooooooiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+    cart_details[index].selectedItems == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) - 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
+    // this.props.actions.handle_header([servicename,justify])
   }
 
   onDecrement(id) {
@@ -117,8 +135,18 @@ class CheckoutPage extends React.Component {
       totalItems: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalRate - parseFloat(cart_details[index].rate) : 0
     })
+
+
+
     cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? parseFloat(cart_details[index].selectedItems) - 1 : 0
     cart_details[index].itemsRate = cart_details[index].selectedItems > 0 && cart_details[index].itemsRate > 0 ? cart_details[index].itemsRate - parseFloat(cart_details[index].rate) : 0
+
+    cart_details[index].selectedItems == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != 0 ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
+
+    localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
+    localStorage.setItem(`_${cart_details[index].Title}`, 0) 
+    : console.log()
+
     cart_details[index].accept =  cart_details[index].selectedItems == 0 ? false : true
     localStorage.setItem(id, cart_details[index].selectedItems)
     // localStorage.setItem(cart_details[index].itemName, cart_details[index].selectedItems)

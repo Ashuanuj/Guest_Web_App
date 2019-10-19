@@ -44,7 +44,7 @@ class SubCategory1 extends Component {
     
     localStorage.getItem('totalRate') != null ? localStorage.setItem('totalRate', parseFloat(localStorage.getItem('totalRate'))+parseFloat(this.props.subcategory[index].rate)):localStorage.setItem('totalRate', this.props.subcategory[index].rate);
     
-    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? localStorage.setItem('cartCount', 1) : localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log() 
+    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 && (localStorage.getItem('totalItems') == null || localStorage.getItem('totalItems') == 0) ? localStorage.setItem('cartCount', 1) : localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log() 
     
     localStorage.getItem(this.props.subcategory[index].Title) != null && localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
 
@@ -133,24 +133,25 @@ this.props.subcategory&& this.props.subcategory.forEach(item => {
   item.itemsRate = localStorage.getItem(`${item.Title}_${item.id}`) != null ? parseFloat(localStorage.getItem(`${item.Title}_${item.id}`))*item.rate : 0;
   localStorage.removeItem(`${item.Title}_${item.id}`)
 })
-localStorage.removeItem('totalRate')
-localStorage.removeItem('totalItems')
+console.log(this.props.subcategory, 'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
 
 if(localStorage.getItem('cart_details')==null){
   localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
-  }else{
+}else{
   let object=JSON.parse(localStorage.getItem('cart_details'))
   object.forEach(cart => {
-  this.props.subcategory.forEach(obj=>{
-  if(obj.id==cart.id){
-  obj.selectedItems=obj.selectedItems+cart.selectedItems
-  obj.itemsRate=obj.itemsRate+cart.itemsRate
-  // cart.accept=true;
-  }
-  })
+    this.props.subcategory.forEach(obj=>{
+      if(obj.id==cart.id){
+        obj.selectedItems=parseFloat(obj.selectedItems)+parseFloat(cart.selectedItems)
+        obj.itemsRate=parseFloat(obj.itemsRate)+parseFloat(cart.itemsRate)
+        // cart.accept=true;
+      }
+    })
   });
   localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
-  }
+}
+// localStorage.removeItem('totalRate')
+// localStorage.removeItem('totalItems')
 }
 
   render() {
