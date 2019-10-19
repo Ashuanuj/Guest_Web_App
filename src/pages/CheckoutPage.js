@@ -160,7 +160,7 @@ class CheckoutPage extends React.Component {
       });
 
     return (
-      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 0 ? <div></div>:
+      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' ? <div></div>:
       <div>
         <Page>
           <div className="gap"></div>
