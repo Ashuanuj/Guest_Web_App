@@ -128,11 +128,12 @@ this.props.actions.storeOrder(this.props.subcategory)
 this.props.actions.handle_header(['Checkout',true])
 
 history.push('/checkout')
-// this.props.subcategory&& this.props.subcategory.forEach(item => {
-//   item.accept = localStorage.getItem(`${item.Title}_${item.id}`) != null && localStorage.getItem(`${item.Title}_${item.id}`) != 0 ? true : false;
-//   item.selectedItems = localStorage.getItem(`${item.Title}_${item.id}`) != null ? localStorage.getItem(`${item.Title}_${item.id}`) : 0;
-//   item.itemsRate = localStorage.getItem(`${item.Title}_${item.id}`) != null ? parseFloat(localStorage.getItem(`${item.Title}_${item.id}`))*item.rate : 0;
-// })
+this.props.subcategory&& this.props.subcategory.forEach(item => {
+  item.accept = localStorage.getItem(`${item.Title}_${item.id}`) != null && localStorage.getItem(`${item.Title}_${item.id}`) != 0 ? true : false;
+  item.selectedItems = localStorage.getItem(`${item.Title}_${item.id}`) != null ? localStorage.getItem(`${item.Title}_${item.id}`) : 0;
+  item.itemsRate = localStorage.getItem(`${item.Title}_${item.id}`) != null ? parseFloat(localStorage.getItem(`${item.Title}_${item.id}`))*item.rate : 0;
+  localStorage.removeItem(`${item.Title}_${item.id}`)
+})
 
 if(localStorage.getItem('cart_details')==null){
   localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
@@ -165,7 +166,7 @@ if(localStorage.getItem('cart_details')==null){
                 <Media object src={data.icon} alt="image" />{data.Title}
               </Media>
               <span className="items-list"> {data.SubTitle} </span>
-              <b>{`${data.rate}`}</b>
+              <b>{`${data.rate}.00`}</b>
             </Media>
 
             <Media right>
@@ -192,12 +193,13 @@ if(localStorage.getItem('cart_details')==null){
           {subCategoryitems}
         </Row>
         <div className="addItem-div">
-          <span> {localStorage.getItem('totalItems') != null ? `${localStorage.getItem('totalItems')} Items | ${localStorage.getItem('totalRate')}` :`${this.state.totalItems} Items | ${this.state.totalRate}`}</span>
+          <span> {localStorage.getItem('totalItems') != null ? `${localStorage.getItem('totalItems')} Items | ${localStorage.getItem('totalRate')}.00` :`${this.state.totalItems} Items | ${this.state.totalRate}.00`}</span>
           {/* <Link to="/checkout"> */}
           <Button
             size="lg"
             className="ContinueBtn"
             onClick={(e) => this.handleContinue(e)}
+            disabled={localStorage.getItem('totalItems') == null || localStorage.getItem('totalItems') == 0 ? true : false}
           >
             Continue
             </Button>

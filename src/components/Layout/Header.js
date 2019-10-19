@@ -123,7 +123,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
       </List>
     </div>
     <div className="sidebar-footer">
-      <p> Copyright Helius © 2019 </p>
+      <p> Copyright Helius Â© 2019 </p>
     </div>
   </>
   );
@@ -178,4 +178,3 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
     </div>
   );
 }
-
