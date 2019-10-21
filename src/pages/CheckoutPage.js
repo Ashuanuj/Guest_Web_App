@@ -59,7 +59,7 @@ class CheckoutPage extends React.Component {
     if(localStorage.getItem('cart_details') == 'null' || localStorage.getItem('cart_details') == null) {
       localStorage.removeItem('cart_details');
       localStorage.removeItem('cartCount');
-      localStorage.setItem('cart_details', []);
+      // localStorage.setItem('cart_details', []);
     } 
     
 

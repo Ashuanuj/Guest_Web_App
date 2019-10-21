@@ -43,6 +43,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
   });
   const [cartItems, setCartItems] = React.useState(0);
   const handleClick=(link)=>{
+    if(localStorage.getItem('cartCount') != null || localStorage.getItem('cartCount') != 0)
     history.push(link)
   }
 
