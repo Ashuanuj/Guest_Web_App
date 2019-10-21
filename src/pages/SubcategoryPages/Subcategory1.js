@@ -150,8 +150,8 @@ if(localStorage.getItem('cart_details')==null){
   });
   localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
 }
-// localStorage.removeItem('totalRate')
-// localStorage.removeItem('totalItems')
+localStorage.removeItem('totalRate')
+localStorage.removeItem('totalItems')
 }
 
   render() {
