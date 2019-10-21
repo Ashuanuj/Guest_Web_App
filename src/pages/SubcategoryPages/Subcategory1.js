@@ -39,7 +39,7 @@ class SubCategory1 extends Component {
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
-    localStorage.getItem(`add${id}`) == 'null' || localStorage.getItem(`add${id}`) == null || localStorage.getItem(`add${id}`) == 0 ? localStorage.setItem(`add${id}`, true) : localStorage.setItem(`add${id}`, null)
+    // localStorage.getItem(`add${id}`) == 'null' || localStorage.getItem(`add${id}`) == null || localStorage.getItem(`add${id}`) == 0 ?)
 
     localStorage.getItem('totalItems') != null ? localStorage.setItem('totalItems', parseFloat(localStorage.getItem('totalItems'))+1):localStorage.setItem('totalItems',1);
     
@@ -52,7 +52,7 @@ class SubCategory1 extends Component {
     localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) != null && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) !=0 ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))+1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 1)
     
     localStorage.getItem(this.props.subcategory[index].id) != null ? localStorage.setItem(this.props.subcategory[index].id, parseFloat(localStorage.getItem(this.props.subcategory[index].id))+1) : localStorage.setItem(this.props.subcategory[index].id, 1)
-    
+    if(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) ==0 )
     this.props.actions.handle_header(['Break Fast',true])
   }
 
@@ -173,7 +173,7 @@ localStorage.removeItem('totalItems')
             </Media>
 
             <Media right>
-              <Button className="addbtn btn" style={{ display: localStorage.getItem(`add${data.id}`) == 'null' || localStorage.getItem(`add${data.id}`) == null || localStorage.getItem(`add${data.id}`) == 0  ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>{localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) != 0 ? localStorage.getItem(`${data.Title}_${data.id}`) : 'Add'}</Button>
+              <Button className="addbtn btn" style={{ display: !this.state[`add${data.id}`] ? "block" : "none" }} onClick={(e) => this.handleAddItem(data.id, e)}>{localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) != 0 ? localStorage.getItem(`${data.Title}_${data.id}`) : 'Add'}</Button>
               <div className="qtybtn" style={{ display: this.state[`add${data.id}`] ? "block" : "none" }}>
                 <span className="minus" style={{display: localStorage.getItem(`${data.Title}_${data.id}`) != null && localStorage.getItem(`${data.Title}_${data.id}`) >= 0 ? 'block' : 'none'}} onClick={() => this.onDecrement(data.id)} style={{userSelect:"none"}}><MdRemove size={15}/></span>
                                 
