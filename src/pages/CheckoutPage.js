@@ -227,11 +227,7 @@ class CheckoutPage extends React.Component {
             </Table>
             <div className="note-text-checkout">
               <FormGroup>
-<<<<<<< HEAD
-              <Input type="textarea" rows="4" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’t ring the doorbell"  onChange={this.onChange.bind(this)}  />
-=======
               <Input type="textarea" rows="3" component={TextInput} name="Instructions" placeholder="Instructions ? E.g.Don’t ring the doorbell"  onChange={this.onChange.bind(this)}  />
->>>>>>> 4526040bbee3746745364a60d1ac413b5f3aa4bd
               </FormGroup>
             </div>
             <Table className="bill-amt">
