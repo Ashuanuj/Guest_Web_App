@@ -27,8 +27,8 @@ class SubCategory1 extends Component {
 
   handleAddItem(id, e) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
-    if(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) ==0 )
-    this.props.actions.handle_header(['Break Fast',true])
+    if(localStorage.getItem(this.props.subcategory[index].id) == null || localStorage.getItem(this.props.subcategory[index].id) ==0 )
+      this.props.actions.handle_header(['Break Fast',true])
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
     this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
