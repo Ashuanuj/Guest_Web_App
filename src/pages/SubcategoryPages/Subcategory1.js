@@ -26,8 +26,8 @@ class SubCategory1 extends Component {
   }
 
   handleAddItem(id, e) {
-    // e.preventDefault()
-    // this.props.actions.setCounter(); 
+    if(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) ==0 )
+    this.props.actions.handle_header(['Break Fast',true])
     let index = this.props.subcategory.findIndex(item => item.id === id)
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
@@ -52,8 +52,7 @@ class SubCategory1 extends Component {
     localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) != null && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) !=0 ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))+1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 1)
     
     localStorage.getItem(this.props.subcategory[index].id) != null ? localStorage.setItem(this.props.subcategory[index].id, parseFloat(localStorage.getItem(this.props.subcategory[index].id))+1) : localStorage.setItem(this.props.subcategory[index].id, 1)
-    if(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) ==0 )
-    this.props.actions.handle_header(['Break Fast',true])
+    
   }
 
   handleCartAdd = (index,[servicename, justify]) => {

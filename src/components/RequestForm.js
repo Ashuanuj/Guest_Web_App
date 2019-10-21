@@ -59,7 +59,7 @@ class RequestForm extends React.Component{
         </FormGroup>
 
         <FormGroup style={{border:this.props.values.roomno && this.state[`error${2}`] == undefined ? '' : 
-        this.props.values.roomno && this.state[`error${2}`] != undefined ? '1px solid red' :
+        this.props.values.roomno && this.state[`error${2}`] == undefined ? '1px solid red' :
 
         !this.props.values.roomno && this.props.error && (this.props.error.customMessage && this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red' : a==true?'1px solid red': 
         
