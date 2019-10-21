@@ -12,8 +12,6 @@ export function* createRequest(data) {
             areaId: localStorage.getItem('areaId'),
             instruction:localStorage.getItem('instructions')
         }
-        console.log(_data,'dessssssssssssssss')
-        localStorage.setItem('cartcount',0)
         const response = yield call(api.requestCreate, _data);
         yield put(actions.checkout.create.success(response));
        

@@ -31,10 +31,11 @@ const useStyles = makeStyles({
 });
 export default function Header(props) {
 console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooopppppppppppppppppppppppppppppppppppppppppppppppppppppppppp')
-  let { header, dashboard ,cart} = useSelector(state => ({
+  let { header, dashboard ,cart, cartCount} = useSelector(state => ({
     header: state.header.header,
     dashboard: state.header.dashbaord,
-    cart:state.header.cart 
+    cart:state.header.cart,
+    cartCount: state.header.cartCount 
   }),shallowEqual)
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -122,7 +123,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
       </List>
     </div>
     <div className="sidebar-footer">
-      <p> Copyright Helius © 2019 </p>
+      <p> Copyright Helius Â© 2019 </p>
     </div>
   </>
   );
@@ -177,4 +178,3 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
     </div>
   );
 }
-

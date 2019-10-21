@@ -6,6 +6,7 @@ export function* loadRequests(data) {
     yield put(actions.guestRequests.request());
     try {
       const response = yield call(api.loadGuestRequests, data);
+      console.log(response,'guestttttttttttttttttttttttttttttttttttttttttttttttttttttttttt')
       yield put(actions.guestRequests.success(response));
     }
     catch ({ error }) {

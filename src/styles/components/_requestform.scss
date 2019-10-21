@@ -35,6 +35,11 @@
  input .form-control{
   margin: 0px !important; 
  }
+
+ .form-group input[value=""]:focus::before {
+  color: transparent;
+  content: "";
+  }
  
 .form-control{
   background-color:#1F3C53 !important;

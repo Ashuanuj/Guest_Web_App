@@ -55,7 +55,7 @@ class App extends React.Component {
                 <Route exact path="/frontoffice" component={FrontOffice} />
                 <Route exact path="/requestmain" component={RequestMain} />
               </MainLayout>
-            {/* )} */}
+            {/* )}  */}
           </Fullscreen>
         </Switch>
       </Router>
