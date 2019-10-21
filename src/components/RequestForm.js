@@ -64,8 +64,7 @@ class RequestForm extends React.Component{
         <FormGroup style={{border:this.props.values.dob && !this.props.error ? '' : a==true?'1px solid red':
           this.props.error && (this.props.error.customMessage.indexOf('Date') !== -1 || this.props.error.customMessage.indexOf('Invalid') !== -1 || a==true ||this.props.error.customMessage.indexOf('User') !== -1)
           ?'1px solid red':''}}>
-          <Field type="date" component={TextInput} name="dob" label="Date of Birth" value=""a />
-           {/* type="date" component={TextInput} name="dob" label="Date of Birth" value=""  />   */}
+          <Field type="date" component={TextInput} name="dob" label="Date of Birth" value="" />  
         
         {/* <Field
           name="dob"

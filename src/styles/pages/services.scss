@@ -293,6 +293,9 @@
         .form-group textarea::-webkit-scrollbar{
             background: transparent;
         }
+        .form-group textarea::-moz-scrollbar{
+            background: transparent;
+        }
     }
    
     .table{
@@ -441,6 +444,7 @@
             font-family: "Neo_Sans_Pro";
             padding-right: 10px;
             padding-top: 3px;
+            margin-bottom: 0px;
         }
         .custom-control-label {
         font-family: "Open_Sans";
@@ -807,11 +811,15 @@
             display: flex;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
+            -moz-overflow-scrolling:touch;
             overflow-x: auto;
             overflow-y: hidden;
             flex-wrap: nowrap;
             &::-webkit-scrollbar{
                 // display: none;
+                background: transparent; 
+            }
+            &::-moz-scrollbar{
                 background: transparent; 
             }
         }
