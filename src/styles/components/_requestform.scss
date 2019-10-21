@@ -13,6 +13,10 @@
     {
     color: #A2B0BA !important;
     }
+    input[type=text]::-moz-input-placeholder
+    {
+    color: #A2B0BA !important;
+    }
 
  .btn-secondary.disabled, .btn-secondary:disabled {
   background: #5FBAFE;
@@ -75,6 +79,10 @@
 
 .form-group input[value=""] {
   color: transparent;
+}
+.form-group input[value=""]:focus::before {
+  color: transparent;
+  content: "";
 }
 
 .form-group input[type=date]:focus {
