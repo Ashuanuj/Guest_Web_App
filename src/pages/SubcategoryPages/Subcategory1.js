@@ -135,7 +135,7 @@ this.props.subcategory&& this.props.subcategory.forEach(item => {
 })
 console.log(this.props.subcategory, 'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
 
-if(localStorage.getItem('cart_details')==null){
+if(localStorage.getItem('cart_details')==null || localStorage.getItem('cart_details')=='null'){
   localStorage.setItem('cart_details',JSON.stringify(this.props.subcategory))
 }else{
   let object=JSON.parse(localStorage.getItem('cart_details'))
