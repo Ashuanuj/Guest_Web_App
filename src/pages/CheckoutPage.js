@@ -56,6 +56,13 @@ class CheckoutPage extends React.Component {
   }
   componentWillMount() {
     // this.props.actions.getCartItems(localStorage.getItem('areaId'))
+    if(localStorage.getItem('cart_details') == 'null' || localStorage.getItem('cart_details') == null) {
+      localStorage.removeItem('cart_details');
+      localStorage.removeItem('cartCount');
+      localStorage.setItem('cart_details', []);
+    } 
+    
+
     cart_details=JSON.parse(localStorage.getItem('cart_details'))
   }
   
