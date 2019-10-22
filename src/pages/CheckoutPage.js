@@ -120,7 +120,7 @@ class CheckoutPage extends React.Component {
       totalRate: this.state.totalRate + parseFloat(cart_details[index].rate)
     });
 
-    localStorage.getItem(`${cart_details[index][index].Title}_${cart_details[index][index].id}`) == 0 && localStorage.getItem(`_${cart_details[index][index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
+    localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
 
     localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
     localStorage.setItem(`_${cart_details[index].Title}`, -1) 
@@ -201,7 +201,7 @@ class CheckoutPage extends React.Component {
       });
 
     return (
-      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' || localStorage.getItem('count') == cart_details.length ? <div></div>:
+      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' || localStorage.getItem('count') == cart_details.length || localStorage.getItem('cartCount') == 0 ? <div></div>:
       <div>
         <Page>
           <div className="gap"></div>
