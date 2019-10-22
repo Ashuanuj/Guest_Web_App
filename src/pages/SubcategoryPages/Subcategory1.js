@@ -155,6 +155,7 @@ if(localStorage.getItem('cart_details')==null || localStorage.getItem('cart_deta
 }
 localStorage.removeItem('totalRate')
 localStorage.removeItem('totalItems')
+localStorage.removeItem('count')
 }
 
   render() {
