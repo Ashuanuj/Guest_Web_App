@@ -47,7 +47,7 @@ class SubCategory1 extends Component {
     
     localStorage.getItem('totalRate') != null ? localStorage.setItem('totalRate', parseFloat(localStorage.getItem('totalRate'))+parseFloat(this.props.subcategory[index].rate)):localStorage.setItem('totalRate', this.props.subcategory[index].rate);
     
-    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 && (localStorage.getItem('totalItems') == null || localStorage.getItem('totalItems') == 0) ? localStorage.setItem('cartCount', 1) : localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == null || localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log() 
+    localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 && (localStorage.getItem('totalItems') == null || localStorage.getItem('totalItems') == 0) ? localStorage.setItem('cartCount', 1) : localStorage.getItem(this.props.subcategory[index].id) == null || localStorage.getItem(this.props.subcategory[index].id) == 0 ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount'))+1) : console.log() 
     
     localStorage.getItem(this.props.subcategory[index].Title) != null && localStorage.getItem(this.props.subcategory[index].Title) != 0 ? localStorage.setItem(this.props.subcategory[index].Title, parseFloat(localStorage.getItem(this.props.subcategory[index].Title))+1) : localStorage.setItem(this.props.subcategory[index].Title, 1)
 
