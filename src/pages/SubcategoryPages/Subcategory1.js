@@ -27,8 +27,10 @@ class SubCategory1 extends Component {
 
   handleAddItem(id, e) {
     let index = this.props.subcategory.findIndex(item => item.id === id)
-    if(localStorage.getItem(this.props.subcategory[index].id) == null || localStorage.getItem(this.props.subcategory[index].id) ==0 )
+    if(localStorage.getItem(this.props.subcategory[index].id) == null || localStorage.getItem(this.props.subcategory[index].id) ==0 ){
+    console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
       this.props.actions.handle_header(['Break Fast',true])
+    }
     this.props.subcategory[index].accept = true
     this.props.subcategory[index].selectedItems += 1
     this.props.subcategory[index].itemsRate += parseFloat(this.props.subcategory[index].rate)
@@ -56,7 +58,8 @@ class SubCategory1 extends Component {
   }
 
   handleCartAdd = (index,[servicename, justify]) => {
-    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) + 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
+    console.log('ooooooooooooooooooooooooooooooooooooooooooooo')
+    localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) + 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
     this.props.actions.handle_header([servicename,justify])
   }
   
@@ -71,9 +74,9 @@ class SubCategory1 extends Component {
       totalRate: this.state.totalRate + parseFloat(this.props.subcategory[index].rate)
     })
 
-    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 && localStorage.getItem(`_${this.props.subcategory[index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
+    localStorage.getItem(`_${this.props.subcategory[index].Title}`) != -1 && (localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
 
-    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? 
+    localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == 0 ? 
     localStorage.setItem(`_${this.props.subcategory[index].Title}`, -1) 
     : console.log()
 
@@ -108,9 +111,9 @@ class SubCategory1 extends Component {
     > 0 && localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) 
     != null ? localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, parseFloat(localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`))-1) : localStorage.setItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`, 0)
 
-    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 && localStorage.getItem(`_${this.props.subcategory[index].Title}`) != 0 ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
+    localStorage.getItem(`_${this.props.subcategory[index].Title}`) != 0 && (localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null)  ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
 
-    localStorage.getItem(`${this.props.subcategory[index].Title}_${this.props.subcategory[index].id}`) == 0 ? 
+    localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null ? 
     localStorage.setItem(`_${this.props.subcategory[index].Title}`, 0) 
     : console.log()
 

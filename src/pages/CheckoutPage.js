@@ -30,6 +30,8 @@ import { createRequest, getCartItems } from "../actions";
 
 let totalBill = 0;
 var cart_details
+let count = 0;
+localStorage.getItem('count') == null ? localStorage.setItem('count', 0) : console.log()
 class CheckoutPage extends React.Component {
   constructor(props) {
     super(props);
@@ -129,12 +131,14 @@ class CheckoutPage extends React.Component {
   }
 
   handleCartSub = (index,[servicename, justify]) => {
+    localStorage.getItem('count') > 0 ? localStorage.setItem('count', localStorage.getItem('count') - 1) : localStorage.setItem('count', localStorage.getItem('count'))
     console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkoooooooooooooooooooooooiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
     cart_details[index].selectedItems == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) - 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
     // this.props.actions.handle_header([servicename,justify])
   }
 
   onDecrement(id) {
+    
     let index = cart_details.findIndex(item => item.id === id)
     console.log(this.state.totalRate,';;;;;',cart_details[index].rate)
     this.setState({
@@ -163,8 +167,8 @@ class CheckoutPage extends React.Component {
 
   render() {
     const { props } = this;
-    console.log(cart_details,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
-    localStorage.setItem('cartcount',props.cartItems.length)
+    console.log(props.cartItems.length,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;', count)
+    // localStorage.setItem('cartcount',props.cartItems.length)
     localStorage.setItem('cart_details',JSON.stringify(cart_details))
     if(this.state.value==0){
       localStorage.setItem('instructions','')
@@ -195,7 +199,7 @@ class CheckoutPage extends React.Component {
       });
 
     return (
-      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' ? <div></div>:
+      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' || localStorage.getItem('count') == cart_details.length ? <div></div>:
       <div>
         <Page>
           <div className="gap"></div>
