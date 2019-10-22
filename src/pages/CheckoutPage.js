@@ -31,7 +31,7 @@ import { createRequest, getCartItems } from "../actions";
 let totalBill = 0;
 var cart_details
 let count = 0;
-localStorage.getItem('count') == null ? localStorage.setItem('count', 0) : console.log()
+localStorage.getItem('count') == null || localStorage.getItem('count') == 'null' ? localStorage.setItem('count', 0) : console.log()
 class CheckoutPage extends React.Component {
   constructor(props) {
     super(props);
@@ -131,7 +131,8 @@ class CheckoutPage extends React.Component {
   }
 
   handleCartSub = (index,[servicename, justify]) => {
-    localStorage.getItem('count') > 0 ? localStorage.setItem('count', localStorage.getItem('count') - 1) : localStorage.setItem('count', localStorage.getItem('count'))
+    // localStorage.getItem('count')  0 ? localStorage.setItem('count', localStorage.getItem('count') + 1) : localStorage.setItem('count', localStorage.getItem('count'))
+    localStorage.setItem('count', parseFloat(localStorage.getItem('count')) + 1)
     console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkoooooooooooooooooooooooiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
     cart_details[index].selectedItems == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) - 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
     // this.props.actions.handle_header([servicename,justify])
