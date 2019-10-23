@@ -60,6 +60,9 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
     localStorage.removeItem('instructions')
     localStorage.removeItem('dashboard')
     localStorage.removeItem('serviceSubCategoryId')
+    localStorage.removeItem('cart_details')
+    localStorage.removeItem('cartCount')
+    localStorage.clear();
   }
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {

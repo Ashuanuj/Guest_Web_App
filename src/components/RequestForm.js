@@ -50,29 +50,30 @@ class RequestForm extends React.Component{
     <Col className="form-main">
       <Form onSubmit={handleSubmit} autoComplete="off">
 
-        <FormGroup style={{border:this.props.values.name && this.state[`error${1}`] == undefined ? '' :a==true?'1px solid red':
-  
-          !this.props.values.roomno && this.props.error && (this.props.error.message.indexOf('Guest') !== -1 || this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red':
+        <FormGroup style={{border:!this.props.values.name && this.state[`error${1}`] != undefined ? '1px solid red':
+        this.props.values.name && this.props.error && this.props.error.message ? '' :
+          !this.props.values.name && this.props.error && (this.props.error.customMessage && this.props.error.customMessage.indexOf('Guest') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red':
 
-          this.props.values.name && this.props.error && (this.props.error.message.indexOf('Guest') !== -1 || this.props.error.message.indexOf('Invalid') !== -1 || a==true)  
+          this.props.values.name && this.props.error && (this.props.error.customMessage && this.props.error.customMessage.indexOf('Guest') !== -1 ||  this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true)  
           ?'1px solid red':  ''}} >
           <Field component={TextInput} name="name" label="Name" onChange={()=>this.changeData(1)} />
         </FormGroup>
 
-        <FormGroup style={{border:this.props.values.roomno && this.state[`error${2}`] == undefined ? '' : 
+        <FormGroup style={{border: !this.props.values.roomno && this.state[`error${2}`] != undefined ? '1px solid red' : 
+        this.props.values.roomno && this.props.error && this.props.error.message ? '' :
+        !this.props.values.roomno && this.props.error && (this.props.error.customMessage && this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red' : a==true?'1px solid red': 
         
-
-        !this.props.values.roomno && this.props.error &&  (this.props.error.message.indexOf('Room') !== -1 || this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red' : a==true?'1px solid red': 
+        this.props.values.roomno &&  this.props.error && (this.props.error.customMessage && this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red' :
         
-        this.props.values.roomno && (this.props.error.message.indexOf('Room') !== -1 || this.props.error.message.indexOf('Invalid') !== -1 || a==true) ? '1px solid red' :
-          this.props.error && (this.props.error.message.indexOf('Room') !== -1 || this.props.error.message.indexOf('Invalid') !== -1 || a==true) 
+        this.props.error && 
+          (this.props.error.customMessage && this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true) 
           ?'1px solid red':''}}>
           <Field component={NumberInput} name="roomno" label="Room No." onChange={()=>this.changeData(2)} />
         </FormGroup>
         
         <FormGroup style={{border:this.props.values.dob && !this.props.error ? '' : a==true?'1px solid red':
-
-          this.props.error && (this.props.error.message.indexOf('Date') !== -1 || this.props.error.message.indexOf('Invalid') !== -1 || a==true ||this.props.error.message.indexOf('User') !== -1)
+ this.props.error && 
+          (this.props.error.customMessage && this.props.error.customMessage.indexOf('Date') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true || this.props.error.customMessage.indexOf('User') !== -1)
           ?'1px solid red':''}}>
           <Field type="date" component={TextInput} name="dob" label="Date of Birth" value="" />  
         
