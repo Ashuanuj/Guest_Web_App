@@ -27,9 +27,83 @@ class App extends React.Component {
 
     this.state = {
       isFull: false
+
     };
+    this.currentPathname = null;
+    this.currentSearch = null;
+  }
+  componentWillMount() {
+    console.log("history--------->",history);
+    
+    // history.listen((newLocation, action) => {
+    // // if(localStorage.getItem('accessToken') != null)
+    // //   history.push(history.location.pathname)
+    // if (action === 'PUSH'  && (localStorage.getItem('accessToken') != null)) {
+    //   history.go(history.location.pathname)
+    // } else {
+    //   history.go("/");
+    // }
+    // });
+    // if(localStorage.getItem('accessToken') != null){
+    //   history.push(null, history.location.pathname);
+    //   window.onpopstate = function(event) {
+    //     history.go(1);
+    //   };
+    // }
+
+    // history.listen((newLocation, action) => {
+    //   if (action === "PUSH" && localStorage.getItem('accessToken') != null) {
+    //     if (
+    //       newLocation.pathname !== this.currentPathname ||
+    //       newLocation.search !== this.currentSearch 
+          
+    //     ) {
+    //       // Save new location
+    //       console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+    //       this.currentPathname = newLocation.pathname;
+    //       this.currentSearch = newLocation.search;
+
+    //       // Clone location object and push it to history
+    //       history.push({
+    //         pathname: newLocation.pathname,
+    //         search: newLocation.search
+    //       });
+    //     } 
+      // } else if(action !== 'PUSH') {
+      // if(
+      //   newLocation.pathname != this.currentPathname ||
+      //   newLocation.search != this.currentSearch 
+      //   ) {
+      //   console.log('ooooooooooooooooooooooooooo')
+      //   // history.go(history.location.pathname)
+      //   this.currentPathname = newLocation.pathname;
+      //     this.currentSearch = newLocation.search;
+
+      //     // Clone location object and push it to history
+      //     history.push({
+      //       pathname: newLocation.pathname,
+      //       search: newLocation.search
+      //     });
+      // }
+    // } else if(action==='POP' && localStorage.getItem('accessToken') != null) {
+    //   console.log(history,'1111111111111111111111')
+    //   history.replace({
+    //     pathname: newLocation.pathname,
+    //     search: newLocation.search
+    //   });
+      // history.go(1)
+      // history.push(history.location.pathname)
+    // }
+    //  else 
+    // history.push('/')
+    // });
+  }
+
+  handleBack = () => {
+    console.log(history, '1111111111111111111111111111111111111111111111111')
   }
   render() {
+    
     return (
       <Router history={history}>
         {/* routes={createRoutes}  */}
@@ -40,7 +114,7 @@ class App extends React.Component {
           >
             <Route exact path="/" component={RequestFormPage} />
             {/* {localStorage.getItem("accessToken") === null ? (
-              history.push("/")
+              history.push('/')
             ) : ( */}
               <MainLayout>
                 <Route exact path="/dashboard" component={DashboardPage} />
@@ -55,7 +129,7 @@ class App extends React.Component {
                 <Route exact path="/frontoffice" component={FrontOffice} />
                 <Route exact path="/requestmain" component={RequestMain} />
               </MainLayout>
-            {/* )}  */}
+             {/* )}  */}
           </Fullscreen>
         </Switch>
       </Router>

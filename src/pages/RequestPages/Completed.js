@@ -13,8 +13,23 @@ export default class Completed extends React.Component{
             <div>
                
                <Row className="ServicePageMainActive">
-            
-                </Row>
+               {/* <Col lg={4} md={6} sm={6} xs={12} className="mb-3">
+                    <Card className="requestTab-main">
+                    <Media className="mediaMain">
+                            <Media body>
+                            <Media heading>
+                            Order ID: 3458
+                            </Media>
+                            <span className="sub-title">23 Jun 2019 | 7:30am</span>
+                            <span className="sub-title3"> Closed </span>
+                            </Media>
+                        <Media right>
+                        <MdKeyboardArrowRight/>
+                        </Media>
+                    </Media>
+                    </Card> 
+                </Col> */}
+               </Row>
              
             </div>
         );

@@ -1001,3 +1001,14 @@
     //     }
     //  }
     // }
+
+    @media screen and (max-width:1920px) and (min-width:1080px){
+        .checkout-div .pattern-img {
+            margin-bottom: 54px;
+            width: 100%;
+            img{
+            height: 20px;
+            width: 100%;
+            }
+        }
+    }
