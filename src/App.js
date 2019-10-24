@@ -1,14 +1,10 @@
 import React from "react";
 import "./styles/myStyles.scss";
 
-//routes paths
-// import createRoutes from './routes';
-
 //Paths
 import { MainLayout } from "./components/Layout";
 import RequestFormPage from "./pages/RequestFormPage";
 import { Router, Route, Switch } from "react-router-dom";
-import { Redirect, IndexRedirect, IndexRoute } from "react-router";
 
 import DashboardPage from "./pages/DashboardPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -32,82 +28,28 @@ class App extends React.Component {
     this.currentPathname = null;
     this.currentSearch = null;
   }
-  componentWillMount() {
-    console.log("history--------->",history);
-    
-    // history.listen((newLocation, action) => {
-    // // if(localStorage.getItem('accessToken') != null)
-    // //   history.push(history.location.pathname)
-    // if (action === 'PUSH'  && (localStorage.getItem('accessToken') != null)) {
-    //   history.go(history.location.pathname)
-    // } else {
-    //   history.go("/");
-    // }
-    // });
-    // if(localStorage.getItem('accessToken') != null){
-    //   history.push(null, history.location.pathname);
-    //   window.onpopstate = function(event) {
-    //     history.go(1);
-    //   };
-    // }
+  // componentWillMount() {
+  //   console.log("history--------->",history); 
+  //   history.listen((action) => {
+  //   if (action === 'PUSH' && localStorage.getItem('accessToken') == null) {
+  //         window.onpopstate = function(event) {
+  //           history.push(history.location.pathname)
+  //         };
+  //       // } else if(action === 'PUSH' && localStorage.getItem('accessToken') != null){
+  //       //   window.onpopstate = function(event) {
+  //       //     history.push(history.location.pathname)
+  //       //   };
+  //       }else {
+  //         history.go(1);
+  //       }
+  //   });
+  // }
 
-    // history.listen((newLocation, action) => {
-    //   if (action === "PUSH" && localStorage.getItem('accessToken') != null) {
-    //     if (
-    //       newLocation.pathname !== this.currentPathname ||
-    //       newLocation.search !== this.currentSearch 
-          
-    //     ) {
-    //       // Save new location
-    //       console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
-    //       this.currentPathname = newLocation.pathname;
-    //       this.currentSearch = newLocation.search;
-
-    //       // Clone location object and push it to history
-    //       history.push({
-    //         pathname: newLocation.pathname,
-    //         search: newLocation.search
-    //       });
-    //     } 
-      // } else if(action !== 'PUSH') {
-      // if(
-      //   newLocation.pathname != this.currentPathname ||
-      //   newLocation.search != this.currentSearch 
-      //   ) {
-      //   console.log('ooooooooooooooooooooooooooo')
-      //   // history.go(history.location.pathname)
-      //   this.currentPathname = newLocation.pathname;
-      //     this.currentSearch = newLocation.search;
-
-      //     // Clone location object and push it to history
-      //     history.push({
-      //       pathname: newLocation.pathname,
-      //       search: newLocation.search
-      //     });
-      // }
-    // } else if(action==='POP' && localStorage.getItem('accessToken') != null) {
-    //   console.log(history,'1111111111111111111111')
-    //   history.replace({
-    //     pathname: newLocation.pathname,
-    //     search: newLocation.search
-    //   });
-      // history.go(1)
-      // history.push(history.location.pathname)
-    // }
-    //  else 
-    // history.push('/')
-    // });
-  }
-
-  handleBack = () => {
-    console.log(history, '1111111111111111111111111111111111111111111111111')
-  }
   render() {
     
     return (
       <Router history={history}>
-        {/* routes={createRoutes}  */}
-        <Switch>
+         <Switch>
           <Fullscreen
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}

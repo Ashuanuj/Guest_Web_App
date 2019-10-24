@@ -97,6 +97,9 @@ export const TOAST = {
 };
 export const toast = createActionsFromTypes(TOAST);
 
+// export const APP_LOADED = 'APP_LOADED'
+// export const appLoaded = createAction(APP_LOADED)
+
 //cart details
 export const PLACE_ORDER = createCrudTypes('PLACE_ORDER');
 export const placeOrder = createCrudActions(PLACE_ORDER);
