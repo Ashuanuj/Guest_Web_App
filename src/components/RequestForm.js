@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Col, Button, Form, Input,FormGroup } from 'reactstrap';
 import { Field,reduxForm, formValueSelector } from 'redux-form';
 import TextInput from '../components/forms/TextInput';
+import NumberInput from '../components/forms/NumberInput';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -67,7 +68,7 @@ class RequestForm extends React.Component{
         this.props.error && 
           (this.props.error.customMessage && this.props.error.customMessage.indexOf('Room') !== -1 || this.props.error.message && this.props.error.message.indexOf('Invalid') !== -1 || a==true) 
           ?'1px solid red':''}}>
-          <Field component={TextInput} name="roomno" label="Room No." onChange={()=>this.changeData(2)} />
+          <Field component={NumberInput} name="roomno" label="Room No." onChange={()=>this.changeData(2)} />
         </FormGroup>
         
         <FormGroup style={{border:this.props.values.dob && !this.props.error ? '' : a==true?'1px solid red':

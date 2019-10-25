@@ -1,9 +1,11 @@
+// import { LOG_IN, HANDLE_ERROR, APP_LOADED } from '../actions';
 import { LOG_IN, HANDLE_ERROR } from '../actions';
 
 const initialState = {
     error: undefined,
     IS_LOGIN: false,
-    services: []
+    services: [],
+    // apploaded: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -25,6 +27,12 @@ export default function reducer(state = initialState, action) {
                     error_1: undefined
                 }
             }
+            // case APP_LOADED: {
+            //     return {
+            //         ...state,
+            //         apploaded: !state.apploaded
+            //     }
+            // }
         case LOG_IN.FAILURE:
             {
                 return {

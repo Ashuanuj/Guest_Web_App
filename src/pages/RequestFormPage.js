@@ -4,8 +4,8 @@ import { Col, Row, Card, CardImg } from 'reactstrap';
 import RequestForm from '../components/RequestForm'
 import componentImg from '../components/assets/img/bg/component.png'
 import Footer from '../components/Layout/Footer';
-
-import { guestLogIn, loadService, } from '../actions';
+import { guestLogIn, loadService } from '../actions';
+// import { guestLogIn, loadService, appLoaded } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,6 +16,7 @@ class RequestFormPage extends React.Component {
   }
   _handleSubmit = (data, dispatch) => {
     this.props.actions.guestLogIn(data);
+    // this.props.actions.appLoaded();
     this.props.actions.loadService();
   };
 
@@ -66,6 +67,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       guestLogIn,
       loadService,
+      // appLoaded
     }, dispatch),
   };
 }

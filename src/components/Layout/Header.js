@@ -8,28 +8,22 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 
-
 import componentImg from '../assets/img/bg/component.png'
-// import Cart from '../assets/img/icons/cart1.svg';
 
 import cartIcon from '../assets/img/icons/cart.svg';
 
 import {MdClose} from 'react-icons/md';
 import { Nav,Navbar,NavItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import {shallowEqual,  useSelector } from "react-redux";
 import history from '../../helper/history';
-// import { CART_ITEMS } from '../../actions';
 
 const useStyles = makeStyles({
-  // list: {
-  //   width: 250,
-  // },
   fullList: {
     width: 'auto',
   },
 });
 export default function Header(props) {
+  
 console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooopppppppppppppppppppppppppppppppppppppppppppppppppppppppppp')
   let { header, dashboard ,cart, cartCount} = useSelector(state => ({
     header: state.header.header,
@@ -117,17 +111,15 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
         ))}
       </List>
       <List  onClick={()=>handleLogOut("/")} >
-      {/* <Link to="/"> */}
         {['Logout'].map((text) => (
           <ListItem button key={text}>
               <ListItemText primary={text} />
           </ListItem>
         ))}
-        {/* </Link> */}
       </List>
     </div>
     <div className="sidebar-footer">
-      <p> Copyright Helius Â© 2019 </p>
+      <p> Copyright Helius © 2019 </p>
     </div>
   </>
   );
@@ -156,7 +148,6 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
             <div style={{ position: 'relative', width: '30%', alignItems: 'center' }} onClick={() => handleClick("/checkout")}> 
-            {/* style={{display: 'flex', flexDirection: 'row', width: '30%', alignItems: 'center', justifyContent: 'space-between'}} */}
               <img
                   src={cartIcon}
                   className="cartImg"
@@ -168,8 +159,6 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
               {localStorage.getItem('cartCount') == null || localStorage.getItem('cartCount') == 0 ? 0 : localStorage.getItem('cartCount')}
               </span>
             </div>
-            
-            {/* </Link>  */}
            </NavItem>
         </Nav>
            }

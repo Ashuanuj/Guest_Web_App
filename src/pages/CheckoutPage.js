@@ -19,7 +19,7 @@ import {MdAdd,MdRemove} from 'react-icons/md';
 import vegImg from "../components/assets/img/icons/veg.png";
 import NonvegImg from "../components/assets/img/icons/non-veg.png";
 import TextInput from '../components/forms/TextInput';
-import { Field,reduxForm } from 'redux-form';
+// import { Field,reduxForm } from 'redux-form';
 import patternImg from "../components/assets/img/icons/linear-design.png"
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";

@@ -1,14 +1,10 @@
 import React from "react";
 import "./styles/myStyles.scss";
 
-//routes paths
-// import createRoutes from './routes';
-
 //Paths
 import { MainLayout } from "./components/Layout";
 import RequestFormPage from "./pages/RequestFormPage";
 import { Router, Route, Switch } from "react-router-dom";
-import { Redirect, IndexRedirect, IndexRoute } from "react-router";
 
 import DashboardPage from "./pages/DashboardPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -27,20 +23,40 @@ class App extends React.Component {
 
     this.state = {
       isFull: false
+
     };
+    this.currentPathname = null;
+    this.currentSearch = null;
   }
+  // componentWillMount() {
+  //   console.log("history--------->",history); 
+  //   history.listen((action) => {
+  //   if (action === 'PUSH' && localStorage.getItem('accessToken') == null) {
+  //         window.onpopstate = function(event) {
+  //           history.push(history.location.pathname)
+  //         };
+  //       // } else if(action === 'PUSH' && localStorage.getItem('accessToken') != null){
+  //       //   window.onpopstate = function(event) {
+  //       //     history.push(history.location.pathname)
+  //       //   };
+  //       }else {
+  //         history.go(1);
+  //       }
+  //   });
+  // }
+
   render() {
+    
     return (
       <Router history={history}>
-        {/* routes={createRoutes}  */}
-        <Switch>
+         <Switch>
           <Fullscreen
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}
           >
             <Route exact path="/" component={RequestFormPage} />
             {/* {localStorage.getItem("accessToken") === null ? (
-              history.push("/")
+              history.push('/')
             ) : ( */}
               <MainLayout>
                 <Route exact path="/dashboard" component={DashboardPage} />
@@ -55,7 +71,7 @@ class App extends React.Component {
                 <Route exact path="/frontoffice" component={FrontOffice} />
                 <Route exact path="/requestmain" component={RequestMain} />
               </MainLayout>
-            {/* )}  */}
+             {/* )}  */}
           </Fullscreen>
         </Switch>
       </Router>
