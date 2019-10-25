@@ -76,7 +76,7 @@ class SubCategory1 extends Component {
 
     localStorage.getItem(`_${this.props.subcategory[index].Title}`) != -1 && (localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
 
-    localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == 0 ? 
+    localStorage.getItem(`_${this.props.subcategory[index].id}`) == 0 || localStorage.getItem(`_${this.props.subcategory[index].id}`) == 0 ? 
     localStorage.setItem(`_${this.props.subcategory[index].Title}`, -1) 
     : console.log()
 
@@ -113,7 +113,7 @@ class SubCategory1 extends Component {
 
     localStorage.getItem(`_${this.props.subcategory[index].Title}`) != 0 && (localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null)  ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
 
-    localStorage.getItem(this.props.subcategory[index].id) == 0 || localStorage.getItem(this.props.subcategory[index].id) == null ? 
+    localStorage.getItem(`_${this.props.subcategory[index].id}`) == 0 || localStorage.getItem(`_${this.props.subcategory[index].id}`) == null ? 
     localStorage.setItem(`_${this.props.subcategory[index].Title}`, 0) 
     : console.log()
 

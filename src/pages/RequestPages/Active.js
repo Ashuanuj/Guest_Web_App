@@ -50,7 +50,7 @@ class Active extends React.Component{
         this.setState(prevState => ({ [`collapseID${orderId}`]: prevState[`collapseID${orderId}`] !== collapseID ? collapseID : "" })); }    
 
     render(){
-       // console.log(this.props)
+       console.log(this.props, 'from active')
        function compare(a, b) {
         const genreA = a.orderId;
         const genreB = b.orderId;
@@ -70,8 +70,6 @@ class Active extends React.Component{
               let mins = time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes();
               let str = time.getHours() > 12 ? 'pm' : 'am';
               let newTime = `${time.getDate()} ${month[time.getMonth()+1]} ${time.getFullYear()} | ${hrs}:${mins}${str}`;
-             // console.log(newTime)
-              // console.log(time)
               return (
                   <Col sm={6} xs={12} className="pz mb-1 col-md-6 offset-md-3">
                   <Card className="requestTab-main">
