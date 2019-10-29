@@ -120,6 +120,8 @@ class CheckoutPage extends React.Component {
       totalRate: this.state.totalRate + parseFloat(cart_details[index].rate)
     });
 
+    localStorage.getItem(`_${cart_details[index].Title}`) == -1 && (localStorage.getItem(cart_details[index].id) == 0 || localStorage.getItem(cart_details[index].id) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log('hukumat ki jung')
+
     localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
 
     localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
@@ -154,7 +156,9 @@ class CheckoutPage extends React.Component {
     cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? parseFloat(cart_details[index].selectedItems) - 1 : 0
     cart_details[index].itemsRate = cart_details[index].selectedItems > 0 && cart_details[index].itemsRate > 0 ? cart_details[index].itemsRate - parseFloat(cart_details[index].rate) : 0
 
-    cart_details[index].selectedItems == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != 0 ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
+    localStorage.getItem(`_${cart_details[index].Title}`) == 0 && (localStorage.getItem(cart_details[index].id) ==0 )  ? this.handleCartSub(index, ['Break Fast',true]) : console.log('hukumat ki jung')
+
+    // cart_details[index].selectedItems == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != 0 ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
 
     localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
     localStorage.setItem(`_${cart_details[index].Title}`, 0) 
