@@ -25,7 +25,7 @@ export default async  function callApi(endpoint, body, method, queryData, isFile
           headers.append('passwordUpdatedAt', passwordUpdatedAt);
      }
 
-     let URL = 'https://heliusbe.tech-active.com:70';
+     let URL = 'https://accessapi.helius.io:70';
 
      URL = `${URL}/${endpoint}${queryParams}`;
       console.log(URL)
