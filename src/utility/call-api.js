@@ -6,7 +6,6 @@ export default async  function callApi(endpoint, body, method, queryData, isFile
      const headers = new Headers();
      // const accessToken = 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibGFzdF9uYW1lIjoiQmFuc2FsIiwiZG9iIjoiMjAxOC0xMS0xNCIsImlhdCI6MTU3MTMwNjYzMSwiZXhwIjoxNTc5OTQ2NjMxfQ.IZUEY5BltAltxWL-9SYw1SfHOjLOh3S47xfYKfHbDVM' //
      let accessToken = await localStorage.getItem('accessToken');
-     console.log(accessToken, 'uuuuuuuuuuuuuuuuuuuuuuuttttttttttttttttttoooooooooooooooooppppppppppppppiiiiiiiiiiiiiiiiaaaaaaaaaaaaaa')
      const passwordUpdatedAt = 1556194811//localStorage.getItem('passwordUpdatedAt');
      let bodyData = body;
      let queryParams = '';
@@ -25,10 +24,9 @@ export default async  function callApi(endpoint, body, method, queryData, isFile
           headers.append('passwordUpdatedAt', passwordUpdatedAt);
      }
 
-     let URL = 'https://heliusbe.tech-active.com:70';
+     let URL = API_URL;
 
      URL = `${URL}/${endpoint}${queryParams}`;
-      console.log(URL)
      return fetch(URL, {
           headers,
           method: method || (body ? 'post' : 'get'),

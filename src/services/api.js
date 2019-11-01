@@ -1,4 +1,7 @@
 import callApi from '../utility/call-api';
+//checkurl
+export const checkurl = ap => callApi('url', ap, 'post',undefined);
+
 //login 
 export const login = ap => callApi('authentication/login', ap, 'post', undefined);
 

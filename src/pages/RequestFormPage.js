@@ -4,7 +4,7 @@ import { Col, Row, Card, CardImg } from 'reactstrap';
 import RequestForm from '../components/RequestForm'
 import componentImg from '../components/assets/img/bg/component.png'
 import Footer from '../components/Layout/Footer';
-import { guestLogIn, loadService } from '../actions';
+import { guestLogIn, loadService,checkURL } from '../actions';
 // import { guestLogIn, loadService, appLoaded } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -15,13 +15,32 @@ class RequestFormPage extends React.Component {
     this._handleSubmit = this._handleSubmit.bind(this);
   }
   _handleSubmit = (data, dispatch) => {
+    data.params=this.props.location.search
     this.props.actions.guestLogIn(data);
     // this.props.actions.appLoaded();
     this.props.actions.loadService();
   };
-
+  componentWillMount() {
+    console.log(this,'llllllllllllllllllllllllllllllllllllll')
+    this.props.actions.checkURL(this.props.location.search);
+  }
   render() {
     return (
+      this.props.urlStatus && this.props.urlStatus.customMessage == "Invalid url" ?
+      <div className="main-requestform">
+        <Row className="HomeMain">
+          <Col className="pz"  md={6} lg={4} >
+            <Card body className="cardbody-main">
+              <div className="cardImgtext">
+                <h1 className="para">404 </h1>
+                <h3 className="subpara"> Page Not Found</h3>
+              </div>
+            </Card>
+            {/* <Footer /> */}
+          </Col>
+        </Row>
+      </div>
+      :
       <div className="main-requestform">
         <Row className="HomeMain">
           <Col className="pz"  md={6} lg={4} >
@@ -58,6 +77,7 @@ RequestFormPage.propTypes = {
 function mapStateToProps(state) {
   return {
     // error: state.User.error,
+    urlStatus: state.checkurl.urlStatus,
     login: state.gformReducers.IS_LOGIN
   };
 }
@@ -67,6 +87,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       guestLogIn,
       loadService,
+      checkURL
       // appLoaded
     }, dispatch),
   };

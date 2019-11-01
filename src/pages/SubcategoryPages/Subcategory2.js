@@ -61,7 +61,7 @@ class SubCategory1 extends Component {
   handleContinue(e) {
     e.preventDefault();
     this.props.actions.storeOrder(this.props.subcategory)
-    history.push('/checkout')
+    history.push("/"+localStorage.getItem('tenantId')+'/checkout')
   }
 
   render() {

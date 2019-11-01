@@ -81,11 +81,11 @@ class CheckoutPage extends React.Component {
     }));
     let _data = cart_details;
     this.props.actions.createRequest(_data);
-    history.push("/requestmain");
+    history.push("/"+localStorage.getItem('tenantId')+"/requestmain");
     localStorage.removeItem('amount');
-    cart_details.forEach(item => {
-      localStorage.removeItem(item.id)
-      localStorage.removeItem(item.itemName)
+    cart_details.forEach((item, index) => {
+      localStorage.removeItem(index)
+      localStorage.removeItem(`${index}_${item.itemName}`)
     })
    localStorage.removeItem('cartCount')
    localStorage.removeItem('cart_details')
@@ -109,26 +109,26 @@ class CheckoutPage extends React.Component {
     // this.props.actions.handle_header([servicename,justify])
   }
   
-  onIncrement(id) {
-    let index = cart_details.findIndex(item => item.id === id)
+  onIncrement(id, index) {
+    // let index = cart_details.findIndex(item => item.id === id)
     cart_details[index].selectedItems = parseFloat(cart_details[index].selectedItems)+1//localStorage.getItem(id) != null ?  parseFloat(localStorage.getItem(id)) + 1 : parseFloat(cart_details[index].selectedItems) + 1
     cart_details[index].itemsRate = cart_details[index].itemsRate + parseFloat(cart_details[index].rate)//localStorage.getItem('amount') != null ?parseFloat(localStorage.getItem('amount')) + parseFloat(cart_details[index].rate) : cart_details[index].itemsRate + parseFloat(cart_details[index].rate)
 
     this.setState({
-      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = cart_details[index].selectedItems,
+      [`selectedItem${index}`]: this.state[`selectedItem${index}`] = cart_details[index].selectedItems,
       totalItems: this.state.totalItems + 1,
       totalRate: this.state.totalRate + parseFloat(cart_details[index].rate)
     });
 
-    localStorage.getItem(`_${cart_details[index].Title}`) == -1 && (localStorage.getItem(cart_details[index].id) == 0 || localStorage.getItem(cart_details[index].id) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log('hukumat ki jung')
+    localStorage.getItem(`_${cart_details[index].Title}_${index}`) == -1 && (localStorage.getItem(index) == 0 || localStorage.getItem(index) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log('hukumat ki jung')
 
-    localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
+    localStorage.getItem(`${cart_details[index].Title}_${index}`) == 0 && localStorage.getItem(`_${cart_details[index].Title}_${index}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
 
-    localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
-    localStorage.setItem(`_${cart_details[index].Title}`, -1) 
+    localStorage.getItem(`${cart_details[index].Title}_${index}`) == 0 ? 
+    localStorage.setItem(`_${cart_details[index].Title}_${index}`, -1) 
     : console.log()
 
-    localStorage.setItem(id, cart_details[index].selectedItems)
+    localStorage.setItem(index, cart_details[index].selectedItems)
     localStorage.setItem('amount', cart_details[index].itemsRate)
  console.log(cart_details[index])
   }
@@ -141,12 +141,12 @@ class CheckoutPage extends React.Component {
     // this.props.actions.handle_header([servicename,justify])
   }
 
-  onDecrement(id) {
+  onDecrement(id, index) {
     
-    let index = cart_details.findIndex(item => item.id === id)
+    // let index = cart_details.findIndex(item => item.id === id)
     console.log(this.state.totalRate,';;;;;',cart_details[index].rate)
     this.setState({
-      [`selectedItem${id}`]: this.state[`selectedItem${id}`] = cart_details[index].selectedItems,
+      [`selectedItem${index}`]: this.state[`selectedItem${index}`] = cart_details[index].selectedItems,
       totalItems: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalRate - parseFloat(cart_details[index].rate) : 0
     })
@@ -156,16 +156,16 @@ class CheckoutPage extends React.Component {
     cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? parseFloat(cart_details[index].selectedItems) - 1 : 0
     cart_details[index].itemsRate = cart_details[index].selectedItems > 0 && cart_details[index].itemsRate > 0 ? cart_details[index].itemsRate - parseFloat(cart_details[index].rate) : 0
 
-    localStorage.getItem(`_${cart_details[index].Title}`) == 0 && (localStorage.getItem(cart_details[index].id) ==0 )  ? this.handleCartSub(index, ['Break Fast',true]) : console.log('hukumat ki jung')
+    localStorage.getItem(`_${cart_details[index].Title}_${index}`) == 0 && (localStorage.getItem(index) ==0 )  ? this.handleCartSub(index, ['Break Fast',true]) : console.log('hukumat ki jung')
 
     // cart_details[index].selectedItems == 0 && localStorage.getItem(`_${cart_details[index].Title}`) != 0 ? this.handleCartSub(index, ['Break Fast',true]) : console.log()
 
-    localStorage.getItem(`${cart_details[index].Title}_${cart_details[index].id}`) == 0 ? 
-    localStorage.setItem(`_${cart_details[index].Title}`, 0) 
+    localStorage.getItem(`${cart_details[index].Title}_${index}`) == 0 ? 
+    localStorage.setItem(`_${cart_details[index].Title}_${index}`, 0) 
     : console.log()
 
     cart_details[index].accept =  cart_details[index].selectedItems == 0 ? false : true
-    localStorage.setItem(id, cart_details[index].selectedItems)
+    localStorage.setItem(index, cart_details[index].selectedItems)
     // localStorage.setItem(cart_details[index].itemName, cart_details[index].selectedItems)
     localStorage.setItem('amount', cart_details[index].itemsRate)
 
@@ -173,7 +173,7 @@ class CheckoutPage extends React.Component {
 
   render() {
     const { props } = this;
-    console.log(props.cartItems.length,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;', count)
+    console.log(props.cartItems.length,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;', cart_details)
     // localStorage.setItem('cartcount',props.cartItems.length)
     localStorage.setItem('cart_details',JSON.stringify(cart_details))
     if(this.state.value==0){
@@ -194,9 +194,9 @@ class CheckoutPage extends React.Component {
           </td>
           <td>
             <div className="qtybtn">
-              <span className="minus" onClick={() => this.onDecrement(item.id)}> <MdRemove size={15}/> </span>
+              <span className="minus" onClick={() => this.onDecrement(item.id,index)}> <MdRemove size={15}/> </span>
               <span className="count"> {item.selectedItems} </span>
-              <span className="plus" onClick={() => this.onIncrement(item.id)}><MdAdd size={15}/></span>
+              <span className="plus" onClick={() => this.onIncrement(item.id,index)}><MdAdd size={15}/></span>
             </div>
           </td>
           <td className="checkout-item-amt"> {item.itemsRate}.00 </td>
@@ -231,13 +231,13 @@ class CheckoutPage extends React.Component {
                       inline
                       defaultChecked
                     />
-                    <CustomInput
+                    {/* <CustomInput
                       type="radio"
                       id="exampleCustomRadio2"
                       name="customRadio"
                       label="Later"
                       inline
-                    />
+                    /> */}
                   </FormGroup>
                 </tr>
               </tbody>

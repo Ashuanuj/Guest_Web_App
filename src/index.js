@@ -12,7 +12,6 @@ import  configureStore  from './helper/store';
 import App from './App';
 
 const store = configureStore({});
-console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttttt')
 ReactDOM.render(
     <Provider store={store}>
         <App />

@@ -11,18 +11,17 @@ export function* ServiceData() {
     yield put(actions.ServiceData.request());
     try {
         let objArray = [
-            { icon: SwipeImage, link: `dashboard` },
-            { icon: BellImage, link: `frontoffice` },
-            { icon: ForkImage, link: `services` },
-            { icon: FileImage, link: `dashboard` },
-            { icon: FileImage, link: `dashboard` }
+            { icon: SwipeImage, link: `category` },
+            { icon: BellImage, link: `category` },
+            { icon: ForkImage, link: `category` },
+            { icon: FileImage, link: `category` },
+            { icon: FileImage, link: `category` }
         ]
         const response = yield call(api.getGuestServices);
         response.guestServices && response.guestServices.forEach((item, index) =>
             objArray.forEach((elem, i) => {
                 if (i == index) {
-                    item.icon = elem.icon   
-                    item.link = elem.link
+                    item.icon = elem.icon  
                 };
             })
         );

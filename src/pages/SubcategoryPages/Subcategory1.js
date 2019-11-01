@@ -131,7 +131,7 @@ class SubCategory1 extends Component {
 this.props.actions.storeOrder(this.props.subcategory)
 this.props.actions.handle_header(['Checkout',true])
 
-history.push('/checkout')
+history.push("/"+localStorage.getItem('tenantId')+'/checkout')
 this.props.subcategory&& this.props.subcategory.forEach(item => {
   item.accept = localStorage.getItem(`${item.Title}_${item.id}`) != null && localStorage.getItem(`${item.Title}_${item.id}`) != 0 ? true : false;
   item.selectedItems = localStorage.getItem(`${item.Title}_${item.id}`) != null ? localStorage.getItem(`${item.Title}_${item.id}`) : 0;

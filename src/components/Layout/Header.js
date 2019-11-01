@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 });
 export default function Header(props) {
   
-console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooopppppppppppppppppppppppppppppppppppppppppppppppppppppppppp')
   let { header, dashboard ,cart, cartCount} = useSelector(state => ({
     header: state.header.header,
     dashboard: state.header.dashbaord,
@@ -95,7 +94,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List onClick={()=>handleClick("/dashboard")}>
+      <List onClick={()=>handleClick("/"+localStorage.getItem('tenantId')+"/dashboard")}>
         {['Services'].map((text) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
@@ -103,14 +102,14 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
         ))}
 
       </List>
-      <List  onClick={()=>handleClick("/requestmain")} >
+      <List  onClick={()=>handleClick("/"+localStorage.getItem('tenantId')+"/requestmain")} >
         {['My Request'].map((text) => (
           <ListItem button key={text}>
              <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
-      <List  onClick={()=>handleLogOut("/")} >
+      <List  onClick={()=>handleLogOut("/?"+localStorage.getItem('tenantId'))} >
         {['Logout'].map((text) => (
           <ListItem button key={text}>
               <ListItemText primary={text} />
@@ -147,7 +146,7 @@ console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooppppppppppp
            {cart?<div></div>:
         <Nav navbar className='nav-right'>
           <NavItem className="d-inline-flex">
-            <div style={{ position: 'relative', width: '30%', alignItems: 'center' }} onClick={() => handleClick("/checkout")}> 
+            <div style={{ position: 'relative', width: '30%', alignItems: 'center' }} onClick={() => handleClick("/"+localStorage.getItem('tenantId')+"/checkout")}> 
               <img
                   src={cartIcon}
                   className="cartImg"

@@ -13,6 +13,19 @@ export const handleError = createAction(HANDLE_ERROR);
 export const SET_COUNTER = 'SET_COUNTER';
 export const setCounter = createAction(SET_COUNTER);
 
+//load categories(dashboard)
+export const LOAD_CATEGORIES = createRequestTypes('LOAD_CATEGORIES');
+export const loadCategories = createActionsFromTypes(LOAD_CATEGORIES);
+
+export const GET_CATEGORY_LIST = 'GET_CATEGORY_LIST';
+export const getCategoryList = createAction('GET_CATEGORY_LIST');
+
+//load subCategories(service click)
+export const LOAD_SUB_CATEGORIES = createRequestTypes('LOAD_SUB_CATEGORIES')
+export const loadSubCategories = createActionsFromTypes(LOAD_SUB_CATEGORIES)
+
+export const GET_SUB_CATEGORIES = 'GET_SUB_CATEGORIES';
+export const getSubCategories = createAction(GET_SUB_CATEGORIES)
 //Initialize
 export const INITIALIZE = 'INITIALIZE';
 export const initialize = createAction(INITIALIZE);
@@ -110,3 +123,9 @@ export const storeOrder = createAction(STORE_ORDER)
 
 export const HANDLE_HEADER = 'HANDLE_HEADER';
 export const handle_header = createAction(HANDLE_HEADER);
+
+export const CHECK_URL = 'CHECK_URL';
+export const checkURL = createAction(CHECK_URL);
+
+export const CHECK_URL1 = createRequestTypes('CHECK_URL1');
+export const checkURL1 = createActionsFromTypes(CHECK_URL1);

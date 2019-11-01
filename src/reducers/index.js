@@ -11,7 +11,11 @@ import subCategory from './subCategoryReducers';
 import subCategoryQty from './subCategoryQtyReducers';
 import checkoutReducers from './checkoutReducers';
 import guestRequests from './guestRequests'
-import header from './header'
+import header from './header';
+import category from './category';
+import subcategory from './SubCategory'
+import checkurl from'./checkurl'
+
 
 const appReducer = combineReducers({
   routing: routerReducer,
@@ -24,7 +28,10 @@ const appReducer = combineReducers({
   subCategoryQty,
   checkoutReducers,
   guestRequests,
-  header
+  category,
+  subcategory,
+  header,
+  checkurl
 });
 
 const initialState = appReducer({}, {});

@@ -15,22 +15,20 @@ class DashboardPage extends React.Component {
 
   componentWillMount() {
     // this.props.actions.handle_header([localStorage.getItem(' '), false]);
-    console.log('lokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
     this.props.actions.handle_header([`Welcome Mr. ${localStorage.getItem('guestName')}`,true]);
     this.props.actions.loadService();
   }
-  handleClick = (id, serviceName, link) => {
-    if(serviceName == 'Front Office' || serviceName == 'All Day Dining')
+  handleClick = (id, serviceName) => {
     this.props.actions.handle_header([serviceName,true]);
     localStorage.setItem('serviceCategoryId', id)
-    history.push(`/${link}`)
+    localStorage.setItem('serviceName', serviceName)
+    history.push("/"+localStorage.getItem('tenantId')+`/category`)
     }
   render(){
     const {props} = this;
-    console.log(props, 'uuuuuuuuuuuuuyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
     
     const services = props.requests && props.requests.map(request =>(
-      <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id,request.serviceName, request.link)}>
+      <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={request.id} onClick={()=>this.handleClick(request.id,request.serviceName)}>
         {/* <Link to={`/${request.link}`} > */}
           <Card className="flex-row card-serv-main-dash">
             <CardImg

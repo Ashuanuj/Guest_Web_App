@@ -47,6 +47,9 @@ class RequestForm extends React.Component{
       }
 
   return (
+    this.props.error&&this.props.error.customMessage=="Invalid Url"?  <div>
+    <h1 className="subpara">404 page not found</h1>
+</div>:
     <Col className="form-main">
       <Form onSubmit={handleSubmit} autoComplete="off">
 
