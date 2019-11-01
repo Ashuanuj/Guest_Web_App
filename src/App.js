@@ -48,6 +48,27 @@ class App extends React.Component {
   //   });
   // }
 
+  componentWillMount() {
+    console.log("history--------->",history);
+    history.listen((action) => {
+    console.log(history.action,action)
+    if (history.action === 'POP' && localStorage.getItem('accessToken') == null) {
+    console.log('dddddddddddddddd11111111111111111111')
+    window.onpopstate = function(event) {
+    history.push('/')
+    };
+    } else if(history.action !== 'PUSH' && localStorage.getItem('accessToken') != null){
+    console.log('dddddddddddddddd')
+    window.onpopstate = function(event) {
+    history.push(history.location.pathname)
+    };
+    }else {
+    console.log('ddddddddddddddddaaaaaaaaaaaaa')
+    history.go(1);
+    }
+    });
+    }
+
   render() {
     
     return (
