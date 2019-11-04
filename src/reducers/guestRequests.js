@@ -2,6 +2,7 @@ import { GUEST_REQUESTS } from '../actions';
 
 const initialState = {
     requests: [],
+    loader:true
 };
 
 export default function reducer(state = initialState, action) {
@@ -10,7 +11,8 @@ export default function reducer(state = initialState, action) {
             console.log(action.payload, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
             return {
                 ...state,
-                requests: action.payload.orders
+                requests: action.payload.orders,
+                loader:false
             };
         }
         default:

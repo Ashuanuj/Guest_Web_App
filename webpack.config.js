@@ -1,16 +1,30 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpack = require('webpack');
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
 const isProd = env === 'production';
+let package = require('./package.json');
+
+
 
 const extractScss = new ExtractTextPlugin({
   filename: 'myStyles.scss',
   disable: isDev
 });
+function modify(buffer) {
+  // copy-webpack-plugin passes a buffer
+  var manifest = JSON.parse(buffer.toString());
 
+  // make any modifications you like, such as
+  manifest.version = package.version;
+
+  // pretty print to JSON with two spaces
+  manifest_JSON = JSON.stringify(manifest, null, 2);
+  return manifest_JSON;
+}
 module.exports = {
  
   entry: {
@@ -75,6 +89,14 @@ module.exports = {
      API_URL: JSON.stringify('https://heliusbe.tech-active.com:90'),
 
   }),
+  new CopyWebpackPlugin([
+    {
+       from: "./public/manifest.json",
+       to:   "./manifest.json",
+       transform (content, path) {
+           return modify(content)
+       }
+    }]),
      extractScss
    ]
 }

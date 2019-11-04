@@ -24,7 +24,7 @@ const Icon = (props) => (
 );
 
 Icon.propTypes = {
-  children: PropTypes.node,
+  // children: PropTypes.node,
   className: PropTypes.string,
   color: PropTypes.string,
   height: PropTypes.number.isRequired,

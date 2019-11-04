@@ -9,7 +9,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import ServicesPage from "./pages/ServicesPage";
 import MainSubcategoryPage from "./pages/SubcategoryPages/MainSubcategoryPage";
-import CheckoutPage from "./pages/CheckoutPage";
+import CheckoutPage from "./pages/cart";
 import WakeUp from "./pages/WakeUp";
 import FrontOffice from "./pages/FrontOffice";
 import RequestMain from "./pages/RequestPages/RequestMain";
@@ -92,7 +92,7 @@ class App extends React.Component {
                 />
                 <Route exact path="/:id/category" component={Category} />
                 <Route exact path="/:id/sub-category1" component={SubCategory} />
-                <Route exact path="/service" component={Service} />
+                <Route exact path="/:id/service" component={Service} />
                 <Route exact path="/:id/checkout" component={CheckoutPage} />
                 <Route exact path="/wakeup" component={WakeUp} />
                 <Route exact path="/bed-bath" component={WakeUp} />

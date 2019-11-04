@@ -6,10 +6,10 @@ const express = require('express');
 const config = require('./webpack.config');
 const debug = require('debug');
 // const cors = require('cors');
-
 const app = express();
 const compiler = webpack(config);
 // const debugHttp = debug('app:http');
+app.use('/public', express.static('public'))
 const debugError = debug('app:error');
 // app.use(cors({
 //      'allowedHeaders': ['sessionId', 'Content-Type'],

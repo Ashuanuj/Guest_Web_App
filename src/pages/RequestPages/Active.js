@@ -43,14 +43,14 @@ class Active extends React.Component{
       roomNo: localStorage.getItem("roomNo"),
       user_last_name: localStorage.getItem("guestName")
     };
-    this.props.actions.loadGuestRequests(data);
+    //this.props.actions.loadGuestRequests(data);
   }
     
     toggleCollapse = (collapseID, orderId) => () => { 
         this.setState(prevState => ({ [`collapseID${orderId}`]: prevState[`collapseID${orderId}`] !== collapseID ? collapseID : "" })); }    
 
     render(){
-       console.log(this.props, 'from active')
+       console.log(this.props, 'from active................')
        function compare(a, b) {
         const genreA = a.orderId;
         const genreB = b.orderId;
@@ -99,26 +99,59 @@ class Active extends React.Component{
                         <tbody className="t-body">
                             {item.requests && item.requests.map((elem, i) => {
                                 total += elem.amount
-                                return(
-                                <tr>
-                                <td>
-                                  <Media object src={this.state[elem.type]} alt="image" /> {`${elem.title} x ${elem.quantity}`}
-                                </td>
-                                <td></td>
-                                <td className="item-amt"> {`${elem.amount}.00`} </td>
-                              </tr>
-                            )})}
+                                // console.log(elem.title)
+                                if((elem.subCategoryTitle!==null || elem.subCategoryTitle!=="null")&&(elem.title=="")){
+                                  return(
+                                    <tr>
+                                    <td>
+                                      <p>{`${elem.subCategoryTitle}`}</p> 
+                                      <p>{`${elem.instruction}`}</p>
+                                    </td>
+                                    <td></td>
+                                   
+                                  </tr>
+                                )
+                                }else{
+                                  return(
+                                    <div>
+                                      <tr>
+                                    <td>
+                                      <Media /> {`${elem.title} x ${elem.quantity}`}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>                                                                                                
+                                    <td className="item-amt"> {`${elem.amount}.00`} </td>
+                                  </tr>
+                                      <div style={{display:item.requests.length==i+1?'':'none'}}>
+                                      <tr>
+                                    <td>
+                                     <p>{`${elem.instruction}`}</p>
+                                    </td>
+                                  </tr>
+                                      </div>
+                                    </div>
+                                    
+                                )
+                                }
+                               })}
                         </tbody>
                       </Table>
-                      <Table responsive className="TableMainList">
-                        <tbody className="t-body">
-                          <tr className="order-total">
+                      
+                        <Table    responsive className="TableMainList"  >
+                        <tbody className="t-body" >
+                          <tr className={total==0?"order-total":"order-total1" }>
                             <td className="totaltext">Total Bill</td>
                             <td></td>
-                            <td className="totalamt1"> {`${total}.00`} </td>
+                            <td className="totalamt1" > {`${total}.00`} </td>
                           </tr>
                         </tbody>
                       </Table>
+                    
                     </Collapse>
                   </Card>
                 </Col>

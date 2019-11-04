@@ -64,8 +64,6 @@ class CheckoutPage extends React.Component {
       localStorage.removeItem('cartCount');
       // localStorage.setItem('cart_details', []);
     } 
-    
-
     cart_details=JSON.parse(localStorage.getItem('cart_details'))
   }
   
@@ -76,6 +74,7 @@ class CheckoutPage extends React.Component {
   }
 
   anotherToggle() {
+    console.log(cart_details,'cccccccccccccccccccccccccccccccc')
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
@@ -83,6 +82,8 @@ class CheckoutPage extends React.Component {
     this.props.actions.createRequest(_data);
     history.push("/"+localStorage.getItem('tenantId')+"/requestmain");
     localStorage.removeItem('amount');
+    localStorage.removeItem('newcartcount')
+
     cart_details.forEach((item, index) => {
       localStorage.removeItem(index)
       localStorage.removeItem(`${index}_${item.itemName}`)
@@ -120,7 +121,7 @@ class CheckoutPage extends React.Component {
       totalRate: this.state.totalRate + parseFloat(cart_details[index].rate)
     });
 
-    localStorage.getItem(`_${cart_details[index].Title}_${index}`) == -1 && (localStorage.getItem(index) == 0 || localStorage.getItem(index) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log('hukumat ki jung')
+    localStorage.getItem(`_${cart_details[index].Title}_${index}`) == -1 && (localStorage.getItem(index) == 0 || localStorage.getItem(index) == null)  ? this.handleCartAdd(index, ['Break Fast',true]) : console.log('hukumat ki jung') 
 
     localStorage.getItem(`${cart_details[index].Title}_${index}`) == 0 && localStorage.getItem(`_${cart_details[index].Title}_${index}`) != -1 ? this.handleCartAdd(index, ['Break Fast',true]) : console.log()
 
@@ -140,18 +141,27 @@ class CheckoutPage extends React.Component {
     cart_details[index].selectedItems == 0  ? localStorage.setItem('cartCount', parseFloat(localStorage.getItem('cartCount')) - 1) : localStorage.setItem('cartCount', localStorage.getItem('cartCount'))
     // this.props.actions.handle_header([servicename,justify])
   }
-
+  
   onDecrement(id, index) {
     
     // let index = cart_details.findIndex(item => item.id === id)
-    console.log(this.state.totalRate,';;;;;',cart_details[index].rate)
+    console.log(this.state.totalRate,';;;;;',cart_details[index].rate,';ddddddddddd',localStorage.getItem(index))
     this.setState({
       [`selectedItem${index}`]: this.state[`selectedItem${index}`] = cart_details[index].selectedItems,
       totalItems: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalItems - 1 : this.state.totalItems, 
       totalRate: this.state.totalItems > 0 && cart_details[index].selectedItems > 0 ? this.state.totalRate - parseFloat(cart_details[index].rate) : 0
     })
 
-
+    localStorage.getItem(index) != null &&
+    localStorage.getItem(index) > 0
+      ? localStorage.setItem(
+          index,
+          parseFloat(localStorage.getItem(index) - 1)
+        )
+      : localStorage.setItem(
+          index,
+          localStorage.getItem(index)
+        );
 
     cart_details[index].selectedItems = cart_details[index].selectedItems > 0 ? parseFloat(cart_details[index].selectedItems) - 1 : 0
     cart_details[index].itemsRate = cart_details[index].selectedItems > 0 && cart_details[index].itemsRate > 0 ? cart_details[index].itemsRate - parseFloat(cart_details[index].rate) : 0
@@ -205,8 +215,31 @@ class CheckoutPage extends React.Component {
       });
 
     return (
-      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' || localStorage.getItem('cartCount') == 0 ? <div></div>:
+      localStorage.getItem('cart_details') == null || localStorage.getItem('cart_details') == 'null' || localStorage.getItem('cartCount') == 0 ? 
       <div>
+      <Page>
+        <div className="gap"></div>
+      <Row className="checkout-div">
+       
+
+          <Table className="tableRadio">
+            <tbody className="radio-div">
+              <tr>
+                <FormGroup row className="table-div">
+                  <Label className="label" for="exampleCheckbox" style={{marginLeft:"31%"}}>
+                   No Produts available
+                  </Label>
+                  
+                </FormGroup>
+              </tr>
+            </tbody>
+          </Table>
+         
+        </Row>
+      </Page>
+    </div>
+
+      :<div>
         <Page>
           <div className="gap"></div>
         <Row className="checkout-div">

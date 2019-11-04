@@ -15,6 +15,7 @@ import Completed from "./Completed";
 import { connect } from "react-redux";
 import { loadGuestRequests,handle_header } from "../../actions";
 import { bindActionCreators } from "redux";
+import { red } from "@material-ui/core/colors";
 
 class RequestMain extends React.Component {
   constructor(props) {
@@ -24,31 +25,37 @@ class RequestMain extends React.Component {
     // this.generateAvtiveData = this.generateAvtiveData.bind(generateAvtiveData)
     // this.generateCompletedData = this.generateCompletedData.bind(generateCompletedData)
     this.state = {
-      activeTab: "1"
-    };
+      activeTab: "1",
+       laoder1:false,
+         };
   }
 
  
 
-  componentWillMount() {
+  componentDidMount() {
+    console.log(this.props,'dsgfdsgsgfgsgs')
     let data = {
     roomNo: localStorage.getItem("roomNo"),
     user_last_name: localStorage.getItem("guestName")
-    };
-    this.props.actions.loadGuestRequests(data);
-    this.props.actions.handle_header(['Request',true])
     
+    };
+    setTimeout(() => {
+      this.props.actions.loadGuestRequests(data);
+      this.props.actions.handle_header(['Request',true])
+      }, 1200);
+     this.setState({loader1:true})
     }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({
-        activeTab: tab
+        activeTab: tab,
       });
     }
   }
 
 generateAvtiveData = () => {
+  //  this.setState({laoder:true}) 
   let activeGuestRequests = this.props.requests && this.props.requests.filter(request => request.completedAt == null)
   return activeGuestRequests;
 }
@@ -59,7 +66,18 @@ generateCompletedData = () => {
 }
 
   render() {
-    return (
+    
+    console.log(this.props,'llllllllllllllllllll',this.state.loader1)
+    
+    // if(this.props.requests.length==0){
+    // return(
+    //   <div  className="RequestMainDiv"><p style={{top:"20px",color:"red"}}>loading...</p>
+    //     </div>
+    // )
+    // }else{
+    //  console.log(this.state.laoder1,'eeeellllllllllllllllllll')
+      // 
+     return (
       this.props.requests && this.props.requests.length > 0 ?
       <div className="RequestMainDiv">
         {/* <Page> */}
@@ -91,7 +109,11 @@ generateCompletedData = () => {
               </NavItem>
             </Nav>
           </div>
-
+          {/* <Loader loaded={false} lines={13} length={20} width={10} radius={30}
+    corners={1} rotate={0} direction={1} color="#000" speed={1}
+    trail={60} shadow={false} hwaccel={false} className="spinner"
+    zIndex={2e9} top="50%" left="50%" scale={1.00}
+    loadedClassName="loadedContent" /></LOader> */}
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
               <Row>
@@ -111,13 +133,15 @@ generateCompletedData = () => {
         {/* </Page> */}
       </div> : <div></div>
     );
+              //  }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     // reducers function name and action name
-    requests: state.guestRequests.requests
+    requests: state.guestRequests.requests,
+    laoder:state.guestRequests.loader
   };
 }
 

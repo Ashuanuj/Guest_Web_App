@@ -3,6 +3,21 @@ import { connect } from "react-redux";
 import { createRequest, getCartItems,handle_header } from "../actions";
 import Checkout from './CheckoutPage';
 import { bindActionCreators } from "redux";
+import {
+  Row,
+  Media,
+  Table,
+  FormGroup,
+  Label,
+  CustomInput,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input
+} from "reactstrap";
+import Page from "../components/Page";
 
 class Cart extends React.Component {
     constructor(props) {
@@ -28,12 +43,35 @@ class Cart extends React.Component {
         this.props.actions.handle_header(['Checkout',true])
       }
     render() {
-       if( this.props.cartItems && this.props.cartItems.length > 0 )
+       if( localStorage.getItem('cartCount') > 0 )
         return(
             <Checkout />
         )
         else 
-            return (<div></div>)
+            return (
+              <div>
+      <Page>
+        <div className="gap"></div>
+      <Row className="checkout-div">
+       
+
+          <Table className="tableRadio">
+            <tbody className="radio-div">
+              <tr>
+                <FormGroup row className="table-div">
+                  <Label className="label" for="exampleCheckbox" style={{marginLeft:"31%"}}>
+                   No Produts available
+                  </Label>
+                  
+                </FormGroup>
+              </tr>
+            </tbody>
+          </Table>
+         
+        </Row>
+      </Page>
+    </div>
+            )
     }
 }
 

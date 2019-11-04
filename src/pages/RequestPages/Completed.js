@@ -39,7 +39,7 @@ class Completed extends React.Component {
       roomNo: localStorage.getItem("roomNo"),
       user_last_name: localStorage.getItem("guestName")
     };
-    this.props.actions.loadGuestRequests(data);
+   // this.props.actions.loadGuestRequests(data);
   }
 
   toggleCollapse = (collapseID, orderId) => () => {

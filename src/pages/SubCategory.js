@@ -39,14 +39,27 @@ class SubCategory extends React.Component {
   }
 
   componentWillMount() {
-    this.props.actions.handle_header([
-      localStorage.getItem("serviceSubCategoryName"),
-      true
-    ]);
-    this.props.actions.getSubCategories(
-      localStorage.getItem("serviceSubCategoryId")
-    );
-    localStorage.setItem('tab', 1)
+    localStorage.setItem('cart',true)
+    console.log(localStorage.getItem('tab'),'ssssssssssssssssssssss')
+    // if(localStorage.getItem('tab')=='null'||localStorage.getItem('tab')==null){
+      this.props.actions.handle_header([
+        localStorage.getItem("serviceSubCategoryName"),
+        true
+      ]);
+      this.props.actions.getSubCategories(
+        localStorage.getItem("serviceSubCategoryId")
+      );
+      localStorage.setItem('tab', 1)
+    // }else{
+    //   this.props.actions.handle_header([
+    //     localStorage.getItem("serviceSubCategoryName"),
+    //     true
+    //   ]);
+    //   this.props.actions.getSubCategories(
+    //     localStorage.getItem("serviceSubCategoryId")
+    //   );
+    //   localStorage.setItem('tab', parseFloat(localStorage.getItem('tab')))
+    // }  
   }
 
   toggle(tab) {
@@ -71,6 +84,7 @@ class SubCategory extends React.Component {
     ) {
       console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
       this.props.actions.handle_header(["Break Fast", true]);
+      localStorage.setItem('cart',false)
     }
     this.props.subcategory[index].accept = true;
     this.props.subcategory[index].selectedItems += 1;
@@ -153,6 +167,8 @@ class SubCategory extends React.Component {
           parseFloat(localStorage.getItem(index)) + 1
         )
       : localStorage.setItem(index, 1);
+
+      
   }
 
   handleCartAdd = (index, [servicename, justify]) => {
@@ -165,6 +181,8 @@ class SubCategory extends React.Component {
         )
       : localStorage.setItem("cartCount", localStorage.getItem("cartCount"));
     this.props.actions.handle_header([servicename, justify]);
+
+    
   };
 
   onIncrement(id, index) {
@@ -244,6 +262,8 @@ class SubCategory extends React.Component {
           parseFloat(localStorage.getItem("cartCount")) - 1
         )
       : localStorage.setItem("cartCount", localStorage.getItem("cartCount"));
+
+       localStorage.setItem('cart',false)
     this.props.actions.handle_header([servicename, justify]);
   };
 
@@ -346,7 +366,10 @@ class SubCategory extends React.Component {
 
   handleContinue(e) {
     e.preventDefault();
+    console.log(parseInt(localStorage.getItem('cartCount')),';lssdfsdfsdfsfsdfsdfsdf')
     // this.props.actions.storeOrder(this.props.subcategory);
+    localStorage.setItem('newcartcount',parseInt(localStorage.getItem('cartCount')))
+    localStorage.setItem('cart',true)
     this.props.actions.handle_header(["Checkout", true]);
 
     history.push("/"+localStorage.getItem('tenantId')+"/checkout");
@@ -416,11 +439,11 @@ class SubCategory extends React.Component {
       ))
 
       const subCategoryitems = props.subcategory && props.subcategory.map((data, index) => {
-
+          //  console.log(data.serviceSubCategory2Id,'llllllllllllldfssssssssssssssssdfsdf',parseInt(localStorage.getItem('tab')))
           if(parseInt(localStorage.getItem('tab')) == data.serviceSubCategory2Id) {
             
         return (<Col lg={4} md={6} sm={6} xs={12} className="col-spacing" key={index} >
-          <Card style={{borderRadius:'0px'}}>
+          <Card style={{borderRadius:'0px',padding:"15px 10px"}}>
             <Media className="SubcategoryMain">
               <Media left>
                 {/* <Media object src={data.image} alt="image" /> */}
@@ -462,19 +485,23 @@ class SubCategory extends React.Component {
             <Nav tabs >
             {headers}         
             </Nav>
-            <TabContent activeTab={this.state.activeTab} style={{marginTop: '-103px'}} >
-            <div className="sometext">
+            <TabContent activeTab={this.state.activeTab} style={{}} >
+            <div className="sometext"style={{display: 'none',}}>
                 <p>Instruction heading</p>
             </div>
                 <TabPane tabId={localStorage.getItem('tab')}>
                     <Row>
                         <Col sm="12">
                             <div className='tabContent' style={{overflowY: 'scroll',
-    position: 'fixed',
+    // position: 'fixed',
     top: '130px',
     bottom: '92px',
     overflowX: 'hidden',
-    width: '96%'
+    width: '100%',
+    height: "calc(100vh - 156px)",
+    overflowY: 'scroll' ,
+    overflowX: 'hidden',
+    padding:" 0 0 100px",
 }}>
                                 <div style={{right: -100, bottom: 0, zIndex: -9999999, position: "absolute"}}>
                                     <img src='../components/assets/img/icons/cart.svg' />

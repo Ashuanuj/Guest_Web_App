@@ -11,7 +11,7 @@ import {
 import Page from "../components/Page";
 import history from "../helper/history";
 import TextInput from "../components/forms/TextInput";
-import { handle_header } from "../actions";
+import { handle_header ,createRequest} from "../actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 class WakeUp extends React.Component {
@@ -21,15 +21,31 @@ class WakeUp extends React.Component {
     this.handleProduct = this.handleProduct.bind(this);
   }
   componentWillMount() {
-    this.props.actions.handle_header([localStorage.getItem('serviceSubCategory2Name'), true]);
+    this.props.actions.handle_header([localStorage.getItem('serviceSubCategoryName'), true]);
   }
   handleService = link => {
       console.log(link, 'from service.js')
-    history.push('/category');
+    history.push("/"+localStorage.getItem('tenantId')+'/category');
   };
 
   handleProduct = link => {
     history.push(link)
+  }
+
+  handleClick=()=>{
+    let cart_details=[{
+      SubTitle: " ",
+      Title:localStorage.getItem('serviceSubCategoryName') ,
+       accept: true,
+       id: localStorage.getItem('serviceSubCategoryId'),
+       image: "",
+       itemsRate: 0,
+       rate: 0,
+      selectedItems: 0,
+    }]
+      let _data=cart_details
+     this.props.actions.createRequest(_data);
+    history.push("/"+localStorage.getItem('tenantId')+"/requestmain");
   }
 
   render() {
@@ -82,14 +98,14 @@ class WakeUp extends React.Component {
               <Button
                 size="lg"
                 className="btnCancel"
-                onClick={() => this.handleService(`/${localStorage.getItem('serviceName')}`)}
+                onClick={() => this.handleService("/"+localStorage.getItem('tenantId')+`/${localStorage.getItem('serviceName')}`)}
               >
                 Cancel
               </Button>
               <Button
                 size="lg"
                 className="btnReqt bg-gradient-Requestbtn border-0"
-                onClick={() => this.handleClick("/requestmain")}
+                onClick={() => this.handleClick("/"+localStorage.getItem('tenantId')+"/requestmain")}
               >
                 Request
               </Button>
@@ -111,7 +127,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       {
-        handle_header
+        handle_header,
+        createRequest
       },
       dispatch
     )

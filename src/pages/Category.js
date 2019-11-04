@@ -51,7 +51,7 @@ class Category extends React.Component {
 
   render() {
     const {props} = this;
-    
+    console.log(props,'lllkjsddffffffffsdfsdfsdfsdfsdfsdfsdf')
     const servicesCategory = props.services && props.services.map(requestCategory =>(
       <Col lg={4} md={6} sm={6} xs={12} className="mb-3" key={requestCategory.id}>
         {/* <Link to={`/${requestCategory.link}`} > */}
@@ -77,11 +77,17 @@ class Category extends React.Component {
         </Col>
        ));
     return (
+      props.services&&props.services.length?
       <div>
         <Page>
           <Row className="ServicePageMain">{servicesCategory}</Row>
         </Page>
-      </div>
+      </div>:<div  style={{color:'white', padding: '15 15 15 15'}}><span className="tabMain" style={{backgroundColor: 'rgb(19, 42, 59)',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+    textAlign: 'center'}}>No data available</span></div>
     );
   }
 }

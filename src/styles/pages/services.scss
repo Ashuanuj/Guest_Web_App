@@ -779,7 +779,7 @@
 
      //main and subcategory continue btn
      .addItem-div{
-        padding-top: 5px;
+        // padding-top: 5px;
         width: 100%;
         flex-direction: row;
         // position: absolute;
@@ -1013,5 +1013,15 @@
             height: 20px;
             width: 100%;
             }
+        }
+    }
+
+
+    .TableMainList{
+        .order-total{
+            display: none !important;
+        }
+        .order-total1{
+            display: '' ;
         }
     }
